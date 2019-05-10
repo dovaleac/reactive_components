@@ -104,14 +104,15 @@ public abstract class FlowablesDbJoinFacade {
       this.lkFunction = lkFunction;
     }
 
-    public RightKeyFunctionSpecifiedStep<LT, RT, KT> withRightKeyFunction(
+    public <KT2> RightKeyFunctionSpecifiedStep<LT, RT, KT, KT2> withRightKeyFunction(
         Function<RT, KT> rkFunction) {
       return new RightKeyFunctionSpecifiedStep<>(joinType, ltClass, rtClass, ktClass,
           lkFunction, rkFunction);
     }
   }
 
-  public static class RightKeyFunctionSpecifiedStep<LT, RT, KT> extends Builder<LT, RT> {
+  public static class RightKeyFunctionSpecifiedStep<LT, RT, KT, KT2> extends Builder<LT, RT, KT,
+      KT2> implements Scenario<LT, RT, KT, KT2>{
 
     private final JoinType joinType;
     private final Class<LT> ltClass;
@@ -136,7 +137,7 @@ public abstract class FlowablesDbJoinFacade {
           lkFunction, rkFunction, kt2Class);
     }
 
-    public PlannerConfigSpecifiedWith1KeyStep<LT, RT, KT> withPlannerConfig(
+    public PlannerConfigSpecifiedWith1KeyStep<LT, RT, KT, KT2> withPlannerConfig(
         PlannerConfig plannerConfig) {
       return new PlannerConfigSpecifiedWith1KeyStep<>(joinType, ltClass, rtClass, ktClass,
           lkFunction, rkFunction, plannerConfig);
@@ -149,9 +150,15 @@ public abstract class FlowablesDbJoinFacade {
     public PlannerConfig getPlannerConfig() {
       return PlannerConfig.NO_CONFIG;
     }
+
+    @Override
+    protected Scenario<LT, RT, KT, KT2> getScenario() {
+      return this;
+    }
   }
 
-  public static class PlannerConfigSpecifiedWith1KeyStep<LT, RT, KT> extends Builder<LT, RT> {
+  public static class PlannerConfigSpecifiedWith1KeyStep<LT, RT, KT, KT2> extends Builder<LT, RT,
+      KT, KT2> implements Scenario<LT, RT, KT, KT2>{
 
     private final JoinType joinType;
     private final Class<LT> ltClass;
@@ -205,6 +212,11 @@ public abstract class FlowablesDbJoinFacade {
 
     Function<RT, KT> getRkFunction() {
       return rkFunction;
+    }
+
+    @Override
+    protected Scenario<LT, RT, KT, KT2> getScenario() {
+      return this;
     }
   }
 
@@ -267,7 +279,8 @@ public abstract class FlowablesDbJoinFacade {
     }
   }
 
-  public static class RightKey2FunctionSpecifiedStep<LT, RT, KT, KT2> extends Builder<LT, RT> {
+  public static class RightKey2FunctionSpecifiedStep<LT, RT, KT, KT2>
+      extends Builder<LT, RT, KT, KT2> implements Scenario<LT, RT, KT, KT2> {
 
     private final JoinType joinType;
     private final Class<LT> ltClass;
@@ -308,9 +321,15 @@ public abstract class FlowablesDbJoinFacade {
     public PlannerConfig getPlannerConfig() {
       return PlannerConfig.builder().build();
     }
+
+    @Override
+    protected Scenario<LT, RT, KT, KT2> getScenario() {
+      return this;
+    }
   }
 
-  public static class PlannerConfigSpecifiedWith2KeysStep<LT, RT, KT, KT2> extends Builder<LT, RT> {
+  public static class PlannerConfigSpecifiedWith2KeysStep<LT, RT, KT, KT2> extends Builder<LT,
+      RT, KT, KT2>implements Scenario<LT, RT, KT, KT2>{
 
     private final JoinType joinType;
     private final Class<LT> ltClass;
@@ -383,6 +402,11 @@ public abstract class FlowablesDbJoinFacade {
 
     Function<RT, KT2> getRk2Function() {
       return rk2Function;
+    }
+
+    @Override
+    protected Scenario<LT, RT, KT, KT2> getScenario() {
+      return this;
     }
   }
 

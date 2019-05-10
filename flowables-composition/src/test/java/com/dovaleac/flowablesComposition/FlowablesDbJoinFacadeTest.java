@@ -22,7 +22,8 @@ class FlowablesDbJoinFacadeTest {
     PlannerConfig plannerConfig = PlannerConfig.builder()
         .withAreSorted(true).build();
 
-    FlowablesDbJoinFacade.RightKeyFunctionSpecifiedStep<String, Double, Integer> preLastStep1 = initialStep
+    FlowablesDbJoinFacade.RightKeyFunctionSpecifiedStep<String, Double, Integer, ?> preLastStep1 =
+        initialStep
         .withLeftType(ltClass)
         .withRightType(rtClass)
         .withKeyType(ktClass)
@@ -33,7 +34,8 @@ class FlowablesDbJoinFacadeTest {
     PlannerConfig noConfig = PlannerConfig.builder().build();
     assertEquals(noConfig, preLastStep1.getPlannerConfig());
 
-    FlowablesDbJoinFacade.PlannerConfigSpecifiedWith1KeyStep<String, Double, Integer> lastStep1 = preLastStep1
+    FlowablesDbJoinFacade.PlannerConfigSpecifiedWith1KeyStep<String, Double, Integer, ?> lastStep1
+        = preLastStep1
         .withPlannerConfig(plannerConfig);
 
 

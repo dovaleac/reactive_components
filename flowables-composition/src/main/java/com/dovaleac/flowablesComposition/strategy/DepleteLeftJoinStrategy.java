@@ -1,6 +1,6 @@
 package com.dovaleac.flowablesComposition.strategy;
 
-import com.dovaleac.flowablesComposition.Situation;
+import com.dovaleac.flowablesComposition.Scenario;
 import com.dovaleac.flowablesComposition.strategy.instance.JoinStrategyInstance;
 
 import java.util.stream.Stream;
@@ -23,7 +23,7 @@ public class DepleteLeftJoinStrategy implements JoinStrategy {
   }
 
   @Override
-  public <LT, RT> Stream<JoinStrategyInstance<LT, RT>> proposeCandidates(Situation situation,
+  public <LT, RT> Stream<JoinStrategyInstance<LT, RT>> proposeCandidates(Scenario scenario,
       Class<LT> ltClass, Class<RT> rtClass) {
     return null;
   }

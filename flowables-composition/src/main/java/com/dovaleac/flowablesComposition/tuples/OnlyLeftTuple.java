@@ -15,7 +15,7 @@ public class OnlyLeftTuple<LT, RT> implements FullJoinTuple<LT, RT>, LeftJoinTup
   }
 
   @Override
-  public LT getRight() {
+  public LT getLeft() {
     return left;
   }
 

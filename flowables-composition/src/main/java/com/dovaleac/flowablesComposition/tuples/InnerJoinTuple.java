@@ -17,7 +17,7 @@ public class InnerJoinTuple<LT, RT> implements OptionalTuple<LT, RT>,
     return new InnerJoinTuple<>(left, right);
   }
 
-  public LT getRight() {
+  public LT getLeft() {
     return left;
   }
 
