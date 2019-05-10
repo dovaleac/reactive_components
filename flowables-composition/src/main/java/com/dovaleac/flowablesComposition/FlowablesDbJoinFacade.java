@@ -308,7 +308,7 @@ public abstract class FlowablesDbJoinFacade {
 
     @Override
     public PlannerConfig getPlannerConfig() {
-      return null;
+      return PlannerConfig.builder().build();
     }
   }
 

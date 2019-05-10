@@ -19,7 +19,8 @@ class FlowablesDbJoinFacadeTest {
     Class<Integer> ktClass = Integer.class;
     Function<String, Integer> lkFunction = String::length;
     Function<Double, Integer> rkFunction = Double::intValue;
-    PlannerConfig plannerConfig = null;
+    PlannerConfig plannerConfig = PlannerConfig.builder()
+        .withAreSorted(true).build();
 
     FlowablesDbJoinFacade.RightKeyFunctionSpecifiedStep<String, Double, Integer> preLastStep1 = initialStep
         .withLeftType(ltClass)
@@ -29,7 +30,8 @@ class FlowablesDbJoinFacadeTest {
         .withRightKeyFunction(rkFunction);
 
     assertFalse(preLastStep1.hasSecondKey());
-    assertNull(preLastStep1.getPlannerConfig());
+    PlannerConfig noConfig = PlannerConfig.builder().build();
+    assertEquals(noConfig, preLastStep1.getPlannerConfig());
 
     FlowablesDbJoinFacade.PlannerConfigSpecifiedWith1KeyStep<String, Double, Integer> lastStep1 = preLastStep1
         .withPlannerConfig(plannerConfig);
@@ -48,7 +50,7 @@ class FlowablesDbJoinFacadeTest {
     Class<Float> kt2Class = Float.class;
     Function<String, Float> lk2Function = s -> 0F;
     Function<Double, Float> rk2Function = Double::floatValue;
-    PlannerConfig plannerConfig2 = null;
+    PlannerConfig plannerConfig2 = PlannerConfig.builder().withLeftCardinality(100000).build();
 
     FlowablesDbJoinFacade.RightKey2FunctionSpecifiedStep<String, Double, Integer, Float> preLastStep2 = preLastStep1
         .withKeyType2(kt2Class)
@@ -56,7 +58,7 @@ class FlowablesDbJoinFacadeTest {
         .withRightKey2Function(rk2Function);
 
     assertTrue(preLastStep2.hasSecondKey());
-    assertNull(preLastStep2.getPlannerConfig());
+    assertEquals(noConfig, preLastStep2.getPlannerConfig());
 
     FlowablesDbJoinFacade.PlannerConfigSpecifiedWith2KeysStep<String, Double, Integer, Float> lastStep2 = preLastStep2
         .withPlannerConfig(plannerConfig2);
