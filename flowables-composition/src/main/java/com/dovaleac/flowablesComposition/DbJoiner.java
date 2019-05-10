@@ -11,7 +11,9 @@ public class DbJoiner<LT, RT> implements BiFunction<Flowable<LT>, Flowable<RT>, 
     this.situation = situation;
   }
 
-  public Flowable<Object> apply(Flowable<LT> ltFlowable, Flowable<RT> rtFlowable) throws Exception {
+  public Flowable<Object> apply(Flowable<LT> ltFlowable, Flowable<RT> rtFlowable)
+      throws Exception {
     return null;
   }
+
 }

@@ -2,6 +2,8 @@ package com.dovaleac.flowablesComposition;
 
 import io.reactivex.functions.Function;
 
+import java.util.Objects;
+
 public abstract class FlowablesDbJoinFacade {
 
   public static JoinTypeSpecifiedStep innerJoin() {
@@ -29,7 +31,7 @@ public abstract class FlowablesDbJoinFacade {
     }
 
     public <LT> LeftTypeSpecifiedStep<LT> withLeftType(Class<LT> ltClass) {
-      return new LeftTypeSpecifiedStep<LT>(joinType, ltClass);
+      return new LeftTypeSpecifiedStep<>(joinType, ltClass);
     }
   }
 
@@ -44,7 +46,7 @@ public abstract class FlowablesDbJoinFacade {
     }
 
     public <RT> RightTypeSpecifiedStep<LT, RT> withRightType(Class<RT> rtClass) {
-      return new RightTypeSpecifiedStep<LT, RT>(joinType, ltClass, rtClass);
+      return new RightTypeSpecifiedStep<>(joinType, ltClass, rtClass);
     }
   }
 
@@ -61,7 +63,7 @@ public abstract class FlowablesDbJoinFacade {
     }
 
     public <KT> KeyTypeSpecifiedStep<LT, RT, KT> withKeyType(Class<KT> ktClass) {
-      return new KeyTypeSpecifiedStep<LT, RT, KT>(joinType, ltClass, rtClass, ktClass);
+      return new KeyTypeSpecifiedStep<>(joinType, ltClass, rtClass, ktClass);
     }
   }
 
@@ -82,7 +84,7 @@ public abstract class FlowablesDbJoinFacade {
 
     public LeftKeyFunctionSpecifiedStep<LT, RT, KT> withLeftKeyFunction(
         Function<LT, KT> lkFunction) {
-      return new LeftKeyFunctionSpecifiedStep<LT, RT, KT>(joinType, ltClass, rtClass, ktClass,
+      return new LeftKeyFunctionSpecifiedStep<>(joinType, ltClass, rtClass, ktClass,
           lkFunction);
     }
   }
@@ -106,12 +108,12 @@ public abstract class FlowablesDbJoinFacade {
 
     public RightKeyFunctionSpecifiedStep<LT, RT, KT> withRightKeyFunction(
         Function<RT, KT> rkFunction) {
-      return new RightKeyFunctionSpecifiedStep<LT, RT, KT>(joinType, ltClass, rtClass, ktClass,
+      return new RightKeyFunctionSpecifiedStep<>(joinType, ltClass, rtClass, ktClass,
           lkFunction, rkFunction);
     }
   }
 
-  public static class RightKeyFunctionSpecifiedStep<LT, RT, KT> {
+  public static class RightKeyFunctionSpecifiedStep<LT, RT, KT> extends Builder<LT, RT> {
 
     private final JoinType joinType;
     private final Class<LT> ltClass;
@@ -132,18 +134,26 @@ public abstract class FlowablesDbJoinFacade {
 
     public <KT2> KeyType2SpecifiedStep<LT, RT, KT, KT2> withKeyType2(
         Class<KT2> kt2Class) {
-      return new KeyType2SpecifiedStep<LT, RT, KT, KT2>(joinType, ltClass, rtClass, ktClass,
+      return new KeyType2SpecifiedStep<>(joinType, ltClass, rtClass, ktClass,
           lkFunction, rkFunction, kt2Class);
     }
 
     public PlannerConfigSpecifiedWith1KeyStep<LT, RT, KT> withPlannerConfig(
         PlannerConfig plannerConfig) {
-      return new PlannerConfigSpecifiedWith1KeyStep<LT, RT, KT>(joinType, ltClass, rtClass, ktClass,
+      return new PlannerConfigSpecifiedWith1KeyStep<>(joinType, ltClass, rtClass, ktClass,
           lkFunction, rkFunction, plannerConfig);
+    }
+
+    public boolean hasSecondKey() {
+      return false;
+    }
+
+    public PlannerConfig getPlannerConfig() {
+      return PlannerConfig.NO_CONFIG;
     }
   }
 
-  public static class PlannerConfigSpecifiedWith1KeyStep<LT, RT, KT> {
+  public static class PlannerConfigSpecifiedWith1KeyStep<LT, RT, KT> extends Builder<LT, RT> {
 
     private final JoinType joinType;
     private final Class<LT> ltClass;
@@ -164,9 +174,41 @@ public abstract class FlowablesDbJoinFacade {
       this.rkFunction = rkFunction;
       this.plannerConfig = plannerConfig;
     }
+
+    @Override
+    public boolean hasSecondKey() {
+      return false;
+    }
+
+    @Override
+    public PlannerConfig getPlannerConfig() {
+      return plannerConfig;
+    }
+
+    JoinType getJoinType() {
+      return joinType;
+    }
+
+    Class<LT> getLtClass() {
+      return ltClass;
+    }
+
+    Class<RT> getRtClass() {
+      return rtClass;
+    }
+
+    Class<KT> getKtClass() {
+      return ktClass;
+    }
+
+    Function<LT, KT> getLkFunction() {
+      return lkFunction;
+    }
+
+    Function<RT, KT> getRkFunction() {
+      return rkFunction;
+    }
   }
-
-
 
   public static class KeyType2SpecifiedStep<LT, RT, KT, KT2> {
 
@@ -191,7 +233,7 @@ public abstract class FlowablesDbJoinFacade {
 
     public LeftKey2FunctionSpecifiedStep<LT, RT, KT, KT2> withLeftKey2Function(
         Function<LT, KT2> lk2Function) {
-      return new LeftKey2FunctionSpecifiedStep<LT, RT, KT, KT2>(joinType, ltClass, rtClass, ktClass,
+      return new LeftKey2FunctionSpecifiedStep<>(joinType, ltClass, rtClass, ktClass,
           lkFunction, rkFunction, kt2Class, lk2Function);
     }
   }
@@ -220,14 +262,14 @@ public abstract class FlowablesDbJoinFacade {
       this.lk2Function = lk2Function;
     }
 
-    public RightKey2FunctionSpecifiedStep<LT, RT, KT, KT2> withLeftKey2Function(
+    public RightKey2FunctionSpecifiedStep<LT, RT, KT, KT2> withRightKey2Function(
         Function<RT, KT2> rk2Function) {
-      return new RightKey2FunctionSpecifiedStep<LT, RT, KT, KT2>(joinType, ltClass, rtClass,
+      return new RightKey2FunctionSpecifiedStep<>(joinType, ltClass, rtClass,
           ktClass, lkFunction, rkFunction, kt2Class, lk2Function, rk2Function);
     }
   }
 
-  public static class RightKey2FunctionSpecifiedStep<LT, RT, KT, KT2> {
+  public static class RightKey2FunctionSpecifiedStep<LT, RT, KT, KT2> extends Builder<LT, RT> {
 
     private final JoinType joinType;
     private final Class<LT> ltClass;
@@ -253,14 +295,24 @@ public abstract class FlowablesDbJoinFacade {
       this.rk2Function = rk2Function;
     }
 
-    public PlannerConfigSpecifiedWith2KeysStep<LT, RT, KT, KT2> withLeftKey2Function(
+    public PlannerConfigSpecifiedWith2KeysStep<LT, RT, KT, KT2> withPlannerConfig(
         PlannerConfig plannerConfig) {
-      return new PlannerConfigSpecifiedWith2KeysStep<LT, RT, KT, KT2>(joinType, ltClass, rtClass,
+      return new PlannerConfigSpecifiedWith2KeysStep<>(joinType, ltClass, rtClass,
           ktClass, lkFunction, rkFunction, kt2Class, lk2Function, rk2Function, plannerConfig);
+    }
+
+    @Override
+    public boolean hasSecondKey() {
+      return true;
+    }
+
+    @Override
+    public PlannerConfig getPlannerConfig() {
+      return null;
     }
   }
 
-  public static class PlannerConfigSpecifiedWith2KeysStep<LT, RT, KT, KT2> {
+  public static class PlannerConfigSpecifiedWith2KeysStep<LT, RT, KT, KT2> extends Builder<LT, RT> {
 
     private final JoinType joinType;
     private final Class<LT> ltClass;
@@ -287,6 +339,52 @@ public abstract class FlowablesDbJoinFacade {
       this.lk2Function = lk2Function;
       this.rk2Function = rk2Function;
       this.plannerConfig = plannerConfig;
+    }
+
+    @Override
+    public boolean hasSecondKey() {
+      return true;
+    }
+
+    @Override
+    public PlannerConfig getPlannerConfig() {
+      return plannerConfig;
+    }
+
+    JoinType getJoinType() {
+      return joinType;
+    }
+
+    Class<LT> getLtClass() {
+      return ltClass;
+    }
+
+    Class<RT> getRtClass() {
+      return rtClass;
+    }
+
+    Class<KT> getKtClass() {
+      return ktClass;
+    }
+
+    Function<LT, KT> getLkFunction() {
+      return lkFunction;
+    }
+
+    Function<RT, KT> getRkFunction() {
+      return rkFunction;
+    }
+
+    Class<KT2> getKt2Class() {
+      return kt2Class;
+    }
+
+    Function<LT, KT2> getLk2Function() {
+      return lk2Function;
+    }
+
+    Function<RT, KT2> getRk2Function() {
+      return rk2Function;
     }
   }
 

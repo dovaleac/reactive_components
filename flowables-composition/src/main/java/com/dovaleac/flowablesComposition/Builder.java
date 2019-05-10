@@ -3,13 +3,11 @@ package com.dovaleac.flowablesComposition;
 import io.reactivex.Flowable;
 import io.reactivex.functions.BiFunction;
 
-abstract class Builder<LT, RT> {
+abstract class Builder<LT, RT> implements Situation {
 
   //TEMPLATE METHOD
   public BiFunction<Flowable<LT>, Flowable<RT>, Flowable<Object>> build() {
-    return new DbJoiner<LT, RT>(generateSituation());
+    return new DbJoiner<>(this);
   }
 
-  //HOOK METHOD
-  protected abstract Situation generateSituation();
 }
