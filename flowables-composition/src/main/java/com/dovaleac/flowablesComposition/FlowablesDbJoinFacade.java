@@ -1,5 +1,8 @@
 package com.dovaleac.flowablesComposition;
 
+import com.dovaleac.flowablesComposition.scenario.OneKeyScenario;
+import com.dovaleac.flowablesComposition.scenario.Scenario;
+import com.dovaleac.flowablesComposition.scenario.TwoKeysScenario;
 import io.reactivex.functions.Function;
 
 public abstract class FlowablesDbJoinFacade {
@@ -111,24 +114,13 @@ public abstract class FlowablesDbJoinFacade {
     }
   }
 
-  public static class RightKeyFunctionSpecifiedStep<LT, RT, KT, KT2> extends Builder<LT, RT, KT,
-      KT2> implements Scenario<LT, RT, KT, KT2>{
+  public static class RightKeyFunctionSpecifiedStep<LT, RT, KT, KT2>
+      extends OneKeyScenario<LT, RT, KT, KT2> implements Builder<LT, RT, KT, KT2> {
 
-    private final JoinType joinType;
-    private final Class<LT> ltClass;
-    private final Class<RT> rtClass;
-    private final Class<KT> ktClass;
-    private final Function<LT, KT> lkFunction;
-    private final Function<RT, KT> rkFunction;
 
     private RightKeyFunctionSpecifiedStep(JoinType joinType, Class<LT> ltClass, Class<RT> rtClass,
         Class<KT> ktClass, Function<LT, KT> lkFunction, Function<RT, KT> rkFunction) {
-      this.joinType = joinType;
-      this.ltClass = ltClass;
-      this.rtClass = rtClass;
-      this.ktClass = ktClass;
-      this.lkFunction = lkFunction;
-      this.rkFunction = rkFunction;
+      super(joinType, ltClass, rtClass, ktClass, lkFunction, rkFunction, PlannerConfig.NO_CONFIG);
     }
 
     public <KT2> KeyType2SpecifiedStep<LT, RT, KT, KT2> withKeyType2(
@@ -143,79 +135,23 @@ public abstract class FlowablesDbJoinFacade {
           lkFunction, rkFunction, plannerConfig);
     }
 
-    public boolean hasSecondKey() {
-      return false;
-    }
-
-    public PlannerConfig getPlannerConfig() {
-      return PlannerConfig.NO_CONFIG;
-    }
-
     @Override
-    protected Scenario<LT, RT, KT, KT2> getScenario() {
+    public Scenario<LT, RT, KT, KT2> getScenario() {
       return this;
     }
   }
 
-  public static class PlannerConfigSpecifiedWith1KeyStep<LT, RT, KT, KT2> extends Builder<LT, RT,
-      KT, KT2> implements Scenario<LT, RT, KT, KT2>{
-
-    private final JoinType joinType;
-    private final Class<LT> ltClass;
-    private final Class<RT> rtClass;
-    private final Class<KT> ktClass;
-    private final Function<LT, KT> lkFunction;
-    private final Function<RT, KT> rkFunction;
-    private final PlannerConfig plannerConfig;
+  public static class PlannerConfigSpecifiedWith1KeyStep<LT, RT, KT, KT2>
+      extends OneKeyScenario<LT, RT, KT, KT2> implements Builder<LT, RT, KT, KT2> {
 
     private PlannerConfigSpecifiedWith1KeyStep(JoinType joinType, Class<LT> ltClass,
         Class<RT> rtClass, Class<KT> ktClass, Function<LT, KT> lkFunction,
         Function<RT, KT> rkFunction, PlannerConfig plannerConfig) {
-      this.joinType = joinType;
-      this.ltClass = ltClass;
-      this.rtClass = rtClass;
-      this.ktClass = ktClass;
-      this.lkFunction = lkFunction;
-      this.rkFunction = rkFunction;
-      this.plannerConfig = plannerConfig;
+      super(joinType, ltClass, rtClass, ktClass, lkFunction, rkFunction, plannerConfig);
     }
 
     @Override
-    public boolean hasSecondKey() {
-      return false;
-    }
-
-    @Override
-    public PlannerConfig getPlannerConfig() {
-      return plannerConfig;
-    }
-
-    JoinType getJoinType() {
-      return joinType;
-    }
-
-    Class<LT> getLtClass() {
-      return ltClass;
-    }
-
-    Class<RT> getRtClass() {
-      return rtClass;
-    }
-
-    Class<KT> getKtClass() {
-      return ktClass;
-    }
-
-    Function<LT, KT> getLkFunction() {
-      return lkFunction;
-    }
-
-    Function<RT, KT> getRkFunction() {
-      return rkFunction;
-    }
-
-    @Override
-    protected Scenario<LT, RT, KT, KT2> getScenario() {
+    public Scenario<LT, RT, KT, KT2> getScenario() {
       return this;
     }
   }
@@ -280,30 +216,14 @@ public abstract class FlowablesDbJoinFacade {
   }
 
   public static class RightKey2FunctionSpecifiedStep<LT, RT, KT, KT2>
-      extends Builder<LT, RT, KT, KT2> implements Scenario<LT, RT, KT, KT2> {
-
-    private final JoinType joinType;
-    private final Class<LT> ltClass;
-    private final Class<RT> rtClass;
-    private final Class<KT> ktClass;
-    private final Function<LT, KT> lkFunction;
-    private final Function<RT, KT> rkFunction;
-    private final Class<KT2> kt2Class;
-    private final Function<LT, KT2> lk2Function;
-    private final Function<RT, KT2> rk2Function;
+      extends TwoKeysScenario<LT, RT, KT, KT2>
+      implements Builder<LT, RT, KT, KT2> {
 
     private RightKey2FunctionSpecifiedStep(JoinType joinType, Class<LT> ltClass, Class<RT> rtClass,
         Class<KT> ktClass, Function<LT, KT> lkFunction, Function<RT, KT> rkFunction,
         Class<KT2> kt2Class, Function<LT, KT2> lk2Function, Function<RT, KT2> rk2Function) {
-      this.joinType = joinType;
-      this.ltClass = ltClass;
-      this.rtClass = rtClass;
-      this.ktClass = ktClass;
-      this.lkFunction = lkFunction;
-      this.rkFunction = rkFunction;
-      this.kt2Class = kt2Class;
-      this.lk2Function = lk2Function;
-      this.rk2Function = rk2Function;
+      super(joinType, ltClass, rtClass, ktClass, lkFunction, rkFunction, kt2Class, lk2Function,
+          rk2Function, PlannerConfig.NO_CONFIG);
     }
 
     public PlannerConfigSpecifiedWith2KeysStep<LT, RT, KT, KT2> withPlannerConfig(
@@ -313,99 +233,26 @@ public abstract class FlowablesDbJoinFacade {
     }
 
     @Override
-    public boolean hasSecondKey() {
-      return true;
-    }
-
-    @Override
-    public PlannerConfig getPlannerConfig() {
-      return PlannerConfig.builder().build();
-    }
-
-    @Override
-    protected Scenario<LT, RT, KT, KT2> getScenario() {
+    public Scenario<LT, RT, KT, KT2> getScenario() {
       return this;
     }
   }
 
-  public static class PlannerConfigSpecifiedWith2KeysStep<LT, RT, KT, KT2> extends Builder<LT,
-      RT, KT, KT2>implements Scenario<LT, RT, KT, KT2>{
+  public static class PlannerConfigSpecifiedWith2KeysStep<LT, RT, KT, KT2>
+      extends TwoKeysScenario<LT, RT, KT, KT2> implements Builder<LT,
+      RT, KT, KT2> {
 
-    private final JoinType joinType;
-    private final Class<LT> ltClass;
-    private final Class<RT> rtClass;
-    private final Class<KT> ktClass;
-    private final Function<LT, KT> lkFunction;
-    private final Function<RT, KT> rkFunction;
-    private final Class<KT2> kt2Class;
-    private final Function<LT, KT2> lk2Function;
-    private final Function<RT, KT2> rk2Function;
-    private final PlannerConfig plannerConfig;
 
     private PlannerConfigSpecifiedWith2KeysStep(JoinType joinType, Class<LT> ltClass,
         Class<RT> rtClass, Class<KT> ktClass, Function<LT, KT> lkFunction,
         Function<RT, KT> rkFunction, Class<KT2> kt2Class, Function<LT, KT2> lk2Function,
         Function<RT, KT2> rk2Function, PlannerConfig plannerConfig) {
-      this.joinType = joinType;
-      this.ltClass = ltClass;
-      this.rtClass = rtClass;
-      this.ktClass = ktClass;
-      this.lkFunction = lkFunction;
-      this.rkFunction = rkFunction;
-      this.kt2Class = kt2Class;
-      this.lk2Function = lk2Function;
-      this.rk2Function = rk2Function;
-      this.plannerConfig = plannerConfig;
+      super(joinType, ltClass, rtClass, ktClass, lkFunction, rkFunction, kt2Class, lk2Function,
+          rk2Function, plannerConfig);
     }
 
     @Override
-    public boolean hasSecondKey() {
-      return true;
-    }
-
-    @Override
-    public PlannerConfig getPlannerConfig() {
-      return plannerConfig;
-    }
-
-    JoinType getJoinType() {
-      return joinType;
-    }
-
-    Class<LT> getLtClass() {
-      return ltClass;
-    }
-
-    Class<RT> getRtClass() {
-      return rtClass;
-    }
-
-    Class<KT> getKtClass() {
-      return ktClass;
-    }
-
-    Function<LT, KT> getLkFunction() {
-      return lkFunction;
-    }
-
-    Function<RT, KT> getRkFunction() {
-      return rkFunction;
-    }
-
-    Class<KT2> getKt2Class() {
-      return kt2Class;
-    }
-
-    Function<LT, KT2> getLk2Function() {
-      return lk2Function;
-    }
-
-    Function<RT, KT2> getRk2Function() {
-      return rk2Function;
-    }
-
-    @Override
-    protected Scenario<LT, RT, KT, KT2> getScenario() {
+    public Scenario<LT, RT, KT, KT2> getScenario() {
       return this;
     }
   }

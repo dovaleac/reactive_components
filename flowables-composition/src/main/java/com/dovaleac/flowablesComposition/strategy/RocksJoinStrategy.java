@@ -1,6 +1,6 @@
 package com.dovaleac.flowablesComposition.strategy;
 
-import com.dovaleac.flowablesComposition.Scenario;
+import com.dovaleac.flowablesComposition.scenario.Scenario;
 import com.dovaleac.flowablesComposition.strategy.instance.JoinStrategyInstance;
 
 import java.util.stream.Stream;

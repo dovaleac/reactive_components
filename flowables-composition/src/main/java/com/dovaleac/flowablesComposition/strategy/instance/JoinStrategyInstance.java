@@ -1,6 +1,6 @@
 package com.dovaleac.flowablesComposition.strategy.instance;
 
-import com.dovaleac.flowablesComposition.Scenario;
+import com.dovaleac.flowablesComposition.scenario.Scenario;
 import com.dovaleac.flowablesComposition.tuples.OptionalTuple;
 import io.reactivex.Flowable;
 

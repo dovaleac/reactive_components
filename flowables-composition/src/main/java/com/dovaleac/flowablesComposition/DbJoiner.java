@@ -1,5 +1,6 @@
 package com.dovaleac.flowablesComposition;
 
+import com.dovaleac.flowablesComposition.scenario.Scenario;
 import com.dovaleac.flowablesComposition.tuples.OptionalTuple;
 import io.reactivex.Flowable;
 import io.reactivex.functions.BiFunction;
