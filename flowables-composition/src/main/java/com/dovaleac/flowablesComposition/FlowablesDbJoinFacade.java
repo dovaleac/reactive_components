@@ -135,7 +135,38 @@ public abstract class FlowablesDbJoinFacade {
       return new KeyType2SpecifiedStep<LT, RT, KT, KT2>(joinType, ltClass, rtClass, ktClass,
           lkFunction, rkFunction, kt2Class);
     }
+
+    public PlannerConfigSpecifiedWith1KeyStep<LT, RT, KT> withPlannerConfig(
+        PlannerConfig plannerConfig) {
+      return new PlannerConfigSpecifiedWith1KeyStep<LT, RT, KT>(joinType, ltClass, rtClass, ktClass,
+          lkFunction, rkFunction, plannerConfig);
+    }
   }
+
+  public static class PlannerConfigSpecifiedWith1KeyStep<LT, RT, KT> {
+
+    private final JoinType joinType;
+    private final Class<LT> ltClass;
+    private final Class<RT> rtClass;
+    private final Class<KT> ktClass;
+    private final Function<LT, KT> lkFunction;
+    private final Function<RT, KT> rkFunction;
+    private final PlannerConfig plannerConfig;
+
+    private PlannerConfigSpecifiedWith1KeyStep(JoinType joinType, Class<LT> ltClass,
+        Class<RT> rtClass, Class<KT> ktClass, Function<LT, KT> lkFunction,
+        Function<RT, KT> rkFunction, PlannerConfig plannerConfig) {
+      this.joinType = joinType;
+      this.ltClass = ltClass;
+      this.rtClass = rtClass;
+      this.ktClass = ktClass;
+      this.lkFunction = lkFunction;
+      this.rkFunction = rkFunction;
+      this.plannerConfig = plannerConfig;
+    }
+  }
+
+
 
   public static class KeyType2SpecifiedStep<LT, RT, KT, KT2> {
 
@@ -189,10 +220,10 @@ public abstract class FlowablesDbJoinFacade {
       this.lk2Function = lk2Function;
     }
 
-    public LeftKey2FunctionSpecifiedStep<LT, RT, KT, KT2> withLeftKey2Function(
-        Function<LT, KT2> lk2Function) {
-      return new LeftKey2FunctionSpecifiedStep<LT, RT, KT, KT2>(joinType, ltClass, rtClass, ktClass,
-          lkFunction, rkFunction, kt2Class, lk2Function);
+    public RightKey2FunctionSpecifiedStep<LT, RT, KT, KT2> withLeftKey2Function(
+        Function<RT, KT2> rk2Function) {
+      return new RightKey2FunctionSpecifiedStep<LT, RT, KT, KT2>(joinType, ltClass, rtClass,
+          ktClass, lkFunction, rkFunction, kt2Class, lk2Function, rk2Function);
     }
   }
 
@@ -220,6 +251,42 @@ public abstract class FlowablesDbJoinFacade {
       this.kt2Class = kt2Class;
       this.lk2Function = lk2Function;
       this.rk2Function = rk2Function;
+    }
+
+    public PlannerConfigSpecifiedWith2KeysStep<LT, RT, KT, KT2> withLeftKey2Function(
+        PlannerConfig plannerConfig) {
+      return new PlannerConfigSpecifiedWith2KeysStep<LT, RT, KT, KT2>(joinType, ltClass, rtClass,
+          ktClass, lkFunction, rkFunction, kt2Class, lk2Function, rk2Function, plannerConfig);
+    }
+  }
+
+  public static class PlannerConfigSpecifiedWith2KeysStep<LT, RT, KT, KT2> {
+
+    private final JoinType joinType;
+    private final Class<LT> ltClass;
+    private final Class<RT> rtClass;
+    private final Class<KT> ktClass;
+    private final Function<LT, KT> lkFunction;
+    private final Function<RT, KT> rkFunction;
+    private final Class<KT2> kt2Class;
+    private final Function<LT, KT2> lk2Function;
+    private final Function<RT, KT2> rk2Function;
+    private final PlannerConfig plannerConfig;
+
+    private PlannerConfigSpecifiedWith2KeysStep(JoinType joinType, Class<LT> ltClass,
+        Class<RT> rtClass, Class<KT> ktClass, Function<LT, KT> lkFunction,
+        Function<RT, KT> rkFunction, Class<KT2> kt2Class, Function<LT, KT2> lk2Function,
+        Function<RT, KT2> rk2Function, PlannerConfig plannerConfig) {
+      this.joinType = joinType;
+      this.ltClass = ltClass;
+      this.rtClass = rtClass;
+      this.ktClass = ktClass;
+      this.lkFunction = lkFunction;
+      this.rkFunction = rkFunction;
+      this.kt2Class = kt2Class;
+      this.lk2Function = lk2Function;
+      this.rk2Function = rk2Function;
+      this.plannerConfig = plannerConfig;
     }
   }
 
