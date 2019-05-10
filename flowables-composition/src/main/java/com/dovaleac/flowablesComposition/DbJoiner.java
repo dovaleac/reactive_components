@@ -1,9 +1,11 @@
 package com.dovaleac.flowablesComposition;
 
+import com.dovaleac.flowablesComposition.tuples.OptionalTuple;
 import io.reactivex.Flowable;
 import io.reactivex.functions.BiFunction;
 
-public class DbJoiner<LT, RT> implements BiFunction<Flowable<LT>, Flowable<RT>, Flowable<Object>> {
+public class DbJoiner<LT, RT> implements BiFunction<Flowable<LT>,
+    Flowable<RT>, Flowable<OptionalTuple<LT, RT>>> {
 
   private final Situation situation;
 
@@ -11,8 +13,9 @@ public class DbJoiner<LT, RT> implements BiFunction<Flowable<LT>, Flowable<RT>, 
     this.situation = situation;
   }
 
-  public Flowable<Object> apply(Flowable<LT> ltFlowable, Flowable<RT> rtFlowable)
+  public Flowable<OptionalTuple<LT, RT>> apply(Flowable<LT> ltFlowable, Flowable<RT> rtFlowable)
       throws Exception {
+
     return null;
   }
 

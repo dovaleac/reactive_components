@@ -2,8 +2,6 @@ package com.dovaleac.flowablesComposition;
 
 import io.reactivex.functions.Function;
 
-import java.util.Objects;
-
 public abstract class FlowablesDbJoinFacade {
 
   public static JoinTypeSpecifiedStep innerJoin() {
