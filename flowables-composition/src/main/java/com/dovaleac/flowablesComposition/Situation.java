@@ -1,6 +1,6 @@
 package com.dovaleac.flowablesComposition;
 
-interface Situation {
+public interface Situation {
 
   boolean hasSecondKey();
   PlannerConfig getPlannerConfig();
