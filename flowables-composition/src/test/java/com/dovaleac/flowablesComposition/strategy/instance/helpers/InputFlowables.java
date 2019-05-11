@@ -1,6 +1,6 @@
 package com.dovaleac.flowablesComposition.strategy.instance.helpers;
 
-import com.dovaleac.flowablesComposition.strategy.instance.SmallTuple;
+import com.dovaleac.flowablesComposition.strategy.instance.domain.SmallDomainClass;
 import io.reactivex.Flowable;
 import io.reactivex.functions.Function;
 
@@ -15,11 +15,11 @@ public class InputFlowables {
         .map(function);
   }
 
-  public static Flowable<SmallTuple> leftFlowable(int count) {
-    return getInputFlowable(SmallTuple.class, count, SmallTuple::left, 0);
+  public static Flowable<SmallDomainClass> leftFlowable(int count) {
+    return getInputFlowable(SmallDomainClass.class, count, SmallDomainClass::left, 0);
   }
 
-  public static Flowable<SmallTuple> rightFlowable(int count) {
-    return getInputFlowable(SmallTuple.class, count, SmallTuple::right, 1);
+  public static Flowable<SmallDomainClass> rightFlowable(int count) {
+    return getInputFlowable(SmallDomainClass.class, count, SmallDomainClass::right, 1);
   }
 }

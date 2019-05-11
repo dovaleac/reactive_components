@@ -3,6 +3,7 @@ package com.dovaleac.flowablesComposition.strategy.instance;
 import com.dovaleac.flowablesComposition.FlowablesDbJoinFacade;
 import com.dovaleac.flowablesComposition.PlannerConfig;
 import com.dovaleac.flowablesComposition.scenario.Scenario;
+import com.dovaleac.flowablesComposition.strategy.instance.domain.SmallDomainClass;
 import io.reactivex.functions.Function;
 import io.vertx.junit5.Checkpoint;
 import io.vertx.junit5.VertxExtension;
@@ -20,14 +21,14 @@ import java.util.stream.Stream;
 @ExtendWith(VertxExtension.class)
 abstract class AbstractJoinStrategyInstanceNonBlockTest {
 
-  protected final Function<Scenario<SmallTuple, SmallTuple, Long, ?>,
-      JoinStrategyInstance<SmallTuple, SmallTuple>> strategyInstanceFunction;
+  protected final Function<Scenario<SmallDomainClass, SmallDomainClass, Long, ?>,
+      JoinStrategyInstance<SmallDomainClass, SmallDomainClass>> strategyInstanceFunction;
   protected final PlannerConfig plannerConfig;
   protected final Path pathWithoutJoinType;
 
   public AbstractJoinStrategyInstanceNonBlockTest(
-      Function<Scenario<SmallTuple, SmallTuple, Long, ?>,
-          JoinStrategyInstance<SmallTuple, SmallTuple>> strategyInstanceFunction,
+      Function<Scenario<SmallDomainClass, SmallDomainClass, Long, ?>,
+          JoinStrategyInstance<SmallDomainClass, SmallDomainClass>> strategyInstanceFunction,
       PlannerConfig plannerConfig, Path pathWithoutJoinType) {
     this.strategyInstanceFunction = strategyInstanceFunction;
     this.plannerConfig = plannerConfig;

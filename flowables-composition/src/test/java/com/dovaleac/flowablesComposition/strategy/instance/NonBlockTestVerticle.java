@@ -3,28 +3,22 @@ package com.dovaleac.flowablesComposition.strategy.instance;
 import com.dovaleac.flowablesComposition.FlowablesDbJoinFacade;
 import com.dovaleac.flowablesComposition.PlannerConfig;
 import com.dovaleac.flowablesComposition.scenario.Scenario;
+import com.dovaleac.flowablesComposition.strategy.instance.domain.SmallDomainClass;
 import com.dovaleac.flowablesComposition.strategy.instance.helpers.InputFlowables;
-import com.dovaleac.flowablesComposition.tuples.OnlyRightTuple;
-import io.reactivex.Completable;
-import io.reactivex.CompletableEmitter;
 import io.reactivex.Flowable;
 import io.reactivex.functions.Function;
 import io.vertx.reactivex.core.AbstractVerticle;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
-
 public class NonBlockTestVerticle extends AbstractVerticle {
 
   public static final int COUNT = 50000;
-  protected final Function<Scenario<SmallTuple, SmallTuple, Long, ?>,
-      JoinStrategyInstance<SmallTuple, SmallTuple>> strategyInstanceFunction;
+  protected final Function<Scenario<SmallDomainClass, SmallDomainClass, Long, ?>,
+      JoinStrategyInstance<SmallDomainClass, SmallDomainClass>> strategyInstanceFunction;
   protected final PlannerConfig plannerConfig;
   private final FlowablesDbJoinFacade.JoinTypeSpecifiedStep initialStep;
 
   public NonBlockTestVerticle(
-      Function<Scenario<SmallTuple, SmallTuple, Long, ?>, JoinStrategyInstance<SmallTuple, SmallTuple>> strategyInstanceFunction,
+      Function<Scenario<SmallDomainClass, SmallDomainClass, Long, ?>, JoinStrategyInstance<SmallDomainClass, SmallDomainClass>> strategyInstanceFunction,
       PlannerConfig plannerConfig,
       FlowablesDbJoinFacade.JoinTypeSpecifiedStep initialStep) {
     this.strategyInstanceFunction = strategyInstanceFunction;
@@ -35,15 +29,15 @@ public class NonBlockTestVerticle extends AbstractVerticle {
   @Override
   public void start() throws Exception {
     super.start();
-    Flowable<SmallTuple> leftFlowable = InputFlowables.leftFlowable(COUNT);
-    Flowable<SmallTuple> rightFlowable = InputFlowables.rightFlowable(COUNT);
+    Flowable<SmallDomainClass> leftFlowable = InputFlowables.leftFlowable(COUNT);
+    Flowable<SmallDomainClass> rightFlowable = InputFlowables.rightFlowable(COUNT);
 
-    FlowablesDbJoinFacade.PlannerConfigSpecifiedWith1KeyStep<SmallTuple, SmallTuple, Long, Object> scenario = initialStep
-        .withLeftType(SmallTuple.class)
-        .withRightType(SmallTuple.class)
+    FlowablesDbJoinFacade.PlannerConfigSpecifiedWith1KeyStep<SmallDomainClass, SmallDomainClass, Long, Object> scenario = initialStep
+        .withLeftType(SmallDomainClass.class)
+        .withRightType(SmallDomainClass.class)
         .withKeyType(Long.class)
-        .withLeftKeyFunction(SmallTuple::getId)
-        .withRightKeyFunction(SmallTuple::getId)
+        .withLeftKeyFunction(SmallDomainClass::getId)
+        .withRightKeyFunction(SmallDomainClass::getId)
         .withPlannerConfig(plannerConfig);
 
     System.out.println("pre join");

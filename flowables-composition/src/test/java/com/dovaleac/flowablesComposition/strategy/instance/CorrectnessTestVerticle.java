@@ -3,27 +3,22 @@ package com.dovaleac.flowablesComposition.strategy.instance;
 import com.dovaleac.flowablesComposition.FlowablesDbJoinFacade;
 import com.dovaleac.flowablesComposition.PlannerConfig;
 import com.dovaleac.flowablesComposition.scenario.Scenario;
+import com.dovaleac.flowablesComposition.strategy.instance.domain.SmallDomainClass;
+import com.dovaleac.flowablesComposition.strategy.instance.helpers.CommonTestUtils;
+import com.dovaleac.flowablesComposition.strategy.instance.helpers.CorrectnessCheckingUtils;
 import com.dovaleac.flowablesComposition.strategy.instance.helpers.InputFlowables;
-import io.reactivex.Completable;
-import io.reactivex.CompletableEmitter;
+import com.dovaleac.flowablesComposition.tuples.OptionalTuple;
 import io.reactivex.Flowable;
 import io.reactivex.functions.Function;
 import io.vertx.reactivex.core.AbstractVerticle;
-import org.junit.jupiter.api.Assertions;
-import org.opentest4j.AssertionFailedError;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
-import java.util.Arrays;
 
 public class CorrectnessTestVerticle extends AbstractVerticle {
 
   public static final int COUNT = 100;
-  protected final Function<Scenario<SmallTuple, SmallTuple, Long, ?>,
-      JoinStrategyInstance<SmallTuple, SmallTuple>> strategyInstanceFunction;
+  protected final Function<Scenario<SmallDomainClass, SmallDomainClass, Long, ?>,
+      JoinStrategyInstance<SmallDomainClass, SmallDomainClass>> strategyInstanceFunction;
   protected final PlannerConfig plannerConfig;
   protected final Path pathWithoutJoinType;
   protected final Path righteousPath = Path.of("src", "test", "resources", "right");
@@ -31,7 +26,7 @@ public class CorrectnessTestVerticle extends AbstractVerticle {
   private final String pathSuffix;
 
   public CorrectnessTestVerticle(
-      Function<Scenario<SmallTuple, SmallTuple, Long, ?>, JoinStrategyInstance<SmallTuple, SmallTuple>> strategyInstanceFunction,
+      Function<Scenario<SmallDomainClass, SmallDomainClass, Long, ?>, JoinStrategyInstance<SmallDomainClass, SmallDomainClass>> strategyInstanceFunction,
       PlannerConfig plannerConfig, Path pathWithoutJoinType,
       FlowablesDbJoinFacade.JoinTypeSpecifiedStep initialStep, String pathSuffix) {
     this.strategyInstanceFunction = strategyInstanceFunction;
@@ -44,80 +39,19 @@ public class CorrectnessTestVerticle extends AbstractVerticle {
   @Override
   public void start() throws Exception {
     super.start();
-    Flowable<SmallTuple> leftFlowable = InputFlowables.leftFlowable(COUNT);
-    Flowable<SmallTuple> rightFlowable = InputFlowables.rightFlowable(COUNT);
+    Flowable<SmallDomainClass> leftFlowable = InputFlowables.leftFlowable(COUNT);
+    Flowable<SmallDomainClass> rightFlowable = InputFlowables.rightFlowable(COUNT);
 
-    FlowablesDbJoinFacade.PlannerConfigSpecifiedWith1KeyStep<SmallTuple, SmallTuple, Long, Object> scenario = initialStep
-        .withLeftType(SmallTuple.class)
-        .withRightType(SmallTuple.class)
-        .withKeyType(Long.class)
-        .withLeftKeyFunction(SmallTuple::getId)
-        .withRightKeyFunction(SmallTuple::getId)
-        .withPlannerConfig(plannerConfig);
+    Flowable<? extends OptionalTuple<SmallDomainClass, SmallDomainClass>> joinedFlowable =
+        CommonTestUtils.joinCorrectnessFlowables(leftFlowable, rightFlowable, plannerConfig,
+            initialStep, strategyInstanceFunction);
 
-    Path realPath = appendSuffixToPath(pathSuffix, pathWithoutJoinType);
-    Path realRighteousPath = appendSuffixToPath(pathSuffix, righteousPath);
-
-    Files.write(realPath, "ID,LEFT,RIGHT\n".getBytes(), StandardOpenOption.CREATE,
-        StandardOpenOption.WRITE);
-
-    TuplePrinter tuplePrinter = new TuplePrinter();
-
-    Completable.create((CompletableEmitter completableEmitter) ->
-        strategyInstanceFunction.apply(scenario)
-            .join(leftFlowable, rightFlowable)
-            .map(tuple -> tuple.acceptVisitor(tuplePrinter) + "\n")
-            .sorted()
-            .subscribe(
-                s -> Files.write(realPath, s.getBytes(), StandardOpenOption.APPEND),
-                Assertions::fail,
-                () -> checkFile(realPath, realRighteousPath, completableEmitter)
-            )
-    ).test()
-        .assertNoErrors();
+    CorrectnessCheckingUtils.checkCorrectness(pathWithoutJoinType, righteousPath, joinedFlowable,
+        pathSuffix);
 
   }
 
 
-  private Path appendSuffixToPath(String pathSuffix, Path original) {
-    return original.getParent()
-        .resolve(original.getFileName().toString() + pathSuffix + ".csv");
-  }
 
-  private void checkFile(Path path1, Path path2,
-      CompletableEmitter completableEmitter) throws IOException {
-    System.out.println("starting the checking");
-    boolean areEqual = sameContent(path1, path2);
-    Files.deleteIfExists(path1);
-    System.out.println("ended the checking");
-    if (areEqual) {
-      completableEmitter.onComplete();
-    } else {
-      completableEmitter.onError(new AssertionFailedError());
-    }
-  }
-
-  boolean sameContent(Path path1, Path path2) throws IOException {
-    final long size = Files.size(path1);
-    if (size != Files.size(path2))
-      return false;
-
-    if (size < 4096)
-      return Arrays.equals(Files.readAllBytes(path1), Files.readAllBytes(path2));
-
-    try (InputStream is1 = Files.newInputStream(path1);
-         InputStream is2 = Files.newInputStream(path2)) {
-
-      int data;
-      while ((data = is1.read()) != -1) {
-        int rightPathRead = is2.read();
-        if (data != rightPathRead) {
-          return false;
-        }
-      }
-    }
-
-    return true;
-  }
 
 }
