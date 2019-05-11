@@ -43,7 +43,7 @@ public class CorrectnessTestVerticle extends AbstractVerticle {
     Flowable<SmallDomainClass> rightFlowable = InputFlowables.rightFlowable(COUNT);
 
     Flowable<? extends OptionalTuple<SmallDomainClass, SmallDomainClass>> joinedFlowable =
-        CommonTestUtils.joinCorrectnessFlowables(leftFlowable, rightFlowable, plannerConfig,
+        CommonTestUtils.joinSmallDomainClassFlowables(leftFlowable, rightFlowable, plannerConfig,
             initialStep, strategyInstanceFunction);
 
     CorrectnessCheckingUtils.checkCorrectness(pathWithoutJoinType, righteousPath, joinedFlowable,

@@ -36,7 +36,7 @@ public class CommonTestUtils {
         .join(leftFlowable, rightFlowable);
   }
 
-  public static Flowable<? extends OptionalTuple<SmallDomainClass, SmallDomainClass>> joinCorrectnessFlowables(
+  public static Flowable<? extends OptionalTuple<SmallDomainClass, SmallDomainClass>> joinSmallDomainClassFlowables(
       Flowable<SmallDomainClass> leftFlowable,
       Flowable<SmallDomainClass> rightFlowable,
       PlannerConfig plannerConfig,

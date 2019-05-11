@@ -4,7 +4,10 @@ import com.dovaleac.flowablesComposition.FlowablesDbJoinFacade;
 import com.dovaleac.flowablesComposition.PlannerConfig;
 import com.dovaleac.flowablesComposition.scenario.Scenario;
 import com.dovaleac.flowablesComposition.strategy.instance.domain.SmallDomainClass;
+import com.dovaleac.flowablesComposition.strategy.instance.helpers.CommonTestUtils;
 import com.dovaleac.flowablesComposition.strategy.instance.helpers.InputFlowables;
+import com.dovaleac.flowablesComposition.strategy.instance.helpers.NonBlockCheckingUtils;
+import com.dovaleac.flowablesComposition.tuples.OptionalTuple;
 import io.reactivex.Flowable;
 import io.reactivex.functions.Function;
 import io.vertx.reactivex.core.AbstractVerticle;
@@ -32,21 +35,9 @@ public class NonBlockTestVerticle extends AbstractVerticle {
     Flowable<SmallDomainClass> leftFlowable = InputFlowables.leftFlowable(COUNT);
     Flowable<SmallDomainClass> rightFlowable = InputFlowables.rightFlowable(COUNT);
 
-    FlowablesDbJoinFacade.PlannerConfigSpecifiedWith1KeyStep<SmallDomainClass, SmallDomainClass, Long, Object> scenario = initialStep
-        .withLeftType(SmallDomainClass.class)
-        .withRightType(SmallDomainClass.class)
-        .withKeyType(Long.class)
-        .withLeftKeyFunction(SmallDomainClass::getId)
-        .withRightKeyFunction(SmallDomainClass::getId)
-        .withPlannerConfig(plannerConfig);
-
-    System.out.println("pre join");
-    strategyInstanceFunction.apply(scenario)
-        .join(leftFlowable, rightFlowable)
-        .reduce(0, (integer, o) -> integer + 1)
-    .subscribe(System.out::println);
-
-    System.out.println("post join");
+    NonBlockCheckingUtils.testNonBlock(CommonTestUtils.
+        joinSmallDomainClassFlowables(leftFlowable, rightFlowable, plannerConfig,
+        initialStep, strategyInstanceFunction));
   }
 
 
