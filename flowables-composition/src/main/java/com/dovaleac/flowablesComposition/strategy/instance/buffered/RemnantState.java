@@ -1,0 +1,35 @@
+package com.dovaleac.flowablesComposition.strategy.instance.buffered;
+
+public enum RemnantState {
+  IDLE(false, false, true),
+  READING(false, true, true),
+  WAITING_FOR_SYNCHRONIZER(true, false, true),
+  SYNCHRONIZER(false, false, false),
+  REJECTED_SYNCHRONIZER(false, true, false),
+  WRITING(true, false, true),
+  SYNCHRONIZEE(false, false, true),
+  REJECTED_SYNCHRONIZEE(true, false, false);
+
+  private final boolean consumesWritingBuffer;
+  private final boolean consumesReadingBuffer;
+  private final boolean allowsFillingWritingBuffer;
+
+  RemnantState(boolean consumesWritingBuffer, boolean consumesReadingBuffer,
+      boolean allowsFillingWritingBuffer) {
+    this.consumesWritingBuffer = consumesWritingBuffer;
+    this.consumesReadingBuffer = consumesReadingBuffer;
+    this.allowsFillingWritingBuffer = allowsFillingWritingBuffer;
+  }
+
+  public boolean consumesWritingBuffer() {
+    return consumesWritingBuffer;
+  }
+
+  public boolean consumesReadingBuffer() {
+    return consumesReadingBuffer;
+  }
+
+  public boolean allowsFillingWritingBuffer() {
+    return allowsFillingWritingBuffer;
+  }
+}
