@@ -1,5 +1,8 @@
 package com.dovaleac.flowablesComposition.strategy.instance.buffered.remnant;
 
+import com.dovaleac.flowablesComposition.strategy.instance.buffered.buffer.WriteBufferAcceptNewInputsState;
+import com.dovaleac.flowablesComposition.strategy.instance.buffered.buffer.WriteBufferAcceptNewInputsTrigger;
+import com.dovaleac.flowablesComposition.strategy.instance.buffered.buffer.WriteBufferManager;
 import com.github.oxo42.stateless4j.StateMachine;
 
 public class UnmatchedYetRemnant {
@@ -11,13 +14,19 @@ public class UnmatchedYetRemnant {
       );
 
   private UnmatchedYetRemnant other;
+  private WriteBufferManager primaryWriteBuffer = new WriteBufferManager(this,
+      WriteBufferAcceptNewInputsState.ACCEPT_NEW);
+  private WriteBufferManager secondaryWriteBuffer = new WriteBufferManager(this,
+      WriteBufferAcceptNewInputsState.DISABLED);
+
+  private WriteBufferManager writeBufferInUse = primaryWriteBuffer;
 
   public void setOther(UnmatchedYetRemnant other) {
     this.other = other;
   }
 
   void disableWriteBufferForFill() {
-
+    primaryWriteBuffer.fire(WriteBufferAcceptNewInputsTrigger.FREEZE);
   }
 
   void enableConsumingReadingBuffer() {
@@ -61,10 +70,17 @@ public class UnmatchedYetRemnant {
   }
 
   void useSecondaryWriteBuffer() {
-
+    secondaryWriteBuffer.fire(WriteBufferAcceptNewInputsTrigger.ENABLE_FOR_USE);
   }
 
   void promoteSecondaryWriteBuffer() {
+    writeBufferInUse = secondaryWriteBuffer;
+    primaryWriteBuffer = secondaryWriteBuffer;
+    secondaryWriteBuffer = new WriteBufferManager(this,
+        WriteBufferAcceptNewInputsState.DISABLED);
+  }
 
+  void itWouldBeBetterToWrite() {
+    stateMachine.fire(UnmatchedYetRemnantTrigger.IT_WOULD_BE_BETTER_TO_WRITE);
   }
 }

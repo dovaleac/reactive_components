@@ -7,11 +7,11 @@ import static com.dovaleac.flowablesComposition.strategy.instance.buffered.buffe
 
 public class WriteBufferAcceptNewInputsStateMachine {
 
-  private final WriteBuffer writeBuffer;
+  private final WriteBufferManager writeBufferManager;
 
   public WriteBufferAcceptNewInputsStateMachine(
-      WriteBuffer writeBuffer) {
-    this.writeBuffer = writeBuffer;
+      WriteBufferManager writeBufferManager) {
+    this.writeBufferManager = writeBufferManager;
   }
 
   StateMachineConfig<WriteBufferAcceptNewInputsState, WriteBufferAcceptNewInputsTrigger> getConfig() {
@@ -19,8 +19,8 @@ public class WriteBufferAcceptNewInputsStateMachine {
         new StateMachineConfig<>();
 
     config.configure(ACCEPT_NEW)
-        .onEntry(writeBuffer::acceptNew)
-        .onExit(writeBuffer::rejectNew)
+        .onEntry(writeBufferManager::acceptNew)
+        .onExit(writeBufferManager::rejectNew)
         .permit(FREEZE, FROZEN)
         .permit(MARK_AS_FULL, FULL);
 
@@ -28,9 +28,9 @@ public class WriteBufferAcceptNewInputsStateMachine {
         .permit(UNFREEZE, ACCEPT_NEW);
 
     config.configure(FULL)
-        .onEntry(writeBuffer::itWouldBeBetterToWrite)
+        .onEntry(writeBufferManager::itWouldBeBetterToWrite)
         .permitDynamic(MARK_AS_EMPTY, () -> {
-          if (writeBuffer.isBufferFrozen()) {
+          if (writeBufferManager.isBufferFrozen()) {
             return FROZEN;
           } else {
             return ACCEPT_NEW;
@@ -38,9 +38,9 @@ public class WriteBufferAcceptNewInputsStateMachine {
         });
 
     config.configure(DISABLED)
-        .onEntry(writeBuffer::rejectNew)
+        .onEntry(writeBufferManager::rejectNew)
         .permitDynamic(ENABLE_FOR_USE, () -> {
-          if (writeBuffer.isFull()) {
+          if (writeBufferManager.isFull()) {
             return FULL;
           } else  {
             return ACCEPT_NEW;
