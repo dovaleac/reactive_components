@@ -21,6 +21,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class TestVerticle extends AbstractVerticle {
 
@@ -74,6 +75,7 @@ public class TestVerticle extends AbstractVerticle {
         strategyInstanceFunction.apply(scenario)
             .join(leftFlowable, rightFlowable)
             .map(tuple -> tuple.acceptVisitor(tuplePrinter) + "\n")
+            .sorted()
             .subscribe(
                 s -> Files.write(realPath, s.getBytes(), StandardOpenOption.APPEND),
                 Assertions::fail,
@@ -94,7 +96,7 @@ public class TestVerticle extends AbstractVerticle {
       CompletableEmitter completableEmitter) throws IOException {
     System.out.println("starting the checking");
     boolean areEqual = sameContent(path1, path2);
-    //Files.deleteIfExists(path1);
+    Files.deleteIfExists(path1);
     System.out.println("ended the checking");
     if (areEqual) {
       completableEmitter.onComplete();
@@ -113,14 +115,14 @@ public class TestVerticle extends AbstractVerticle {
 
     try (InputStream is1 = Files.newInputStream(path1);
          InputStream is2 = Files.newInputStream(path2)) {
-      // Compare byte-by-byte.
-      // Note that this can be sped up drastically by reading large chunks
-      // (e.g. 16 KBs) but care must be taken as InputStream.read(byte[])
-      // does not neccessarily read a whole array!
+
       int data;
-      while ((data = is1.read()) != -1)
-        if (data != is2.read())
+      while ((data = is1.read()) != -1) {
+        int rightPathRead = is2.read();
+        if (data != rightPathRead) {
           return false;
+        }
+      }
     }
 
     return true;
