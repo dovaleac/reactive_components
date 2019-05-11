@@ -3,6 +3,7 @@ package com.dovaleac.flowablesComposition.strategy.instance;
 import com.dovaleac.flowablesComposition.FlowablesDbJoinFacade;
 import com.dovaleac.flowablesComposition.PlannerConfig;
 import com.dovaleac.flowablesComposition.scenario.Scenario;
+import com.dovaleac.flowablesComposition.strategy.instance.helpers.InputFlowables;
 import com.dovaleac.flowablesComposition.tuples.OnlyRightTuple;
 import io.reactivex.Completable;
 import io.reactivex.CompletableEmitter;
@@ -34,12 +35,8 @@ public class NonBlockTestVerticle extends AbstractVerticle {
   @Override
   public void start() throws Exception {
     super.start();
-    Flowable<SmallTuple> leftFlowable = Flowable
-        .range(0, COUNT)
-        .map(id -> new SmallTuple(id, "l" + id));
-    Flowable<SmallTuple> rightFlowable = Flowable
-        .range(1, COUNT)
-        .map(id -> new SmallTuple(id, "r" + id));
+    Flowable<SmallTuple> leftFlowable = InputFlowables.leftFlowable(COUNT);
+    Flowable<SmallTuple> rightFlowable = InputFlowables.rightFlowable(COUNT);
 
     FlowablesDbJoinFacade.PlannerConfigSpecifiedWith1KeyStep<SmallTuple, SmallTuple, Long, Object> scenario = initialStep
         .withLeftType(SmallTuple.class)

@@ -17,5 +17,12 @@ public class SmallTuple {
   public String getValue() {
     return value;
   }
+
+  public static SmallTuple left(long id) {
+    return new SmallTuple(id, "l" + id);
+  }
+  public static SmallTuple right(long id) {
+    return new SmallTuple(id, "r" + id);
+  }
 }
 
