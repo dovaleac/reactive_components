@@ -35,4 +35,9 @@ public class InnerJoinTuple<LT, RT> implements OptionalTuple<LT, RT>,
   public Optional<RT> getRightOptional() {
     return Optional.of(right);
   }
+
+  @Override
+  public <T> T acceptVisitor(TupleVisitor<LT, RT, T> visitor) {
+    return visitor.visit(this);
+  }
 }

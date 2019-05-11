@@ -28,4 +28,9 @@ public class OnlyRightTuple<LT, RT> implements FullJoinTuple<LT, RT>, RightJoinT
   public Optional<RT> getRightOptional() {
     return Optional.of(right);
   }
+
+  @Override
+  public <T> T acceptVisitor(TupleVisitor<LT, RT, T> visitor) {
+    return visitor.visit(this);
+  }
 }

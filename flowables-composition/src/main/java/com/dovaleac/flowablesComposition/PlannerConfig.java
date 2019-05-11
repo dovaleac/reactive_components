@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class PlannerConfig {
 
-  static PlannerConfig NO_CONFIG = PlannerConfig.builder().build();
+  public static PlannerConfig NO_CONFIG = PlannerConfig.builder().build();
 
   private final long leftCardinality;
   private final long rightCardinality;
