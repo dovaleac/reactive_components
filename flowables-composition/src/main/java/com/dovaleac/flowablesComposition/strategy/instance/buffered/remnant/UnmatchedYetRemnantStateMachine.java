@@ -25,7 +25,7 @@ public class UnmatchedYetRemnantStateMachine {
     config.configure(READING)
         .onEntry(unmatchedYetRemnant::enableConsumingReadingBuffer)
         .onEntryFrom(WRITE_BUFFER_DEPLETED, unmatchedYetRemnant::promoteSecondaryWriteBuffer)
-        .permit(READ_BUFFER_LOW, WAITING_FOR_SYNCHRONIZER)
+        .permit(IT_WOULD_BE_BETTER_TO_WRITE, WAITING_FOR_SYNCHRONIZER)
         .permit(SYNC_REQUESTED, SYNCHRONIZEE);
 
     config.configure(WAITING_FOR_SYNCHRONIZER)
