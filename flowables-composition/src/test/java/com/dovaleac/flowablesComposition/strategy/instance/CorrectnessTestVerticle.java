@@ -3,10 +3,6 @@ package com.dovaleac.flowablesComposition.strategy.instance;
 import com.dovaleac.flowablesComposition.FlowablesDbJoinFacade;
 import com.dovaleac.flowablesComposition.PlannerConfig;
 import com.dovaleac.flowablesComposition.scenario.Scenario;
-import com.dovaleac.flowablesComposition.tuples.InnerJoinTuple;
-import com.dovaleac.flowablesComposition.tuples.LeftJoinTuple;
-import com.dovaleac.flowablesComposition.tuples.RightJoinTuple;
-import com.dovaleac.flowablesComposition.tuples.TupleVisitor;
 import io.reactivex.Completable;
 import io.reactivex.CompletableEmitter;
 import io.reactivex.Flowable;
@@ -21,11 +17,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
-import java.util.Comparator;
 
-public class TestVerticle extends AbstractVerticle {
+public class CorrectnessTestVerticle extends AbstractVerticle {
 
-  public static final int COUNT = 50000;
+  public static final int COUNT = 100;
   protected final Function<Scenario<SmallTuple, SmallTuple, Long, ?>,
       JoinStrategyInstance<SmallTuple, SmallTuple>> strategyInstanceFunction;
   protected final PlannerConfig plannerConfig;
@@ -34,7 +29,7 @@ public class TestVerticle extends AbstractVerticle {
   private final FlowablesDbJoinFacade.JoinTypeSpecifiedStep initialStep;
   private final String pathSuffix;
 
-  public TestVerticle(
+  public CorrectnessTestVerticle(
       Function<Scenario<SmallTuple, SmallTuple, Long, ?>, JoinStrategyInstance<SmallTuple, SmallTuple>> strategyInstanceFunction,
       PlannerConfig plannerConfig, Path pathWithoutJoinType,
       FlowablesDbJoinFacade.JoinTypeSpecifiedStep initialStep, String pathSuffix) {
@@ -126,43 +121,6 @@ public class TestVerticle extends AbstractVerticle {
     }
 
     return true;
-  }
-
-
-  public class SmallTuple {
-    private final long id;
-    private final String value;
-
-    public SmallTuple(long id, String value) {
-      this.id = id;
-      this.value = value;
-    }
-
-    long getId() {
-      return id;
-    }
-
-  }
-
-  public class TuplePrinter implements TupleVisitor<SmallTuple, SmallTuple, String> {
-
-
-    public static final String DELIMITER = ",";
-
-    @Override
-    public String visit(InnerJoinTuple<SmallTuple, SmallTuple> inner) {
-      return inner.getLeft().id + DELIMITER + inner.getLeft().value + DELIMITER + inner.getRight().value;
-    }
-
-    @Override
-    public String visit(LeftJoinTuple<SmallTuple, SmallTuple> left) {
-      return left.getLeft().id + DELIMITER + left.getLeft().value + DELIMITER ;
-    }
-
-    @Override
-    public String visit(RightJoinTuple<SmallTuple, SmallTuple> right) {
-      return right.getRight().id + DELIMITER + DELIMITER + right.getRight().value;
-    }
   }
 
 }

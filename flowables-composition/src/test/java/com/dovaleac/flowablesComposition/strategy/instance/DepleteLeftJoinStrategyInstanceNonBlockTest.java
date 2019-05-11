@@ -6,9 +6,9 @@ import io.reactivex.BackpressureStrategy;
 import java.nio.file.Path;
 import java.util.HashMap;
 
-public class DepleteRightJoinStrategyInstanceTest extends AbstractJoinStrategyInstanceTest {
-  public DepleteRightJoinStrategyInstanceTest() {
-    super(scenario -> new DepleteRightJoinStrategyInstance<>(scenario, new HashMap<>(TestVerticle.COUNT),
+public class DepleteLeftJoinStrategyInstanceNonBlockTest extends AbstractJoinStrategyInstanceNonBlockTest {
+  public DepleteLeftJoinStrategyInstanceNonBlockTest() {
+    super(scenario -> new DepleteLeftJoinStrategyInstance<>(scenario, new HashMap<>(NonBlockTestVerticle.COUNT),
             BackpressureStrategy.BUFFER),
         PlannerConfig.NO_CONFIG,
         Path.of("src", "test", "resources", "expected"));
