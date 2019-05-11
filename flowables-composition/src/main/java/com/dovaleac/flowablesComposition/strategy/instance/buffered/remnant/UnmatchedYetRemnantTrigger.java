@@ -1,6 +1,6 @@
-package com.dovaleac.flowablesComposition.strategy.instance.buffered;
+package com.dovaleac.flowablesComposition.strategy.instance.buffered.remnant;
 
-public enum RemnantTrigger {
+public enum UnmatchedYetRemnantTrigger {
   PROCESS_READ,
   PROCESS_WRITE,
   READ_BUFFER_LOW,

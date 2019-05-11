@@ -1,6 +1,6 @@
-package com.dovaleac.flowablesComposition.strategy.instance.buffered;
+package com.dovaleac.flowablesComposition.strategy.instance.buffered.remnant;
 
-public enum RemnantState {
+public enum UnmatchedYetRemnantState {
   IDLE(false, false, true),
   READING(false, true, true),
   WAITING_FOR_SYNCHRONIZER(true, false, true),
@@ -14,7 +14,7 @@ public enum RemnantState {
   private final boolean consumesReadingBuffer;
   private final boolean allowsFillingWritingBuffer;
 
-  RemnantState(boolean consumesWritingBuffer, boolean consumesReadingBuffer,
+  UnmatchedYetRemnantState(boolean consumesWritingBuffer, boolean consumesReadingBuffer,
       boolean allowsFillingWritingBuffer) {
     this.consumesWritingBuffer = consumesWritingBuffer;
     this.consumesReadingBuffer = consumesReadingBuffer;
