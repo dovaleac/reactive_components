@@ -7,10 +7,10 @@ import static com.dovaleac.flowablesComposition.strategy.instance.buffered.remna
 
 public class UnmatchedYetRemnantStateMachine {
 
-  private final UnmatchedYetRemnant unmatchedYetRemnant;
+  private final UnmatchedYetRemnantImpl unmatchedYetRemnant;
 
   public UnmatchedYetRemnantStateMachine(
-      UnmatchedYetRemnant unmatchedYetRemnant) {
+      UnmatchedYetRemnantImpl unmatchedYetRemnant) {
     this.unmatchedYetRemnant = unmatchedYetRemnant;
   }
 

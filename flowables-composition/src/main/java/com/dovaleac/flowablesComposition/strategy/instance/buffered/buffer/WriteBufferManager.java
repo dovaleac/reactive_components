@@ -1,15 +1,15 @@
 package com.dovaleac.flowablesComposition.strategy.instance.buffered.buffer;
 
-import com.dovaleac.flowablesComposition.strategy.instance.buffered.remnant.UnmatchedYetRemnant;
+import com.dovaleac.flowablesComposition.strategy.instance.buffered.remnant.UnmatchedYetRemnantImpl;
 import com.github.oxo42.stateless4j.StateMachine;
 
 public class WriteBufferManager {
 
-  private final UnmatchedYetRemnant remnant;
+  private final UnmatchedYetRemnantImpl remnant;
   private final StateMachine<WriteBufferAcceptNewInputsState, WriteBufferAcceptNewInputsTrigger> stateMachine;
 
   public WriteBufferManager(
-      UnmatchedYetRemnant remnant, WriteBufferAcceptNewInputsState initialState) {
+      UnmatchedYetRemnantImpl remnant, WriteBufferAcceptNewInputsState initialState) {
     this.remnant = remnant;
     stateMachine = new StateMachine<>(initialState,
         new WriteBufferAcceptNewInputsStateMachine(this).getConfig());
