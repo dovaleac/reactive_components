@@ -27,23 +27,15 @@ public class SubscriberStatusGuarderStateMachine<T, OT, KT> {
         .permit(STOP_ON_WRITING, STOPPED_ON_WRITING)
         .permit(MARK_AS_DEPLETED, DEPLETED)
         .permit(NOTIFY_OTHER_IS_DEPLETED, OTHER_IS_DEPLETED)
-        .onEntryFrom(new TriggerWithParameters1<>(RETAKE_READING, List.class),
-            list -> {
-              List<OT> otList = (List<OT>) list;
-              subscriberStatusGuarder.retakeReading(otList);
-            }, List.class)
-        .onEntryFrom(new TriggerWithParameters1<>(RETAKE_WRITING, Map.class),
-        map -> {
-          Map<KT, T> kttMap = (Map<KT, T>) map;
-          subscriberStatusGuarder.retakeWriting(kttMap);
-        }, Map.class);
+        .onEntryFrom(RETAKE_READING, subscriberStatusGuarder::retakeReading)
+        .onEntryFrom(RETAKE_WRITING, subscriberStatusGuarder::retakeWriting);
 
     config.configure(STOPPED_ON_READING)
         .permit(RETAKE_READING, RUNNING)
         .onEntryFrom(new TriggerWithParameters1<>(STOP_ON_READING, List.class),
             list -> {
-              List<OT> otList = (List<OT>) list;
-              subscriberStatusGuarder.stopReading(otList);
+              List<T> tList = (List<T>) list;
+              subscriberStatusGuarder.stopReading(tList);
             }, List.class);
 
     config.configure(STOPPED_ON_WRITING)

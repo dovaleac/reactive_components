@@ -2,6 +2,8 @@ package com.dovaleac.flowablesComposition.strategy.instance.buffered;
 
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.exceptions.ReadBufferNotAvailableForNewElementsException;
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.exceptions.WriteBufferNotAvailableForNewElementsException;
+import com.dovaleac.flowablesComposition.strategy.instance.buffered.guarder.SubscriberStatusGuarder;
+import com.dovaleac.flowablesComposition.strategy.instance.buffered.guarder.SubscriberStatusGuarderImpl;
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.remnant.UnmatchedYetRemnant;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -15,6 +17,8 @@ public class BufferedJoinStrategySubscriber<T, OT, KT> implements Subscriber<Lis
   private final UnmatchedYetRemnant<?,OT, T, KT> otherRemnant;
   private Subscription subscription;
   private List<T> lastElementToRetake;
+  private final SubscriberStatusGuarder<T, KT> guarder =
+      new SubscriberStatusGuarderImpl<>(this);
 
   public BufferedJoinStrategySubscriber(
       UnmatchedYetRemnant<?, T, OT, KT> ownRemnant,
@@ -33,20 +37,24 @@ public class BufferedJoinStrategySubscriber<T, OT, KT> implements Subscriber<Lis
   public void onNext(List<T> list) {
     otherRemnant.processRead(list)
         .subscribe(
-            unMatched -> ownRemnant.processWrite(unMatched).subscribe(
-                this::requestNext,
-                throwable -> {
-                  if (throwable instanceof WriteBufferNotAvailableForNewElementsException) {
-                    stopEmittingUntilNewOrder(list);
-                  }
-                }
-            ),
+            this::processWriting,
             throwable -> {
               if (throwable instanceof ReadBufferNotAvailableForNewElementsException) {
-                stopEmittingUntilNewOrder(list);
+                guarder.stopReading(list);
               }
             }
         );
+  }
+
+  public void processWriting(Map<KT, T> unMatched) {
+    ownRemnant.processWrite(unMatched).subscribe(
+        this::requestNext,
+        throwable -> {
+          if (throwable instanceof WriteBufferNotAvailableForNewElementsException) {
+            guarder.stopWriting(unMatched);
+          }
+        }
+    );
   }
 
   //TODO: all this retaking has to be performed differently if it stopped on writing or on reading
