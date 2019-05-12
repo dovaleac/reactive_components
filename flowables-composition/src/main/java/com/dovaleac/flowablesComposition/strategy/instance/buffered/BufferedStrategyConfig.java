@@ -4,21 +4,33 @@ import com.dovaleac.flowablesComposition.strategy.instance.buffered.remnant.Unma
 
 public class BufferedStrategyConfig {
 
-  private final UnmatchedYetRemnantConfig leftConfig;
-  private final UnmatchedYetRemnantConfig rightConfig;
+  private final UnmatchedYetRemnantConfig leftRemnantConfig;
+  private final UnmatchedYetRemnantConfig rightRemnantConfig;
+  private final int leftFlowableBuffer;
+  private final int rightFlowableBuffer;
 
   public BufferedStrategyConfig(
-      UnmatchedYetRemnantConfig leftConfig,
-      UnmatchedYetRemnantConfig rightConfig) {
-    this.leftConfig = leftConfig;
-    this.rightConfig = rightConfig;
+      UnmatchedYetRemnantConfig leftRemnantConfig,
+      UnmatchedYetRemnantConfig rightRemnantConfig, int leftFlowableBuffer, int rightFlowableBuffer) {
+    this.leftRemnantConfig = leftRemnantConfig;
+    this.rightRemnantConfig = rightRemnantConfig;
+    this.leftFlowableBuffer = leftFlowableBuffer;
+    this.rightFlowableBuffer = rightFlowableBuffer;
   }
 
-  public UnmatchedYetRemnantConfig getLeftConfig() {
-    return leftConfig;
+  public UnmatchedYetRemnantConfig getLeftRemnantConfig() {
+    return leftRemnantConfig;
   }
 
-  public UnmatchedYetRemnantConfig getRightConfig() {
-    return rightConfig;
+  public UnmatchedYetRemnantConfig getRightRemnantConfig() {
+    return rightRemnantConfig;
+  }
+
+  public int getLeftFlowableBuffer() {
+    return leftFlowableBuffer;
+  }
+
+  public int getRightFlowableBuffer() {
+    return rightFlowableBuffer;
   }
 }

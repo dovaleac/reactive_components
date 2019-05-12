@@ -4,6 +4,11 @@ import com.dovaleac.flowablesComposition.strategy.instance.buffered.buffer.Write
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.buffer.WriteBufferAcceptNewInputsTrigger;
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.buffer.WriteBufferManager;
 import com.github.oxo42.stateless4j.StateMachine;
+import io.reactivex.Completable;
+import io.reactivex.Single;
+
+import java.util.List;
+import java.util.Map;
 
 public class UnmatchedYetRemnantImpl implements UnmatchedYetRemnant<UnmatchedYetRemnantImpl> {
 
@@ -27,10 +32,39 @@ public class UnmatchedYetRemnantImpl implements UnmatchedYetRemnant<UnmatchedYet
     this.config = config;
   }
 
+  //OVERRIDEN METHODS
+
   @Override
   public void setOther(UnmatchedYetRemnantImpl other) {
     this.other = other;
   }
+
+  @Override
+  public Single<Map> processRead(List otherTypeElements) {
+    return null;
+  }
+
+  @Override
+  public Completable processWrite(Map ownTypeElements) {
+    return null;
+  }
+
+  @Override
+  public void notifyFlowableIsDepleted() {
+
+  }
+
+  @Override
+  public void notifyOtherFlowableIsDepleted() {
+
+  }
+
+  @Override
+  public boolean isInFlowableDepletedStatus() {
+    return false;
+  }
+
+  //METHODS FOR TRANSITIONS
 
   void disableWriteBufferForFill() {
     primaryWriteBuffer.fire(WriteBufferAcceptNewInputsTrigger.FREEZE);

@@ -2,17 +2,15 @@ package com.dovaleac.flowablesComposition.strategy.instance;
 
 import com.dovaleac.flowablesComposition.scenario.Scenario;
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.BufferedStrategyConfig;
+import com.dovaleac.flowablesComposition.strategy.instance.buffered.exceptions.ReadBufferNotAvailableForNewElementsException;
+import com.dovaleac.flowablesComposition.strategy.instance.buffered.exceptions.WriteBufferNotAvailableForNewElementsException;
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.remnant.UnmatchedYetRemnant;
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.remnant.UnmatchedYetRemnantImpl;
-import com.dovaleac.flowablesComposition.tuples.InnerJoinTuple;
-import com.dovaleac.flowablesComposition.tuples.OnlyLeftTuple;
-import com.dovaleac.flowablesComposition.tuples.OnlyRightTuple;
 import com.dovaleac.flowablesComposition.tuples.OptionalTuple;
-import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
-import io.reactivex.FlowableEmitter;
+import org.reactivestreams.Subscriber;
 
-import java.util.Map;
+import java.util.List;
 
 public class BufferedJoinStrategyInstance<LT, RT, KT, KT2> implements JoinStrategyInstance<LT,
     RT> {
@@ -27,8 +25,8 @@ public class BufferedJoinStrategyInstance<LT, RT, KT, KT2> implements JoinStrate
       BufferedStrategyConfig config) {
     this.scenario = scenario;
     this.config = config;
-    leftRemnant = new UnmatchedYetRemnantImpl(config.getLeftConfig());
-    rightRemnant = new UnmatchedYetRemnantImpl(config.getRightConfig());
+    leftRemnant = new UnmatchedYetRemnantImpl(config.getLeftRemnantConfig());
+    rightRemnant = new UnmatchedYetRemnantImpl(config.getRightRemnantConfig());
     leftRemnant.setOther(rightRemnant);
     rightRemnant.setOther(leftRemnant);
   }
@@ -42,6 +40,38 @@ public class BufferedJoinStrategyInstance<LT, RT, KT, KT2> implements JoinStrate
   public Flowable<OptionalTuple<LT, RT>> join(Flowable<LT> leftFlowable,
       Flowable<RT> rightFlowable) {
 
+    Flowable<List<LT>> leftBufferedFlowable = leftFlowable.buffer(config.getLeftFlowableBuffer());
+    Flowable<List<RT>> rightBufferedFlowable = rightFlowable.buffer(config.getRightFlowableBuffer());
+
+
+  }
+
+  //T = own type, OT = other type, KT = key type
+   void subscribe(Flowable<List<T>> flowable,
+      UnmatchedYetRemnant<?,T, OT, KT> ownRemnant,
+      UnmatchedYetRemnant<?,OT, T, KT> otherRemnant) {
+    flowable.subscribe(
+        list -> otherRemnant.processRead(list)
+            .subscribe(
+                unMatched -> ownRemnant.processWrite(unMatched).subscribe(
+                    () -> {},
+                    throwable -> {
+                      if (throwable instanceof WriteBufferNotAvailableForNewElementsException) {
+                        stopEmittingUntilNewOrder(flowable);
+                      }
+                    }
+                ),
+                throwable -> {
+                  if (throwable instanceof ReadBufferNotAvailableForNewElementsException) {
+                    stopEmittingUntilNewOrder(flowable);
+                  }
+                }
+            ),
+
+    );
+  }
+
+  private <T> void stopEmittingUntilNewOrder(Flowable<List<T>> flowable) {
 
   }
 }
