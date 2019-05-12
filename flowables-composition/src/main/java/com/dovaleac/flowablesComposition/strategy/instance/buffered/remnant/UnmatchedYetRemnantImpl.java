@@ -5,6 +5,8 @@ import com.dovaleac.flowablesComposition.strategy.instance.buffered.buffer.Write
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.buffer.WriteBufferManager;
 import com.github.oxo42.stateless4j.StateMachine;
 import io.reactivex.Completable;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
 import io.reactivex.Single;
 
 import java.util.List;
@@ -57,6 +59,11 @@ public class UnmatchedYetRemnantImpl implements UnmatchedYetRemnant<UnmatchedYet
   @Override
   public void notifyOtherFlowableIsDepleted() {
 
+  }
+
+  @Override
+  public Completable emitAllElements(FlowableEmitter emitter) {
+    return Flowable.fromIterable()
   }
 
   @Override

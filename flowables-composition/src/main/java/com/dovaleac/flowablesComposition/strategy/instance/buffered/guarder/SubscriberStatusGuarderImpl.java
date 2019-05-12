@@ -39,6 +39,6 @@ public class SubscriberStatusGuarderImpl<T, OT, KT> implements SubscriberStatusG
 
   @Override
   public void bothAreDepleted() {
-
+    subscriber.bothAreDepleted(emitLeft);
   }
 }
