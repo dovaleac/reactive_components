@@ -10,7 +10,7 @@ import java.util.Map;
 
 public interface UnmatchedYetRemnant<UYRT extends UnmatchedYetRemnant, T, OT, KT, LT, RT> {
   void setOther(UYRT other);
-  Single<Map<KT, OT>> processRead(List<OT> otherTypeElements);
+  Completable addToReadBuffer(List<OT> otherTypeElements);
   Completable processWrite(Map<KT, T> ownTypeElements);
   Completable emitAllElements(FlowableEmitter<OptionalTuple<LT,RT>> emitter);
 }

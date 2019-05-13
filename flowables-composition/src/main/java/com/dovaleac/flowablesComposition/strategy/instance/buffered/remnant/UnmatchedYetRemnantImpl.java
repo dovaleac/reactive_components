@@ -54,8 +54,8 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
   }
 
   @Override
-  public Single<Map<KT, OT>> processRead(List<OT> otherTypeElements) {
-    return Single.create(singleEmitter -> {
+  public Completable addToReadBuffer(List<OT> otherTypeElements) {
+    return Completable.create(singleEmitter -> {
       stateMachine.fire(UnmatchedYetRemnantTrigger.PROCESS_READ);
       try {
         readBuffer.push(otherTypeElements, singleEmitter);
@@ -64,6 +64,10 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
       }
 
     });
+  }
+
+  protected void pollReads() {
+
   }
 
   @Override

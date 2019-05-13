@@ -15,7 +15,7 @@ import java.util.concurrent.LinkedBlockingDeque;
 public class ReadBufferImpl<T, KT> implements ReadBuffer<T, KT> {
 
   private final Function<T, KT> keyFunction;
-  private final BlockingQueue<BlockWithEmitter<KT, T>> blockQueue;
+  private final BlockingQueue<List<T>> blockQueue;
   private final double maxBlocks;
 
   public ReadBufferImpl(Function<T, KT> keyFunction, int maxBlocks) {
@@ -25,46 +25,23 @@ public class ReadBufferImpl<T, KT> implements ReadBuffer<T, KT> {
   }
 
   @Override
-  public void push(List<T> otherTypeElements,
-      SingleEmitter<Map<KT, T>> singleEmitter) throws ReadBufferNotAvailableForNewElementsException {
-    if (!blockQueue.offer(new BlockWithEmitter<>(otherTypeElements, singleEmitter, keyFunction))) {
-      throw new ReadBufferNotAvailableForNewElementsException();
-    }
+  public boolean push(List<T> otherTypeElements) {
+    return blockQueue.offer(otherTypeElements);
   }
 
   @Override
-  public double getCapacity() throws ReadBufferNotAvailableForNewElementsException {
+  public double getCapacity() {
     return (double) blockQueue.remainingCapacity() / maxBlocks;
   }
 
   @Override
-  public Maybe<MapBlockWithEmitter<KT, T>> pull() {
-    BlockWithEmitter<KT, T> polled = blockQueue.poll();
+  public Maybe<Map<KT, T>> pull() {
+    List<T> polled = blockQueue.poll();
     if (polled == null) {
       return Maybe.empty();
     }
-    return polled.toMap().toMaybe();
+    return Flowable.fromIterable(polled).toMap(keyFunction).toMaybe();
   }
 
 
-
-  public class BlockWithEmitter<KT, T> {
-    private final List<T> otherTypeElements;
-    private final SingleEmitter<Map<KT, T>> singleEmitter;
-    private final Function<T, KT> function;
-
-    public BlockWithEmitter(List<T> otherTypeElements,
-        SingleEmitter<Map<KT, T>> singleEmitter, Function<T, KT> function) {
-      this.otherTypeElements = otherTypeElements;
-      this.singleEmitter = singleEmitter;
-      this.function = function;
-    }
-
-    public Single<MapBlockWithEmitter<KT, T>> toMap() {
-      return Flowable.fromIterable(otherTypeElements)
-          .toMap(function)
-          .map(kttMap -> new MapBlockWithEmitter<>(kttMap, singleEmitter));
-
-    }
-  }
 }

@@ -49,9 +49,9 @@ public class BufferedJoinStrategySubscriber<T, OT, KT, KT2, LT, RT> implements S
 
   @Override
   public void onNext(List<T> list) {
-    otherRemnant.processRead(list)
+    otherRemnant.addToReadBuffer(list)
         .subscribe(
-            this::processWriting,
+            () -> {},
             throwable -> {
               if (throwable instanceof ReadBufferNotAvailableForNewElementsException) {
                 guarder.stopReading(list);
