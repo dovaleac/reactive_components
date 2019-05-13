@@ -25,9 +25,9 @@ public class BufferedJoinStrategyInstance<LT, RT, KT, KT2> implements JoinStrate
     this.scenario = scenario;
     this.config = config;
     leftRemnant = new UnmatchedYetRemnantImpl<>(config.getLeftRemnantInitialMap(),
-        config.getLeftRemnantConfig(), readBuffer);
+        config.getLeftRemnantConfig(), readBuffer, -1,true, this);
     rightRemnant = new UnmatchedYetRemnantImpl<>(config.getRightRemnantInitialMap(),
-        config.getRightRemnantConfig(), readBuffer);
+        config.getRightRemnantConfig(), readBuffer, -1, false, this);
     leftRemnant.setOther(rightRemnant);
     rightRemnant.setOther(leftRemnant);
   }

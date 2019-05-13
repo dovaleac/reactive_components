@@ -6,6 +6,7 @@ import com.dovaleac.flowablesComposition.strategy.instance.buffered.exceptions.W
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.guarder.SubscriberStatusGuarder;
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.guarder.SubscriberStatusGuarderImpl;
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.remnant.UnmatchedYetRemnant;
+import com.dovaleac.flowablesComposition.tuples.InnerJoinTuple;
 import com.dovaleac.flowablesComposition.tuples.OptionalTuple;
 import io.reactivex.Completable;
 import io.reactivex.FlowableEmitter;
@@ -61,7 +62,7 @@ public class BufferedJoinStrategySubscriber<T, OT, KT, KT2, LT, RT> implements S
   }
 
   public void processWriting(Map<KT, T> unMatched) {
-    ownRemnant.processWrite(unMatched).subscribe(
+    ownRemnant.addToWriteBuffer(unMatched).subscribe(
         this::requestNext,
         throwable -> {
           if (throwable instanceof WriteBufferNotAvailableForNewElementsException) {
@@ -101,5 +102,9 @@ public class BufferedJoinStrategySubscriber<T, OT, KT, KT2, LT, RT> implements S
     }
 
     Completable.merge(completables).subscribe(emitter::onComplete);
+  }
+
+  public void emit(LT left, RT right) {
+    emitter.onNext(InnerJoinTuple.of(left, right));
   }
 }
