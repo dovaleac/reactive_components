@@ -23,7 +23,6 @@ public class BufferedJoinStrategySubscriber<T, OT, KT, KT2, LT, RT> implements S
   private final BufferedJoinStrategyInstance<T, OT, KT, KT2> strategy;
   private final FlowableEmitter<OptionalTuple<LT, RT>> emitter;
   private Subscription subscription;
-  private List<T> lastElementToRetake;
   private final SubscriberStatusGuarder<T, KT> guarder =
       new SubscriberStatusGuarderImpl<>(this);
   private final boolean emitLeft;
@@ -72,26 +71,14 @@ public class BufferedJoinStrategySubscriber<T, OT, KT, KT2, LT, RT> implements S
     );
   }
 
-  //TODO: all this retaking has to be performed differently if it stopped on writing or on reading
-  void restartEmitting() {
-    List<T> elementToRetake = lastElementToRetake;
-    if (elementToRetake == null) {
-      requestNext();
-    } else {
-      lastElementToRetake = null;
-      onNext(elementToRetake);
-    }
-  }
-
   @Override
   public void onError(Throwable throwable) {
-
+    emitter.onError(throwable);
   }
 
   @Override
   public void onComplete() {
-    ownRemnant.notifyFlowableIsDepleted();
-    otherRemnant.notifyOtherFlowableIsDepleted();
+
   }
 
   private void requestNext() {

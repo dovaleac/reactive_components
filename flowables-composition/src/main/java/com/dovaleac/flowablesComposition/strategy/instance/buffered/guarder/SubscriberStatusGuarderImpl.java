@@ -5,12 +5,12 @@ import com.dovaleac.flowablesComposition.strategy.instance.buffered.BufferedJoin
 import java.util.List;
 import java.util.Map;
 
-public class SubscriberStatusGuarderImpl<T, OT, KT> implements SubscriberStatusGuarder<T, KT> {
+public class SubscriberStatusGuarderImpl<T, OT, KT, KT2, LT, RT> implements SubscriberStatusGuarder<T, KT> {
 
-  private final BufferedJoinStrategySubscriber<T, OT, KT> subscriber;
+  private final BufferedJoinStrategySubscriber<T, OT, KT, KT2, LT, RT> subscriber;
 
   public SubscriberStatusGuarderImpl(
-      BufferedJoinStrategySubscriber<T, OT, KT> subscriber) {
+      BufferedJoinStrategySubscriber<T, OT, KT, KT2, LT, RT> subscriber) {
     this.subscriber = subscriber;
   }
 
@@ -39,6 +39,6 @@ public class SubscriberStatusGuarderImpl<T, OT, KT> implements SubscriberStatusG
 
   @Override
   public void bothAreDepleted() {
-    subscriber.bothAreDepleted(emitLeft);
+    subscriber.bothAreDepleted();
   }
 }

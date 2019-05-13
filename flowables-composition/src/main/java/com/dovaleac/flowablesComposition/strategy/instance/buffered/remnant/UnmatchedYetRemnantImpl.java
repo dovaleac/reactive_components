@@ -1,27 +1,36 @@
 package com.dovaleac.flowablesComposition.strategy.instance.buffered.remnant;
 
+import com.dovaleac.flowablesComposition.strategy.instance.buffered.buffer.ReadBufferImpl;
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.buffer.WriteBufferAcceptNewInputsState;
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.buffer.WriteBufferAcceptNewInputsTrigger;
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.buffer.WriteBufferManager;
+import com.dovaleac.flowablesComposition.strategy.instance.buffered.exceptions.ReadBufferNotAvailableForNewElementsException;
+import com.dovaleac.flowablesComposition.tuples.OnlyLeftTuple;
+import com.dovaleac.flowablesComposition.tuples.OptionalTuple;
 import com.github.oxo42.stateless4j.StateMachine;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableEmitter;
 import io.reactivex.Single;
+import io.reactivex.functions.Function;
 
 import java.util.List;
 import java.util.Map;
 
-public class UnmatchedYetRemnantImpl implements UnmatchedYetRemnant<UnmatchedYetRemnantImpl> {
+public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetRemnant<
+    UnmatchedYetRemnantImpl<T, OT, KT, LT, RT>, T, OT, KT, LT, RT> {
 
   private final StateMachine<UnmatchedYetRemnantState, UnmatchedYetRemnantTrigger> stateMachine =
       new StateMachine<>(
           UnmatchedYetRemnantState.IDLE,
           new UnmatchedYetRemnantStateMachine(this).getConfig()
       );
+  private final Map<T, KT> map;
   private final UnmatchedYetRemnantConfig config;
 
-  private UnmatchedYetRemnantImpl other;
+  private UnmatchedYetRemnantImpl<OT, T, KT, LT, RT> otherRemnant;
+
+  private final ReadBufferImpl<OT, KT> readBuffer;
   private WriteBufferManager primaryWriteBuffer = new WriteBufferManager(this,
       WriteBufferAcceptNewInputsState.ACCEPT_NEW);
   private WriteBufferManager secondaryWriteBuffer = new WriteBufferManager(this,
@@ -30,48 +39,46 @@ public class UnmatchedYetRemnantImpl implements UnmatchedYetRemnant<UnmatchedYet
   private WriteBufferManager writeBufferInUse = primaryWriteBuffer;
 
   public UnmatchedYetRemnantImpl(
-      UnmatchedYetRemnantConfig config) {
+      Map<T, KT> initialMap, UnmatchedYetRemnantConfig config,
+      Function<OT, KT> function, int maxBlocks) {
+    this.map = initialMap;
     this.config = config;
+    this.readBuffer = new ReadBufferImpl<>(function, maxBlocks);
   }
 
   //OVERRIDEN METHODS
 
   @Override
   public void setOther(UnmatchedYetRemnantImpl other) {
-    this.other = other;
+    this.otherRemnant = other;
   }
 
   @Override
-  public Single<Map> processRead(List otherTypeElements) {
+  public Single<Map<KT, OT>> processRead(List<OT> otherTypeElements) {
+    return Single.create(singleEmitter -> {
+      stateMachine.fire(UnmatchedYetRemnantTrigger.PROCESS_READ);
+      try {
+        readBuffer.push(otherTypeElements, singleEmitter);
+      } catch (ReadBufferNotAvailableForNewElementsException e) {
+        singleEmitter.onError(e);
+      }
+
+    });
+  }
+
+  @Override
+  public Completable processWrite(Map<KT, T> ownTypeElements) {
     return null;
   }
 
-  @Override
-  public Completable processWrite(Map ownTypeElements) {
-    return null;
-  }
 
   @Override
-  public void notifyFlowableIsDepleted() {
-
+  public Completable emitAllElements(FlowableEmitter<OptionalTuple<LT, RT>> emitter) {
+    return Completable.fromAction(() -> Flowable.fromIterable(map.keySet())
+        .forEach(t -> emitter.onNext(new OnlyLeftTuple<>((LT) t))));
   }
 
-  @Override
-  public void notifyOtherFlowableIsDepleted() {
-
-  }
-
-  @Override
-  public Completable emitAllElements(FlowableEmitter emitter) {
-    return Flowable.fromIterable()
-  }
-
-  @Override
-  public boolean isInFlowableDepletedStatus() {
-    return false;
-  }
-
-  //METHODS FOR TRANSITIONS
+//METHODS FOR TRANSITIONS
 
   void disableWriteBufferForFill() {
     primaryWriteBuffer.fire(WriteBufferAcceptNewInputsTrigger.FREEZE);
@@ -94,15 +101,15 @@ public class UnmatchedYetRemnantImpl implements UnmatchedYetRemnant<UnmatchedYet
   }
 
   void requestSync() {
-    other.stateMachine.fire(UnmatchedYetRemnantTrigger.SYNC_REQUESTED);
+    otherRemnant.stateMachine.fire(UnmatchedYetRemnantTrigger.SYNC_REQUESTED);
   }
 
   void rejectSync() {
-    other.stateMachine.fire(UnmatchedYetRemnantTrigger.SYNC_REJECTED);
+    otherRemnant.stateMachine.fire(UnmatchedYetRemnantTrigger.SYNC_REJECTED);
   }
 
   void acceptSync() {
-    other.stateMachine.fire(UnmatchedYetRemnantTrigger.SYNC_ACCEPTED);
+    otherRemnant.stateMachine.fire(UnmatchedYetRemnantTrigger.SYNC_ACCEPTED);
   }
 
   void synchronize() {
@@ -110,11 +117,11 @@ public class UnmatchedYetRemnantImpl implements UnmatchedYetRemnant<UnmatchedYet
   }
 
   void syncFinished() {
-    other.stateMachine.fire(UnmatchedYetRemnantTrigger.SYNC_FINISHED);
+    otherRemnant.stateMachine.fire(UnmatchedYetRemnantTrigger.SYNC_FINISHED);
   }
 
   void notifyWriteIsSafe() {
-    other.stateMachine.fire(UnmatchedYetRemnantTrigger.WRITE_IS_SAFE_NOW);
+    otherRemnant.stateMachine.fire(UnmatchedYetRemnantTrigger.WRITE_IS_SAFE_NOW);
   }
 
   void useSecondaryWriteBuffer() {
