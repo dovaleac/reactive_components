@@ -19,12 +19,12 @@ public class WriteBufferAcceptNewInputsStateMachine {
         new StateMachineConfig<>();
 
     config.configure(ACCEPT_NEW)
-        .onEntry(writeBufferManager::acceptNew)
-        .onExit(writeBufferManager::rejectNew)
+        .onEntry(writeBufferManager::unfreeze)
         .permit(FREEZE, FROZEN)
         .permit(MARK_AS_FULL, FULL);
 
     config.configure(FROZEN)
+        .onEntry(writeBufferManager::freeze)
         .permit(UNFREEZE, ACCEPT_NEW);
 
     config.configure(FULL)
@@ -33,16 +33,6 @@ public class WriteBufferAcceptNewInputsStateMachine {
           if (writeBufferManager.isBufferFrozen()) {
             return FROZEN;
           } else {
-            return ACCEPT_NEW;
-          }
-        });
-
-    config.configure(DISABLED)
-        .onEntry(writeBufferManager::rejectNew)
-        .permitDynamic(ENABLE_FOR_USE, () -> {
-          if (writeBufferManager.isFull()) {
-            return FULL;
-          } else  {
             return ACCEPT_NEW;
           }
         });

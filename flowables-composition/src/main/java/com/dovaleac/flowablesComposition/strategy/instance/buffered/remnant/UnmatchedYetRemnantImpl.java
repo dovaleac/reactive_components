@@ -34,9 +34,9 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
   private UnmatchedYetRemnantImpl<OT, T, KT, LT, RT> otherRemnant;
 
   private WriteBufferManager primaryWriteBuffer = new WriteBufferManager(this,
-      WriteBufferAcceptNewInputsState.ACCEPT_NEW);
+      WriteBufferAcceptNewInputsState.ACCEPT_NEW, maxElements, initialMap, secondaryBuffer);
   private WriteBufferManager secondaryWriteBuffer = new WriteBufferManager(this,
-      WriteBufferAcceptNewInputsState.DISABLED);
+      WriteBufferAcceptNewInputsState.DISABLED, maxElements, initialMap, secondaryBuffer);
 
   private WriteBufferManager writeBufferInUse = primaryWriteBuffer;
 
@@ -91,6 +91,7 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
   }
 
   private boolean checkCapacity() {
+
   }
 
   protected boolean tryToEmit(KT key, OT ot) {
@@ -174,10 +175,14 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
     writeBufferInUse = secondaryWriteBuffer;
     primaryWriteBuffer = secondaryWriteBuffer;
     secondaryWriteBuffer = new WriteBufferManager(this,
-        WriteBufferAcceptNewInputsState.DISABLED);
+        WriteBufferAcceptNewInputsState.DISABLED, maxElements, initialMap, secondaryBuffer);
   }
 
-  void itWouldBeBetterToWrite() {
+  public void itWouldBeBetterToWrite() {
     stateMachine.fire(UnmatchedYetRemnantTrigger.IT_WOULD_BE_BETTER_TO_WRITE);
+  }
+
+  public boolean isWriteBufferFrozen() {
+    return !stateMachine.getState().allowsFillingWritingBuffer();
   }
 }
