@@ -62,6 +62,10 @@ public class WriteBufferManager<T, OT, KT, LT, RT> {
     return buffer;
   }
 
+  public void clear() {
+    buffer.clear();
+  }
+
   public void fire(WriteBufferAcceptNewInputsTrigger trigger) {
     stateMachine.fire(trigger);
   }

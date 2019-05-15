@@ -24,9 +24,8 @@ public class UnmatchedYetRemnantStateMachine {
 
     config.configure(READING)
         .onEntry(unmatchedYetRemnant::enableConsumingReadingBuffer)
-        .onEntryFrom(WRITE_BUFFER_DEPLETED, unmatchedYetRemnant::promoteSecondaryWriteBuffer)
         .permit(IT_WOULD_BE_BETTER_TO_WRITE, WAITING_FOR_SYNCHRONIZER)
-        .permit(SYNC_REQUESTED, SYNCHRONIZEE);
+        .permit(SYNC_REQUESTED, WAITING_FOR_SYNCHRONIZEE);
 
     config.configure(WAITING_FOR_SYNCHRONIZER)
         .onEntry(unmatchedYetRemnant::enableConsumingReadingBuffer)
@@ -46,22 +45,22 @@ public class UnmatchedYetRemnantStateMachine {
 
     config.configure(WRITING)
         .onEntry(unmatchedYetRemnant::enableConsumingWritingBuffer)
-        .onEntry(unmatchedYetRemnant::useSecondaryWriteBuffer)
         .permit(WRITE_BUFFER_DEPLETED, READING)
         .permit(SYNC_REQUESTED, REJECTED_SYNCHRONIZEE);
 
     config.configure(REJECTED_SYNCHRONIZEE)
         .onEntry(unmatchedYetRemnant::rejectSync)
-        .onEntry(unmatchedYetRemnant::useSecondaryWriteBuffer)
         .onExit(unmatchedYetRemnant::notifyWriteIsSafe)
         .permit(WRITE_BUFFER_DEPLETED, READING);
+
+    config.configure(WAITING_FOR_SYNCHRONIZEE)
+        .permit(LAST_POLL_BEFORE_BEING_SYNCHRONIZED_IS_OVER, SYNCHRONIZEE);
 
     config.configure(SYNCHRONIZEE)
         .onEntry(unmatchedYetRemnant::disableConsumingReadingBuffer)
         .onEntry(unmatchedYetRemnant::disableWriteBufferForFill)
         .onEntry(unmatchedYetRemnant::acceptSync)
         .permit(SYNC_FINISHED, WRITING);
-
 
     return config;
   }

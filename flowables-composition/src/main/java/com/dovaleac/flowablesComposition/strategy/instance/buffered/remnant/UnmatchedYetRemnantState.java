@@ -7,7 +7,8 @@ public enum UnmatchedYetRemnantState {
   SYNCHRONIZER(false, false, false),
   REJECTED_SYNCHRONIZER(false, true, false),
   WRITING(true, false, true),
-  SYNCHRONIZEE(false, false, true),
+  WAITING_FOR_SYNCHRONIZEE(false, false, false),
+  SYNCHRONIZEE(false, false, false),
   REJECTED_SYNCHRONIZEE(true, false, false);
 
   private final boolean consumesWritingBuffer;
