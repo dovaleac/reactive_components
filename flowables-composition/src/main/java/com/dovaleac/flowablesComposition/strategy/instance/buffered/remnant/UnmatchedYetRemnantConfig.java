@@ -1,5 +1,7 @@
 package com.dovaleac.flowablesComposition.strategy.instance.buffered.remnant;
 
+import com.dovaleac.flowablesComposition.strategy.instance.buffered.capacity.LeverageBufferCapacitiesStrategy;
+
 import java.util.Map;
 
 public class UnmatchedYetRemnantConfig {
@@ -12,6 +14,10 @@ public class UnmatchedYetRemnantConfig {
   }
 
   public Map getInitialMapForWriteBuffer() {
+    return null;
+  }
+
+  public LeverageBufferCapacitiesStrategy getCheckCapacityStrategy() {
     return null;
   }
 }

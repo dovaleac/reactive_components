@@ -3,6 +3,7 @@ package com.dovaleac.flowablesComposition.strategy.instance.buffered.remnant;
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.buffer.ReadBufferImpl;
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.buffer.WriteBufferAcceptNewInputsTrigger;
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.buffer.WriteBufferManager;
+import com.dovaleac.flowablesComposition.strategy.instance.buffered.capacity.NextAction;
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.exceptions.ReadBufferNotAvailableForNewElementsException;
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.exceptions.WriteBufferFrozenException;
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.exceptions.WriteBufferFullException;
@@ -134,7 +135,8 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
                   if (stateMachine.getState().consumesReadingBuffer()) {
                     return;
                   }
-                  if (acc < config.getPollReadsForCheckCapacity() || checkCapacity() ) {
+                  if (acc < config.getPollReadsForCheckCapacity()
+                      || checkCapacity() == NextAction.READ ) {
                     pollRead(acc + 1);
                   } else {
                     stateMachine.fire(UnmatchedYetRemnantTrigger.IT_WOULD_BE_BETTER_TO_WRITE);
@@ -151,8 +153,9 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
     stateMachine.fire(UnmatchedYetRemnantTrigger.WRITE_BUFFER_DEPLETED);
   }
 
-  private boolean checkCapacity() {
-    //use strategy
+  private NextAction checkCapacity() {
+    config.getCheckCapacityStrategy().getNextAction(readBuffer.getCapacity(),
+        writeBuffer.getCapacity());
   }
 
   protected boolean tryToEmit(KT key, OT ot, Map<KT, T> map) {
