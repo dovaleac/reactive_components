@@ -5,7 +5,7 @@
 The reactive paradigm is great because it allows to treat elements as independent events, and it 
 bases all its backpressure advantages on that, but this use case doesn't seem to favor reactivity
  at all: imagine you have two `Flowable`s and need to join them in a DB style 
- (inner/left/right/full join), and returned a composed `Flowable`. In this use, you get no 
+ (inner/left/right/full join), and returned a composed `Flowable`. In this use case, you get no 
  advantage from the fact that the elements are treated as independent events, because for each 
  element you need to try to match it against **all** the elements in the other `Flowable`.
  
@@ -110,3 +110,22 @@ etcetera. With these evaluations, we'll try to estimate how much time and space 
 will require, and also how regularly will they emit elements. Based on that and on the user's 
 preferences, the query planner will choose a candidate.
 
+## Usage
+
+In order to use this, just create the composer, apply it to your `Flowable`s and cast the result 
+to the tuple type you need:
+```
+Flowable<FullJoinTuple<LT, RT>> joinFlowable =
+ (Flowable<FullJoinTuple<LT, RT>>) FlowablesDbJoinFacade.fullJoin() //inner, left, right
+    .withLeftType(ltClass)
+    .withRightType(rtClass)
+    .withKeyType(ktClass)
+    .withLeftKeyFunction(lkFunction)
+    .withRightKeyFunction(rkFunction)
+    .withPlannerConfig(plannerConfig)
+    .build()
+    .apply(ltFlowable, rtFlowable);
+```
+
+Publication in maven will be done when the concurrent implementation is finished, tested and the 
+whole process works.
