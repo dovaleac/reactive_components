@@ -16,8 +16,10 @@ import io.reactivex.Flowable;
 import io.reactivex.FlowableEmitter;
 import io.reactivex.functions.Function;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetRemnant<
     UnmatchedYetRemnantImpl<T, OT, KT, LT, RT>, T, OT, KT, LT, RT> {
@@ -73,36 +75,71 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
         : Completable.error(new ReadBufferNotAvailableForNewElementsException());
   }
 
+  /**
+   * Recursive method for consuming the read buffer. As elements in the read buffer are arranged
+   * in blocks, each poll gets a block. If the read buffer is empty, the query to the ReadBuffer
+   * will return an empty Maybe, and so, the trigger `IT_WOULD_BE_BETTER_TO_WRITE` would be fired.
+   *
+   * The results obtained, which come as a map, are then checked against the inner map, so that
+   * if they match any of the elements in the map, their inner join gets emitted and the element in
+   * this map gets removed from it. Those that don't match with any other element are packed as a
+   * Map and sent to the other remnant for being written in its inner map.
+   *
+   * About synchronizing this method with other processes: when a poll is over, first we check in
+   * which state we are. There's a state dedicated to the moment in which there's a poll going on
+   * and a sync request is received. That would let the poll go on, but it would change the
+   * state to `WAITING_FOR_SYNCHRONIZEE`. When the poll finishes (that is, the elements get
+   * shipped to the other remnant), if the state is the aforementioned one, then two things will
+   * happen: we don't want to keep polling but instead we want to move to the `SYNCHRONIZEE`
+   * state, but first of all we need to deal with elements that are going to get rejected in the
+   * other remnant's write buffer.
+   *
+   * When a remnant requires a sync, given this algorithm, if the other remnant is reading (that
+   * is, generating new elements to go to the first remnant's write buffer), only one block of
+   * elements will be requested to be added in the write buffer. They will be rejected because
+   * the first remnant is already in the `WAITING_FOR_SYNCHRONIZER` state, so we have to think of
+   * what to do with them. The thing is that these elements haven't found their match against the
+   * other's remnant current inner map, but after the sync, new elements will be added to the
+   * inner map; elements against whom the block hasn't tried to match. So, *before* the sync we
+   * need to add these elements to the write buffer, so they're taken into account for the sync.
+   * There's no need to match them before, because they will be matched as part of the sync. As
+   * the write buffer would reject them because it's frozen, we need to add them forcibly
+   *
+   * When this is done, we can transit to the `SYNCHRONIZEE` state.
+   *
+   * In case nothing of this happens, we want to call pollRead() again, but increasing the acc.
+   * What is that number for? For keeping account that every x tries, we want to check the
+   * capacities of our buffers and, in case it's deemed necessary, try to change to a sync.
+   * @param acc
+   */
   //synchronize with accepting a sync request and sending one
   protected void pollRead(int acc) {
     synchronized (dontPollMoreReadsWhileAcceptingSyncLock) {
       readBuffer.pull()
-          .doOnComplete(() -> stateMachine.fire(UnmatchedYetRemnantTrigger.IT_WOULD_BE_BETTER_TO_WRITE))
+          .doOnComplete(this::itWouldBeBetterToWrite)
           .map(Map::entrySet)
           .flatMapPublisher(Flowable::fromIterable)
-          .filter(key -> tryToEmit(key.getKey(), key.getValue()))
+          .filter(key -> tryToEmit(key.getKey(), key.getValue(), map))
           .toMap(Map.Entry::getKey, Map.Entry::getValue)
           .subscribe(
               ownTypeElements -> {
                 otherRemnant.addToWriteBuffer(ownTypeElements).subscribe(() -> {
-                  if (acc >= config.getPollReadsForCheckCapacity()) {
-                    /*
-                    * Probably this next line is not enough for preventing problems before being
-                    * synchronizee, because the state hasn't changed, as the previous acceptSync
-                    * method is stopped due to the concurrency lock.
-                    *
-                    * Probably the solution for this is including a new state
-                    * FinishingLastReadPoll, which will allow to include a previous if (state ==
-                    * that) { fire change to SYNC_ACCEPTED; return; }
-                    * */
-                    if (checkCapacity() && stateMachine.getState().consumesReadingBuffer()) {
-                      pollRead(acc + 1);
-                    } else {
-                      stateMachine.fire(UnmatchedYetRemnantTrigger.IT_WOULD_BE_BETTER_TO_WRITE);
-                    }
+                  if (stateMachine.isInState(UnmatchedYetRemnantState.WAITING_FOR_SYNCHRONIZEE)) {
+                    //TODO: check the ownTypeElements against the writeBuffer!!
+                    otherRemnant.addForciblyToWriteBuffer(ownTypeElements)
+                        .subscribe(() -> stateMachine.fire(UnmatchedYetRemnantTrigger
+                            .LAST_POLL_BEFORE_BEING_SYNCHRONIZED_IS_OVER));
+                    return;
+                  }
+                  if (stateMachine.getState().consumesReadingBuffer()) {
+                    return;
+                  }
+                  if (acc < config.getPollReadsForCheckCapacity() || checkCapacity() ) {
+                    pollRead(acc + 1);
+                  } else {
+                    stateMachine.fire(UnmatchedYetRemnantTrigger.IT_WOULD_BE_BETTER_TO_WRITE);
                   }
                 });
-
               }
           );
     }
@@ -118,7 +155,7 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
     //use strategy
   }
 
-  protected boolean tryToEmit(KT key, OT ot) {
+  protected boolean tryToEmit(KT key, OT ot, Map<KT, T> map) {
     T t = map.get(key);
     if (t == null){
       return true;
@@ -128,9 +165,11 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
       } else {
         emitter.onNext(InnerJoinTuple.of((LT) ot, (RT) t));
       }
+      map.remove(t);
       return false;
     }
   }
+
   @Override
   public Completable addToWriteBuffer(Map<KT, T> ownTypeElements) {
     return Completable.create(completableEmitter -> {
@@ -144,6 +183,10 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
         itWouldBeBetterToWrite();
       }
     });
+  }
+
+  public Completable addForciblyToWriteBuffer(Map<KT, T> ownTypeElements) {
+    return Completable.create(completableEmitter -> writeBuffer.addForciblyToQueue(ownTypeElements));
   }
 
 

@@ -57,6 +57,10 @@ public class WriteBufferManager<T, OT, KT, LT, RT> {
     }
   }
 
+  public void addForciblyToQueue(Map<KT, T> elementsToAdd){
+    buffer.putAll(elementsToAdd);
+  }
+
   //no need to erase them, the WriteBufferManager element will be deleted itself
   public Map<KT, T> getAllElements() {
     return buffer;

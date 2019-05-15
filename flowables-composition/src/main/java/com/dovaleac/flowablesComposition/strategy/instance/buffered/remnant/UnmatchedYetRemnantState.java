@@ -3,7 +3,7 @@ package com.dovaleac.flowablesComposition.strategy.instance.buffered.remnant;
 public enum UnmatchedYetRemnantState {
   IDLE(false, false, true),
   READING(false, true, true),
-  WAITING_FOR_SYNCHRONIZER(true, false, true),
+  WAITING_FOR_SYNCHRONIZER(true, false, false),
   SYNCHRONIZER(false, false, false),
   REJECTED_SYNCHRONIZER(false, true, false),
   WRITING(true, false, true),
