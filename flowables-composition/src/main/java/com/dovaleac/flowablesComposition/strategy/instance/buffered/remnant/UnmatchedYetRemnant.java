@@ -12,5 +12,5 @@ public interface UnmatchedYetRemnant<UYRT extends UnmatchedYetRemnant, T, OT, KT
   void setOther(UYRT other);
   Completable addToReadBuffer(List<OT> otherTypeElements);
   Completable addToWriteBuffer(Map<KT, T> ownTypeElements);
-  Completable emitAllElements(FlowableEmitter<OptionalTuple<LT,RT>> emitter);
+  Completable emitAllElements();
 }

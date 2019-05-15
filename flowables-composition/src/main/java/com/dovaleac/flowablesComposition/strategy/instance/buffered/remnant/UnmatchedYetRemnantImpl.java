@@ -10,6 +10,7 @@ import com.dovaleac.flowablesComposition.strategy.instance.buffered.exceptions.W
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.guarder.SubscriberStatusGuarder;
 import com.dovaleac.flowablesComposition.tuples.InnerJoinTuple;
 import com.dovaleac.flowablesComposition.tuples.OnlyLeftTuple;
+import com.dovaleac.flowablesComposition.tuples.OnlyRightTuple;
 import com.dovaleac.flowablesComposition.tuples.OptionalTuple;
 import com.github.oxo42.stateless4j.StateMachine;
 import io.reactivex.Completable;
@@ -163,13 +164,25 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
     if (t == null){
       return true;
     } else {
-      if (isLeft) {
-        emitter.onNext(InnerJoinTuple.of((LT) t, (RT) ot));
-      } else {
-        emitter.onNext(InnerJoinTuple.of((LT) ot, (RT) t));
-      }
+      emitInnerJoin(ot, t);
       map.remove(t);
       return false;
+    }
+  }
+
+  private void emitInnerJoin(OT ot, T t) {
+    if (isLeft) {
+      emitter.onNext(InnerJoinTuple.of((LT) t, (RT) ot));
+    } else {
+      emitter.onNext(InnerJoinTuple.of((LT) ot, (RT) t));
+    }
+  }
+
+  private void emitSoleTuple(T t) {
+    if (isLeft) {
+      emitter.onNext(OnlyLeftTuple.of((LT) t));
+    } else {
+      emitter.onNext(OnlyRightTuple.of((RT) t));
     }
   }
 
@@ -194,9 +207,9 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
 
 
   @Override
-  public Completable emitAllElements(FlowableEmitter<OptionalTuple<LT, RT>> emitter) {
-    return Completable.fromAction(() -> Flowable.fromIterable(map.keySet())
-        .forEach(t -> emitter.onNext(new OnlyLeftTuple<>((LT) t))));
+  public Completable emitAllElements() {
+    return Completable.fromAction(() -> Flowable.fromIterable(map.values())
+        .forEach(this::emitSoleTuple));
   }
 
 //METHODS FOR TRANSITIONS

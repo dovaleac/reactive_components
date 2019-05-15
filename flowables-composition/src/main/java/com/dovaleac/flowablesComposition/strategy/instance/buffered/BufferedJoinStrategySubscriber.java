@@ -95,10 +95,10 @@ public class BufferedJoinStrategySubscriber<T, OT, KT, KT2, LT, RT> implements S
     List<Completable> completables = new ArrayList<>(2);
 
     if (emitLeft) {
-      completables.add(ownRemnant.emitAllElements(emitter));
+      completables.add(ownRemnant.emitAllElements());
     }
     if (emitRight) {
-      completables.add(ownRemnant.emitAllElements(emitter));
+      completables.add(otherRemnant.emitAllElements());
     }
 
     Completable.merge(completables).subscribe(emitter::onComplete);
