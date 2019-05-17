@@ -15,8 +15,11 @@ public class BufferedStrategyConfig<LT, RT, KT> {
 
   public BufferedStrategyConfig(
       UnmatchedYetRemnantConfig leftRemnantConfig,
-      UnmatchedYetRemnantConfig rightRemnantConfig, int leftFlowableBuffer, int rightFlowableBuffer,
-      Map<KT, LT> leftRemnantInitialMap, Map<KT, RT> rightRemnantInitialMap) {
+      UnmatchedYetRemnantConfig rightRemnantConfig,
+      int leftFlowableBuffer,
+      int rightFlowableBuffer,
+      Map<KT, LT> leftRemnantInitialMap,
+      Map<KT, RT> rightRemnantInitialMap) {
     this.leftRemnantConfig = leftRemnantConfig;
     this.rightRemnantConfig = rightRemnantConfig;
     this.leftFlowableBuffer = leftFlowableBuffer;

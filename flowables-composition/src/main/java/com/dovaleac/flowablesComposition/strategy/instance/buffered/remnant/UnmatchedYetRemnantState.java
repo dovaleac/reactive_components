@@ -15,7 +15,9 @@ public enum UnmatchedYetRemnantState {
   private final boolean consumesReadingBuffer;
   private final boolean allowsFillingWritingBuffer;
 
-  UnmatchedYetRemnantState(boolean consumesWritingBuffer, boolean consumesReadingBuffer,
+  UnmatchedYetRemnantState(
+      boolean consumesWritingBuffer,
+      boolean consumesReadingBuffer,
       boolean allowsFillingWritingBuffer) {
     this.consumesWritingBuffer = consumesWritingBuffer;
     this.consumesReadingBuffer = consumesReadingBuffer;

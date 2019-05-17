@@ -9,11 +9,15 @@ import io.reactivex.Single;
 import java.util.List;
 import java.util.Map;
 
-public interface UnmatchedYetRemnant<UYRT extends UnmatchedYetRemnant<?, OT, T, KT, LT, RT>, T, OT,
-    KT, LT, RT> {
+public interface UnmatchedYetRemnant<
+    UYRT extends UnmatchedYetRemnant<?, OT, T, KT, LT, RT>, T, OT, KT, LT, RT> {
   void setOther(UYRT other);
+
   void setGuarder(SubscriberStatusGuarder<T> guarder);
+
   Completable addToReadBuffer(List<OT> otherTypeElements);
+
   Completable addToWriteBuffer(Map<KT, T> ownTypeElements);
+
   Completable emitAllElements();
 }

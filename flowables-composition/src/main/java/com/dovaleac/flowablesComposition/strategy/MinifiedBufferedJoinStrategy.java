@@ -8,8 +8,7 @@ import java.util.stream.Stream;
 public class MinifiedBufferedJoinStrategy implements JoinStrategy {
   private static volatile MinifiedBufferedJoinStrategy mInstance;
 
-  private MinifiedBufferedJoinStrategy() {
-  }
+  private MinifiedBufferedJoinStrategy() {}
 
   public static MinifiedBufferedJoinStrategy getInstance() {
     if (mInstance == null) {
@@ -23,9 +22,8 @@ public class MinifiedBufferedJoinStrategy implements JoinStrategy {
   }
 
   @Override
-  public <LT, RT> Stream<JoinStrategyInstance<LT, RT>> proposeCandidates(Scenario scenario,
-      Class<LT> ltClass, Class<RT> rtClass) {
+  public <LT, RT> Stream<JoinStrategyInstance<LT, RT>> proposeCandidates(
+      Scenario scenario, Class<LT> ltClass, Class<RT> rtClass) {
     return null;
   }
-
 }

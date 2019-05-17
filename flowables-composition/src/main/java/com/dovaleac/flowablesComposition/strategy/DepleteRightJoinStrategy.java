@@ -8,8 +8,7 @@ import java.util.stream.Stream;
 public class DepleteRightJoinStrategy implements JoinStrategy {
   private static volatile DepleteRightJoinStrategy mInstance;
 
-  private DepleteRightJoinStrategy() {
-  }
+  private DepleteRightJoinStrategy() {}
 
   public static DepleteRightJoinStrategy getInstance() {
     if (mInstance == null) {
@@ -23,9 +22,8 @@ public class DepleteRightJoinStrategy implements JoinStrategy {
   }
 
   @Override
-  public <LT, RT> Stream<JoinStrategyInstance<LT, RT>> proposeCandidates(Scenario scenario,
-      Class<LT> ltClass, Class<RT> rtClass) {
+  public <LT, RT> Stream<JoinStrategyInstance<LT, RT>> proposeCandidates(
+      Scenario scenario, Class<LT> ltClass, Class<RT> rtClass) {
     return null;
   }
-
 }

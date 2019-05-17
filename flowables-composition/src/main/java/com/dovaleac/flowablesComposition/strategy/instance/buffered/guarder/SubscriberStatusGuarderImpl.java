@@ -6,14 +6,15 @@ import com.github.oxo42.stateless4j.StateMachine;
 import java.util.List;
 import java.util.Map;
 
-public class SubscriberStatusGuarderImpl<T, OT, KT, KT2, LT, RT> implements SubscriberStatusGuarder<T> {
+public class SubscriberStatusGuarderImpl<T, OT, KT, KT2, LT, RT>
+    implements SubscriberStatusGuarder<T> {
 
   private final BufferedJoinStrategySubscriber<T, OT, KT, KT2, LT, RT> subscriber;
-  private final StateMachine<SubscriberStatusGuarderState, SubscriberStatusGuarderTrigger> stateMachine =
-      new StateMachine<>(
-          SubscriberStatusGuarderState.RUNNING,
-          new SubscriberStatusGuarderStateMachine<>(this).getConfig()
-      );
+  private final StateMachine<SubscriberStatusGuarderState, SubscriberStatusGuarderTrigger>
+      stateMachine =
+          new StateMachine<>(
+              SubscriberStatusGuarderState.RUNNING,
+              new SubscriberStatusGuarderStateMachine<>(this).getConfig());
 
   public SubscriberStatusGuarderImpl(
       BufferedJoinStrategySubscriber<T, OT, KT, KT2, LT, RT> subscriber) {

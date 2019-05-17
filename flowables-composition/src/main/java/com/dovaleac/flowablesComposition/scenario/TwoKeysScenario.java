@@ -17,10 +17,16 @@ public class TwoKeysScenario<LT, RT, KT, KT2> implements Scenario<LT, RT, KT, KT
   protected final Function<RT, KT2> rk2Function;
   protected final PlannerConfig plannerConfig;
 
-  protected TwoKeysScenario(JoinType joinType, Class<LT> ltClass, Class<RT> rtClass,
-      Class<KT> ktClass, Function<LT, KT> lkFunction,
-      Function<RT, KT> rkFunction, Class<KT2> kt2Class,
-      Function<LT, KT2> lk2Function, Function<RT, KT2> rk2Function,
+  protected TwoKeysScenario(
+      JoinType joinType,
+      Class<LT> ltClass,
+      Class<RT> rtClass,
+      Class<KT> ktClass,
+      Function<LT, KT> lkFunction,
+      Function<RT, KT> rkFunction,
+      Class<KT2> kt2Class,
+      Function<LT, KT2> lk2Function,
+      Function<RT, KT2> rk2Function,
       PlannerConfig plannerConfig) {
     this.joinType = joinType;
     this.ltClass = ltClass;

@@ -14,16 +14,17 @@ public class WriteBuffer<T, OT, KT, LT, RT> {
   private final Map<KT, T> buffer;
 
   private final StateMachine<WriteBufferAcceptNewInputsState, WriteBufferAcceptNewInputsTrigger>
-      stateMachine = new StateMachine<>(WriteBufferAcceptNewInputsState.ACCEPT_NEW,
-      new WriteBufferAcceptNewInputsStateMachine(this).getConfig());
+      stateMachine =
+          new StateMachine<>(
+              WriteBufferAcceptNewInputsState.ACCEPT_NEW,
+              new WriteBufferAcceptNewInputsStateMachine(this).getConfig());
   private final Object freezeLock = new Object();
   private final Object capacityLock = new Object();
 
   private boolean isFrozen = false;
 
   public WriteBuffer(
-      UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> remnant,
-      int maxElements, Map<KT, T> initialMap) {
+      UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> remnant, int maxElements, Map<KT, T> initialMap) {
     this.remnant = remnant;
     this.maxElements = maxElements;
     this.buffer = initialMap;
@@ -33,14 +34,15 @@ public class WriteBuffer<T, OT, KT, LT, RT> {
    * Adds a bunch of elements to the buffer. If the resulting elements exceed the expected capacity
    * of the buffer, no problem with it, the next time that anyone intends to put more objects, it
    * will fail
+   *
    * @param elementsToAdd
    * @throws WriteBufferFrozenException if the write buffer is in frozen state, it won't let put
-   * elements
+   *     elements
    * @throws WriteBufferFullException if the buffer has more elements than expected, or the same
-   * number, it won't let put elements
+   *     number, it won't let put elements
    */
-  public void addToQueue(Map<KT, T> elementsToAdd) throws WriteBufferFrozenException,
-      WriteBufferFullException {
+  public void addToQueue(Map<KT, T> elementsToAdd)
+      throws WriteBufferFrozenException, WriteBufferFullException {
 
     synchronized (freezeLock) {
       if (isFrozen) {
@@ -57,11 +59,11 @@ public class WriteBuffer<T, OT, KT, LT, RT> {
     }
   }
 
-  public void addForciblyToQueue(Map<KT, T> elementsToAdd){
+  public void addForciblyToQueue(Map<KT, T> elementsToAdd) {
     buffer.putAll(elementsToAdd);
   }
 
-  //no need to erase them, the WriteBuffer element will be deleted itself
+  // no need to erase them, the WriteBuffer element will be deleted itself
   public Map<KT, T> getAllElements() {
     return buffer;
   }

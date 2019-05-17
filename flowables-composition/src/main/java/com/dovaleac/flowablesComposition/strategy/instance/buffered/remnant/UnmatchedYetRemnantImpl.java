@@ -21,14 +21,12 @@ import io.reactivex.functions.Function;
 import java.util.List;
 import java.util.Map;
 
-public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetRemnant<
-    UnmatchedYetRemnantImpl<OT, T, KT, LT, RT>, T, OT, KT, LT, RT> {
+public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT>
+    implements UnmatchedYetRemnant<UnmatchedYetRemnantImpl<OT, T, KT, LT, RT>, T, OT, KT, LT, RT> {
 
   private final StateMachine<UnmatchedYetRemnantState, UnmatchedYetRemnantTrigger> stateMachine =
       new StateMachine<>(
-          UnmatchedYetRemnantState.IDLE,
-          new UnmatchedYetRemnantStateMachine(this).getConfig()
-      );
+          UnmatchedYetRemnantState.IDLE, new UnmatchedYetRemnantStateMachine(this).getConfig());
   private final Map<KT, T> map;
   private final UnmatchedYetRemnantConfig config;
   private final ReadBufferImpl<OT, KT> readBuffer;
@@ -54,11 +52,15 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
     this.isLeft = isLeft;
     this.emitter = emitter;
     this.readBuffer = new ReadBufferImpl<>(function, maxBlocksForReadBuffer);
-    writeBuffer = new WriteBuffer<>(this,
-        config.getMaxElementsInWriteBuffer(), config.getInitialMapForWriteBuffer());
+    writeBuffer =
+        new WriteBuffer<>(
+            this, config.getMaxElementsInWriteBuffer(), config.getInitialMapForWriteBuffer());
   }
 
-  //OVERRIDEN METHODS
+  UnmatchedYetRemnantImpl() {
+    this(null, new UnmatchedYetRemnantConfig(), null, 1, false, null);
+  }
+  // OVERRIDEN METHODS
 
   @Override
   public void setOther(UnmatchedYetRemnantImpl<OT, T, KT, LT, RT> other) {
@@ -79,46 +81,48 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
   }
 
   /**
-   * Recursive method for consuming the read buffer. As elements in the read buffer are arranged
-   * in blocks, each poll gets a block. If the read buffer is empty, the query to the ReadBuffer
-   * will return an empty Maybe, and so, the trigger `IT_WOULD_BE_BETTER_TO_WRITE` would be fired.
+   * Recursive method for consuming the read buffer. As elements in the read buffer are arranged in
+   * blocks, each poll gets a block. If the read buffer is empty, the query to the ReadBuffer will
+   * return an empty Maybe, and so, the trigger `IT_WOULD_BE_BETTER_TO_WRITE` would be fired.
    *
-   * The results obtained, which come as a map, are then checked against the inner map, so that
+   * <p>The results obtained, which come as a map, are then checked against the inner map, so that
    * if they match any of the elements in the map, their inner join gets emitted and the element in
    * this map gets removed from it. Those that don't match with any other element are packed as a
    * Map and sent to the other remnant for being written in its inner map.
    *
-   * About synchronizing this method with other processes: when a poll is over, first we check in
+   * <p>About synchronizing this method with other processes: when a poll is over, first we check in
    * which state we are. There's a state dedicated to the moment in which there's a poll going on
-   * and a sync request is received. That would let the poll go on, but it would change the
-   * state to `WAITING_FOR_SYNCHRONIZEE`. When the poll finishes (that is, the elements get
-   * shipped to the other remnant), if the state is the aforementioned one, then two things will
-   * happen: we don't want to keep polling but instead we want to move to the `SYNCHRONIZEE`
-   * state, but first of all we need to deal with elements that are going to get rejected in the
-   * other remnant's write buffer.
+   * and a sync request is received. That would let the poll go on, but it would change the state to
+   * `WAITING_FOR_SYNCHRONIZEE`. When the poll finishes (that is, the elements get shipped to the
+   * other remnant), if the state is the aforementioned one, then two things will happen: we don't
+   * want to keep polling but instead we want to move to the `SYNCHRONIZEE` state, but first of all
+   * we need to deal with elements that are going to get rejected in the other remnant's write
+   * buffer.
    *
-   * When a remnant requires a sync, given this algorithm, if the other remnant is reading (that
+   * <p>When a remnant requires a sync, given this algorithm, if the other remnant is reading (that
    * is, generating new elements to go to the first remnant's write buffer), only one block of
-   * elements will be requested to be added in the write buffer. They will be rejected because
-   * the first remnant is already in the `WAITING_FOR_SYNCHRONIZER` state, so we have to think of
-   * what to do with them. The thing is that these elements haven't found their match against the
-   * other's remnant current inner map, but after the sync, new elements will be added to the
-   * inner map; elements against whom the block hasn't tried to match. So, *before* the sync we
-   * need to add these elements to the write buffer, so they're taken into account for the sync.
-   * There's no need to match them before, because they will be matched as part of the sync. As
-   * the write buffer would reject them because it's frozen, we need to add them forcibly
+   * elements will be requested to be added in the write buffer. They will be rejected because the
+   * first remnant is already in the `WAITING_FOR_SYNCHRONIZER` state, so we have to think of what
+   * to do with them. The thing is that these elements haven't found their match against the other's
+   * remnant current inner map, but after the sync, new elements will be added to the inner map;
+   * elements against whom the block hasn't tried to match. So, *before* the sync we need to add
+   * these elements to the write buffer, so they're taken into account for the sync. There's no need
+   * to match them before, because they will be matched as part of the sync. As the write buffer
+   * would reject them because it's frozen, we need to add them forcibly
    *
-   * When this is done, we can transit to the `SYNCHRONIZEE` state.
+   * <p>When this is done, we can transit to the `SYNCHRONIZEE` state.
    *
-   * In case nothing of this happens, we want to call pollRead() again, but increasing the acc.
+   * <p>In case nothing of this happens, we want to call pollRead() again, but increasing the acc.
    * What is that number for? For keeping account that every x tries, we want to check the
    * capacities of our buffers and, in case it's deemed necessary, try to change to a sync.
+   *
    * @param acc
    */
-  //synchronize with accepting a sync request and sending one
+  // synchronize with accepting a sync request and sending one
   protected void pollRead(int acc) {
     synchronized (dontPollMoreReadsWhileAcceptingSyncLock) {
-      readBuffer.pull()
+      readBuffer
+          .pull()
           .doOnComplete(this::itWouldBeBetterToWrite)
           .map(Map::entrySet)
           .flatMapPublisher(Flowable::fromIterable)
@@ -126,30 +130,38 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
           .toMap(Map.Entry::getKey, Map.Entry::getValue)
           .subscribe(
               ownTypeElements -> {
-                otherRemnant.addToWriteBuffer(ownTypeElements).subscribe(() -> {
-                  if (stateMachine.isInState(UnmatchedYetRemnantState.WAITING_FOR_SYNCHRONIZEE)) {
-                    //TODO: check the ownTypeElements against the writeBuffer!!
-                    otherRemnant.addForciblyToWriteBuffer(ownTypeElements)
-                        .subscribe(() -> stateMachine.fire(UnmatchedYetRemnantTrigger
-                            .LAST_POLL_BEFORE_BEING_SYNCHRONIZED_IS_OVER));
-                    return;
-                  }
-                  if (stateMachine.getState().consumesReadingBuffer()) {
-                    return;
-                  }
-                  if (acc < config.getPollReadsForCheckCapacity()) {
-                    pollRead(acc + 1);
-                    return;
-                  }
-                  if (checkCapacity() == NextAction.READ ) {
-                    pollRead(0);
-                  } else {
-                    stateMachine.fire(UnmatchedYetRemnantTrigger.IT_WOULD_BE_BETTER_TO_WRITE);
-                  }
-                },
-                    throwable -> System.out.println(throwable.getMessage()));
-              }
-          );
+                otherRemnant
+                    .addToWriteBuffer(ownTypeElements)
+                    .subscribe(
+                        () -> {
+                          if (stateMachine.isInState(
+                              UnmatchedYetRemnantState.WAITING_FOR_SYNCHRONIZEE)) {
+                            // TODO: check the ownTypeElements against the writeBuffer!!
+                            otherRemnant
+                                .addForciblyToWriteBuffer(ownTypeElements)
+                                .subscribe(
+                                    () ->
+                                        stateMachine.fire(
+                                            UnmatchedYetRemnantTrigger
+                                                .LAST_POLL_BEFORE_BEING_SYNCHRONIZED_IS_OVER));
+                            return;
+                          }
+                          if (stateMachine.getState().consumesReadingBuffer()) {
+                            return;
+                          }
+                          if (acc < config.getPollReadsForCheckCapacity()) {
+                            pollRead(acc + 1);
+                            return;
+                          }
+                          if (checkCapacity() == NextAction.READ) {
+                            pollRead(0);
+                          } else {
+                            stateMachine.fire(
+                                UnmatchedYetRemnantTrigger.IT_WOULD_BE_BETTER_TO_WRITE);
+                          }
+                        },
+                        throwable -> System.out.println(throwable.getMessage()));
+              });
     }
   }
 
@@ -160,13 +172,14 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
   }
 
   private NextAction checkCapacity() {
-    return config.getCheckCapacityStrategy().getNextAction(readBuffer.getCapacity(),
-        writeBuffer.getCapacity());
+    return config
+        .getCheckCapacityStrategy()
+        .getNextAction(readBuffer.getCapacity(), writeBuffer.getCapacity());
   }
 
   protected boolean tryToEmit(KT key, OT ot, Map<KT, T> map) {
     T t = map.get(key);
-    if (t == null){
+    if (t == null) {
       return true;
     } else {
       emitInnerJoin(ot, t);
@@ -193,29 +206,30 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
 
   @Override
   public Completable addToWriteBuffer(Map<KT, T> ownTypeElements) {
-    return Completable.create(completableEmitter -> {
-      try {
-        writeBuffer.addToQueue(ownTypeElements);
-      } catch (WriteBufferFrozenException e) {
-        completableEmitter.onError(e);
-      } catch (WriteBufferFullException e) {
-        itWouldBeBetterToWrite();
-      }
-    });
+    return Completable.create(
+        completableEmitter -> {
+          try {
+            writeBuffer.addToQueue(ownTypeElements);
+          } catch (WriteBufferFrozenException e) {
+            completableEmitter.onError(e);
+          } catch (WriteBufferFullException e) {
+            itWouldBeBetterToWrite();
+          }
+        });
   }
 
   public Completable addForciblyToWriteBuffer(Map<KT, T> ownTypeElements) {
-    return Completable.create(completableEmitter -> writeBuffer.addForciblyToQueue(ownTypeElements));
+    return Completable.create(
+        completableEmitter -> writeBuffer.addForciblyToQueue(ownTypeElements));
   }
-
 
   @Override
   public Completable emitAllElements() {
-    return Completable.fromAction(() -> Flowable.fromIterable(map.values())
-        .forEach(this::emitSoleTuple));
+    return Completable.fromAction(
+        () -> Flowable.fromIterable(map.values()).forEach(this::emitSoleTuple));
   }
 
-//METHODS FOR TRANSITIONS
+  // METHODS FOR TRANSITIONS
 
   void disableWriteBufferForFill() {
     writeBuffer.fire(WriteBufferAcceptNewInputsTrigger.FREEZE);
@@ -244,17 +258,20 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
   }
 
   Completable synchronize() {
-    return Completable.fromAction(() -> {
-      Map<KT, OT> otherRemnantElements = otherRemnant.writeBuffer.getAllElements();
-      Map<KT, T> ownRemnantElements = writeBuffer.getAllElements();
-      otherRemnantElements.entrySet().stream()
-          .filter(ktotEntry -> tryToEmit(ktotEntry.getKey(), ktotEntry.getValue(), ownRemnantElements))
-          .forEach(entry -> otherRemnant.map.put(entry.getKey(), entry.getValue()));
-      map.putAll(ownRemnantElements);
+    return Completable.fromAction(
+        () -> {
+          Map<KT, OT> otherRemnantElements = otherRemnant.writeBuffer.getAllElements();
+          Map<KT, T> ownRemnantElements = writeBuffer.getAllElements();
+          otherRemnantElements.entrySet().stream()
+              .filter(
+                  ktotEntry ->
+                      tryToEmit(ktotEntry.getKey(), ktotEntry.getValue(), ownRemnantElements))
+              .forEach(entry -> otherRemnant.map.put(entry.getKey(), entry.getValue()));
+          map.putAll(ownRemnantElements);
 
-      otherRemnantElements.clear();
-      ownRemnantElements.clear();
-    });
+          otherRemnantElements.clear();
+          ownRemnantElements.clear();
+        });
   }
 
   void syncFinished() {

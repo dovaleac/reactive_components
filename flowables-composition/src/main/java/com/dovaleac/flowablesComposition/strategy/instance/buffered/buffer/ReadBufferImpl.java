@@ -42,6 +42,4 @@ public class ReadBufferImpl<T, KT> implements ReadBuffer<T, KT> {
     }
     return Flowable.fromIterable(polled).toMap(keyFunction).toMaybe();
   }
-
-
 }

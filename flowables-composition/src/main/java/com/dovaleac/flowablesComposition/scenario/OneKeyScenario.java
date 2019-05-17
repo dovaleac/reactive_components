@@ -14,9 +14,14 @@ public class OneKeyScenario<LT, RT, KT, KT2> implements Scenario<LT, RT, KT, KT2
   protected final Function<RT, KT> rkFunction;
   protected final PlannerConfig plannerConfig;
 
-  protected OneKeyScenario(JoinType joinType, Class<LT> ltClass, Class<RT> rtClass,
-      Class<KT> ktClass, Function<LT, KT> lkFunction,
-      Function<RT, KT> rkFunction, PlannerConfig plannerConfig) {
+  protected OneKeyScenario(
+      JoinType joinType,
+      Class<LT> ltClass,
+      Class<RT> rtClass,
+      Class<KT> ktClass,
+      Function<LT, KT> lkFunction,
+      Function<RT, KT> rkFunction,
+      PlannerConfig plannerConfig) {
     this.joinType = joinType;
     this.ltClass = ltClass;
     this.rtClass = rtClass;

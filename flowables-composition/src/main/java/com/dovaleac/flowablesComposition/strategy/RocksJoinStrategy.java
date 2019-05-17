@@ -8,8 +8,7 @@ import java.util.stream.Stream;
 public class RocksJoinStrategy implements JoinStrategy {
   private static volatile RocksJoinStrategy mInstance;
 
-  private RocksJoinStrategy() {
-  }
+  private RocksJoinStrategy() {}
 
   public static RocksJoinStrategy getInstance() {
     if (mInstance == null) {
@@ -23,9 +22,8 @@ public class RocksJoinStrategy implements JoinStrategy {
   }
 
   @Override
-  public <LT, RT> Stream<JoinStrategyInstance<LT, RT>> proposeCandidates(Scenario scenario,
-      Class<LT> ltClass, Class<RT> rtClass) {
+  public <LT, RT> Stream<JoinStrategyInstance<LT, RT>> proposeCandidates(
+      Scenario scenario, Class<LT> ltClass, Class<RT> rtClass) {
     return null;
   }
-
 }

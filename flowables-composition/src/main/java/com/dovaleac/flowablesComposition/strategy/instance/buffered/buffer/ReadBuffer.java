@@ -7,6 +7,8 @@ import java.util.Map;
 
 public interface ReadBuffer<T, KT> {
   boolean push(List<T> otherTypeElements);
+
   Maybe<Map<KT, T>> pull();
+
   double getCapacity();
 }

@@ -2,8 +2,11 @@ package com.dovaleac.flowablesComposition.tuples;
 
 import java.util.Optional;
 
-public class InnerJoinTuple<LT, RT> implements OptionalTuple<LT, RT>,
-    FullJoinTuple<LT, RT>, LeftJoinTuple<LT, RT>, RightJoinTuple<LT, RT> {
+public class InnerJoinTuple<LT, RT>
+    implements OptionalTuple<LT, RT>,
+        FullJoinTuple<LT, RT>,
+        LeftJoinTuple<LT, RT>,
+        RightJoinTuple<LT, RT> {
 
   private final LT left;
   private final RT right;

@@ -6,8 +6,12 @@ import java.util.Map;
 public interface SubscriberStatusGuarder<T> {
 
   void stopReading(List<T> elementToRetake);
+
   void retakeReading();
+
   void bothAreDepleted();
+
   void markAsDepleted();
+
   void notifyOtherIsDepleted();
 }

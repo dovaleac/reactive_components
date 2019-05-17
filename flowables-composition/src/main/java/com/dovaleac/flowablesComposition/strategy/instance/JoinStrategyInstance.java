@@ -7,6 +7,7 @@ import io.reactivex.Flowable;
 public interface JoinStrategyInstance<LT, RT> {
 
   double evalSuitability(Scenario scenario);
-  Flowable<? extends OptionalTuple<LT, RT>> join(Flowable<LT> leftFlowable,
-      Flowable<RT> rightFlowable);
+
+  Flowable<? extends OptionalTuple<LT, RT>> join(
+      Flowable<LT> leftFlowable, Flowable<RT> rightFlowable);
 }

@@ -18,9 +18,15 @@ public class PlannerConfig {
   private final Duration rightTimeToComplete;
   private final Priority priority;
 
-  private PlannerConfig(long leftCardinality, long rightCardinality, double matchChance,
-      boolean areSorted, boolean canBeSorted, Duration leftTimeToComplete,
-      Duration rightTimeToComplete, Priority priority) {
+  private PlannerConfig(
+      long leftCardinality,
+      long rightCardinality,
+      double matchChance,
+      boolean areSorted,
+      boolean canBeSorted,
+      Duration leftTimeToComplete,
+      Duration rightTimeToComplete,
+      Priority priority) {
     this.leftCardinality = leftCardinality;
     this.rightCardinality = rightCardinality;
     this.matchChance = matchChance;
@@ -68,19 +74,27 @@ public class PlannerConfig {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     PlannerConfig that = (PlannerConfig) o;
-    return leftCardinality == that.leftCardinality &&
-        rightCardinality == that.rightCardinality &&
-        Double.compare(that.matchChance, matchChance) == 0 &&
-        areSorted == that.areSorted &&
-        canBeSorted == that.canBeSorted &&
-        Objects.equals(leftTimeToComplete, that.leftTimeToComplete) &&
-        Objects.equals(rightTimeToComplete, that.rightTimeToComplete) &&
-        Objects.equals(priority, that.priority);
+    return leftCardinality == that.leftCardinality
+        && rightCardinality == that.rightCardinality
+        && Double.compare(that.matchChance, matchChance) == 0
+        && areSorted == that.areSorted
+        && canBeSorted == that.canBeSorted
+        && Objects.equals(leftTimeToComplete, that.leftTimeToComplete)
+        && Objects.equals(rightTimeToComplete, that.rightTimeToComplete)
+        && Objects.equals(priority, that.priority);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(leftCardinality, rightCardinality, matchChance, areSorted, canBeSorted, leftTimeToComplete, rightTimeToComplete, priority);
+    return Objects.hash(
+        leftCardinality,
+        rightCardinality,
+        matchChance,
+        areSorted,
+        canBeSorted,
+        leftTimeToComplete,
+        rightTimeToComplete,
+        priority);
   }
 
   public static Builder builder() {
@@ -97,8 +111,7 @@ public class PlannerConfig {
     private Duration rightTimeToComplete = Duration.ofMinutes(5);
     private Priority priority = Priority.memory((short) 0);
 
-    private Builder() {
-    }
+    private Builder() {}
 
     public Builder withLeftCardinality(long leftCardinality) {
       this.leftCardinality = leftCardinality;
@@ -142,9 +155,14 @@ public class PlannerConfig {
 
     public PlannerConfig build() {
       return new PlannerConfig(
-          leftCardinality, rightCardinality, matchChance, areSorted, canBeSorted,
-          leftTimeToComplete, rightTimeToComplete, priority
-      );
+          leftCardinality,
+          rightCardinality,
+          matchChance,
+          areSorted,
+          canBeSorted,
+          leftTimeToComplete,
+          rightTimeToComplete,
+          priority);
     }
   }
 }

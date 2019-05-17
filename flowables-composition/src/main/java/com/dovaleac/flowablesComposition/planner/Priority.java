@@ -33,8 +33,7 @@ public class Priority {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Priority priority = (Priority) o;
-    return weight == priority.weight &&
-        priorityOption == priority.priorityOption;
+    return weight == priority.weight && priorityOption == priority.priorityOption;
   }
 
   @Override
@@ -43,7 +42,7 @@ public class Priority {
   }
 
   public enum PriorityOption {
-    TIME, MEMORY
+    TIME,
+    MEMORY
   }
-
 }

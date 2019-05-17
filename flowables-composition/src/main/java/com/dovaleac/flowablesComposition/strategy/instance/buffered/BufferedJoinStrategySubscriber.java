@@ -19,13 +19,12 @@ import java.util.Map;
 
 public class BufferedJoinStrategySubscriber<T, OT, KT, KT2, LT, RT> implements Subscriber<List<T>> {
 
-  private final UnmatchedYetRemnant<?,T, OT, KT, LT, RT> ownRemnant;
-  private final UnmatchedYetRemnant<?,OT, T, KT, LT, RT> otherRemnant;
+  private final UnmatchedYetRemnant<?, T, OT, KT, LT, RT> ownRemnant;
+  private final UnmatchedYetRemnant<?, OT, T, KT, LT, RT> otherRemnant;
   private final BufferedJoinStrategyInstance<T, OT, KT, KT2> strategy;
   private final FlowableEmitter<OptionalTuple<LT, RT>> emitter;
   private Subscription subscription;
-  private final SubscriberStatusGuarder<T> guarder =
-      new SubscriberStatusGuarderImpl<>(this);
+  private final SubscriberStatusGuarder<T> guarder = new SubscriberStatusGuarderImpl<>(this);
   private final boolean emitLeft;
   private final boolean emitRight;
 
@@ -33,7 +32,9 @@ public class BufferedJoinStrategySubscriber<T, OT, KT, KT2, LT, RT> implements S
       UnmatchedYetRemnant<?, T, OT, KT, LT, RT> ownRemnant,
       UnmatchedYetRemnant<?, OT, T, KT, LT, RT> otherRemnant,
       BufferedJoinStrategyInstance<T, OT, KT, KT2> strategy,
-      FlowableEmitter<OptionalTuple<LT, RT>> emitter, boolean emitLeft, boolean emitRight) {
+      FlowableEmitter<OptionalTuple<LT, RT>> emitter,
+      boolean emitLeft,
+      boolean emitRight) {
     this.ownRemnant = ownRemnant;
     this.otherRemnant = otherRemnant;
     this.strategy = strategy;
@@ -50,15 +51,15 @@ public class BufferedJoinStrategySubscriber<T, OT, KT, KT2, LT, RT> implements S
 
   @Override
   public void onNext(List<T> list) {
-    otherRemnant.addToReadBuffer(list)
+    otherRemnant
+        .addToReadBuffer(list)
         .subscribe(
             this::requestNext,
             throwable -> {
               if (throwable instanceof ReadBufferNotAvailableForNewElementsException) {
                 guarder.stopReading(list);
               }
-            }
-        );
+            });
   }
 
   @Override

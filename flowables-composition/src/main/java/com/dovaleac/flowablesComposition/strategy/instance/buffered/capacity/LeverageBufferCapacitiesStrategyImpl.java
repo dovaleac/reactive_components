@@ -6,8 +6,8 @@ public class LeverageBufferCapacitiesStrategyImpl implements LeverageBufferCapac
   private final double writeThresholdToChange;
   private final double minWriteToAcceptChange;
 
-  public LeverageBufferCapacitiesStrategyImpl(double readThresholdToChange,
-      double writeThresholdToChange, double minWriteToAcceptChange) {
+  public LeverageBufferCapacitiesStrategyImpl(
+      double readThresholdToChange, double writeThresholdToChange, double minWriteToAcceptChange) {
     this.readThresholdToChange = readThresholdToChange;
     this.writeThresholdToChange = writeThresholdToChange;
     this.minWriteToAcceptChange = minWriteToAcceptChange;
@@ -22,8 +22,8 @@ public class LeverageBufferCapacitiesStrategyImpl implements LeverageBufferCapac
 
   private void validateOne(double actualValue) throws IllegalArgumentException {
     if (actualValue > 1.0 || actualValue < 0.0) {
-      throw new IllegalArgumentException("Value " + actualValue + " is not in the [0.0, 1.0] " +
-          "range");
+      throw new IllegalArgumentException(
+          "Value " + actualValue + " is not in the [0.0, 1.0] " + "range");
     }
   }
 
@@ -37,8 +37,6 @@ public class LeverageBufferCapacitiesStrategyImpl implements LeverageBufferCapac
       return NextAction.READ;
     }
 
-    return writeBufferCapacity > minWriteToAcceptChange
-        ? NextAction.WRITE
-        : NextAction.READ;
+    return writeBufferCapacity > minWriteToAcceptChange ? NextAction.WRITE : NextAction.READ;
   }
 }
