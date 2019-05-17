@@ -7,7 +7,7 @@ import com.github.oxo42.stateless4j.StateMachine;
 
 import java.util.Map;
 
-public class WriteBufferManager<T, OT, KT, LT, RT> {
+public class WriteBuffer<T, OT, KT, LT, RT> {
 
   private final UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> remnant;
   private final int maxElements;
@@ -21,7 +21,7 @@ public class WriteBufferManager<T, OT, KT, LT, RT> {
 
   private boolean isFrozen = false;
 
-  public WriteBufferManager(
+  public WriteBuffer(
       UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> remnant,
       int maxElements, Map<KT, T> initialMap) {
     this.remnant = remnant;
@@ -61,7 +61,7 @@ public class WriteBufferManager<T, OT, KT, LT, RT> {
     buffer.putAll(elementsToAdd);
   }
 
-  //no need to erase them, the WriteBufferManager element will be deleted itself
+  //no need to erase them, the WriteBuffer element will be deleted itself
   public Map<KT, T> getAllElements() {
     return buffer;
   }

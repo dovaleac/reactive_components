@@ -24,7 +24,7 @@ public class BufferedJoinStrategySubscriber<T, OT, KT, KT2, LT, RT> implements S
   private final BufferedJoinStrategyInstance<T, OT, KT, KT2> strategy;
   private final FlowableEmitter<OptionalTuple<LT, RT>> emitter;
   private Subscription subscription;
-  private final SubscriberStatusGuarder<T, KT> guarder =
+  private final SubscriberStatusGuarder<T> guarder =
       new SubscriberStatusGuarderImpl<>(this);
   private final boolean emitLeft;
   private final boolean emitRight;
@@ -52,24 +52,13 @@ public class BufferedJoinStrategySubscriber<T, OT, KT, KT2, LT, RT> implements S
   public void onNext(List<T> list) {
     otherRemnant.addToReadBuffer(list)
         .subscribe(
-            () -> {},
+            this::requestNext,
             throwable -> {
               if (throwable instanceof ReadBufferNotAvailableForNewElementsException) {
                 guarder.stopReading(list);
               }
             }
         );
-  }
-
-  public void processWriting(Map<KT, T> unMatched) {
-    ownRemnant.addToWriteBuffer(unMatched).subscribe(
-        this::requestNext,
-        throwable -> {
-          if (throwable instanceof WriteBufferNotAvailableForNewElementsException) {
-            guarder.stopWriting(unMatched);
-          }
-        }
-    );
   }
 
   @Override
@@ -79,7 +68,7 @@ public class BufferedJoinStrategySubscriber<T, OT, KT, KT2, LT, RT> implements S
 
   @Override
   public void onComplete() {
-
+    guarder.markAsDepleted();
   }
 
   private void requestNext() {
@@ -104,7 +93,7 @@ public class BufferedJoinStrategySubscriber<T, OT, KT, KT2, LT, RT> implements S
     Completable.merge(completables).subscribe(emitter::onComplete);
   }
 
-  public void emit(LT left, RT right) {
-    emitter.onNext(InnerJoinTuple.of(left, right));
+  public SubscriberStatusGuarder<T> getGuarder() {
+    return guarder;
   }
 }

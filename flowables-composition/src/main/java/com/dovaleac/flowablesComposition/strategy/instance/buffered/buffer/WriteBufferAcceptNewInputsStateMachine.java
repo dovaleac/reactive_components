@@ -7,11 +7,11 @@ import static com.dovaleac.flowablesComposition.strategy.instance.buffered.buffe
 
 public class WriteBufferAcceptNewInputsStateMachine {
 
-  private final WriteBufferManager writeBufferManager;
+  private final WriteBuffer writeBuffer;
 
   public WriteBufferAcceptNewInputsStateMachine(
-      WriteBufferManager writeBufferManager) {
-    this.writeBufferManager = writeBufferManager;
+      WriteBuffer writeBuffer) {
+    this.writeBuffer = writeBuffer;
   }
 
   StateMachineConfig<WriteBufferAcceptNewInputsState, WriteBufferAcceptNewInputsTrigger> getConfig() {
@@ -19,18 +19,18 @@ public class WriteBufferAcceptNewInputsStateMachine {
         new StateMachineConfig<>();
 
     config.configure(ACCEPT_NEW)
-        .onEntry(writeBufferManager::unfreeze)
+        .onEntry(writeBuffer::unfreeze)
         .permit(FREEZE, FROZEN)
         .permit(MARK_AS_FULL, FULL);
 
     config.configure(FROZEN)
-        .onEntry(writeBufferManager::freeze)
+        .onEntry(writeBuffer::freeze)
         .permit(UNFREEZE, ACCEPT_NEW);
 
     config.configure(FULL)
-        .onEntry(writeBufferManager::itWouldBeBetterToWrite)
+        .onEntry(writeBuffer::itWouldBeBetterToWrite)
         .permitDynamic(MARK_AS_EMPTY, () -> {
-          if (writeBufferManager.isBufferFrozen()) {
+          if (writeBuffer.isBufferFrozen()) {
             return FROZEN;
           } else {
             return ACCEPT_NEW;

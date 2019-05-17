@@ -37,9 +37,9 @@ public class UnmatchedYetRemnantStateMachine {
         .permit(WRITE_IS_SAFE_NOW, WRITING);
 
     config.configure(SYNCHRONIZER)
-        .onEntry(unmatchedYetRemnant::disableConsumingReadingBuffer)
         .onEntry(unmatchedYetRemnant::disableWriteBufferForFill)
-        .onEntry(unmatchedYetRemnant::synchronize)
+        .onEntry(() -> unmatchedYetRemnant.synchronize().subscribe(
+            unmatchedYetRemnant::syncFinished))
         .onExit(unmatchedYetRemnant::syncFinished)
         .permit(SYNC_FINISHED, WRITING);
 
@@ -57,7 +57,6 @@ public class UnmatchedYetRemnantStateMachine {
         .permit(LAST_POLL_BEFORE_BEING_SYNCHRONIZED_IS_OVER, SYNCHRONIZEE);
 
     config.configure(SYNCHRONIZEE)
-        .onEntry(unmatchedYetRemnant::disableConsumingReadingBuffer)
         .onEntry(unmatchedYetRemnant::disableWriteBufferForFill)
         .onEntry(unmatchedYetRemnant::acceptSync)
         .permit(SYNC_FINISHED, WRITING);

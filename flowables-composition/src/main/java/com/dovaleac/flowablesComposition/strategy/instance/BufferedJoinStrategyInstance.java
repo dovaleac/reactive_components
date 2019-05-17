@@ -15,8 +15,6 @@ public class BufferedJoinStrategyInstance<LT, RT, KT, KT2> implements JoinStrate
 
   private final Scenario<LT, RT, KT, KT2> scenario;
   private final BufferedStrategyConfig config;
-  private final UnmatchedYetRemnantImpl<LT, RT, KT, LT, RT> leftRemnant;
-  private final UnmatchedYetRemnantImpl<RT, LT, KT, LT, RT> rightRemnant;
   private BackpressureStrategy backPressure;
 
   public BufferedJoinStrategyInstance(
@@ -24,12 +22,6 @@ public class BufferedJoinStrategyInstance<LT, RT, KT, KT2> implements JoinStrate
       BufferedStrategyConfig config) {
     this.scenario = scenario;
     this.config = config;
-    leftRemnant = new UnmatchedYetRemnantImpl<>(config.getLeftRemnantInitialMap(),
-        config.getLeftRemnantConfig(), readBuffer, -1,true, this);
-    rightRemnant = new UnmatchedYetRemnantImpl<>(config.getRightRemnantInitialMap(),
-        config.getRightRemnantConfig(), readBuffer, -1, false, this);
-    leftRemnant.setOther(rightRemnant);
-    rightRemnant.setOther(leftRemnant);
   }
 
   @Override
@@ -45,6 +37,15 @@ public class BufferedJoinStrategyInstance<LT, RT, KT, KT2> implements JoinStrate
     Flowable<List<RT>> rightBufferedFlowable = rightFlowable.buffer(config.getRightFlowableBuffer());
 
     return Flowable.create(flowableEmitter -> {
+
+      UnmatchedYetRemnantImpl<LT, RT, KT, LT, RT> leftRemnant;
+      UnmatchedYetRemnantImpl<RT, LT, KT, LT, RT> rightRemnant;
+      leftRemnant = new UnmatchedYetRemnantImpl<>(config.getLeftRemnantInitialMap(),
+          config.getLeftRemnantConfig(), scenario.getLkFunction(), -1,true, flowableEmitter);
+      rightRemnant = new UnmatchedYetRemnantImpl<>(config.getRightRemnantInitialMap(),
+          config.getRightRemnantConfig(), scenario.getRkFunction(), -1, false, flowableEmitter);
+      leftRemnant.setOther(rightRemnant);
+      rightRemnant.setOther(leftRemnant);
       BufferedJoinStrategySubscriber<LT, RT, KT, KT2, LT, RT> leftSubscriber =
           new BufferedJoinStrategySubscriber<>(leftRemnant, rightRemnant, this, flowableEmitter,
               scenario.getJoinType().allowsRightNulls(),
@@ -53,6 +54,8 @@ public class BufferedJoinStrategyInstance<LT, RT, KT, KT2> implements JoinStrate
           new BufferedJoinStrategySubscriber<>(rightRemnant, leftRemnant, null, flowableEmitter,
               scenario.getJoinType().allowsRightNulls(),
               scenario.getJoinType().allowsLeftNulls());
+      leftRemnant.setGuarder(leftSubscriber.getGuarder());
+      rightRemnant.setGuarder(rightSubscriber.getGuarder());
       leftBufferedFlowable.subscribe(leftSubscriber);
       rightBufferedFlowable.subscribe(rightSubscriber);
 

@@ -2,7 +2,7 @@ package com.dovaleac.flowablesComposition.strategy.instance.buffered.remnant;
 
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.buffer.ReadBufferImpl;
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.buffer.WriteBufferAcceptNewInputsTrigger;
-import com.dovaleac.flowablesComposition.strategy.instance.buffered.buffer.WriteBufferManager;
+import com.dovaleac.flowablesComposition.strategy.instance.buffered.buffer.WriteBuffer;
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.capacity.NextAction;
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.exceptions.ReadBufferNotAvailableForNewElementsException;
 import com.dovaleac.flowablesComposition.strategy.instance.buffered.exceptions.WriteBufferFrozenException;
@@ -18,13 +18,11 @@ import io.reactivex.Flowable;
 import io.reactivex.FlowableEmitter;
 import io.reactivex.functions.Function;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetRemnant<
-    UnmatchedYetRemnantImpl<T, OT, KT, LT, RT>, T, OT, KT, LT, RT> {
+    UnmatchedYetRemnantImpl<OT, T, KT, LT, RT>, T, OT, KT, LT, RT> {
 
   private final StateMachine<UnmatchedYetRemnantState, UnmatchedYetRemnantTrigger> stateMachine =
       new StateMachine<>(
@@ -36,9 +34,9 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
   private final ReadBufferImpl<OT, KT> readBuffer;
   private final boolean isLeft;
   private final FlowableEmitter<OptionalTuple<LT, RT>> emitter;
-  private final SubscriberStatusGuarder<T, KT> guarder;
+  private SubscriberStatusGuarder<T> guarder;
 
-  private final WriteBufferManager<T, OT, KT, LT, RT> writeBuffer;
+  private final WriteBuffer<T, OT, KT, LT, RT> writeBuffer;
 
   private final Object dontPollMoreReadsWhileAcceptingSyncLock = new Object();
 
@@ -50,23 +48,26 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
       Function<OT, KT> function,
       int maxBlocksForReadBuffer,
       boolean isLeft,
-      FlowableEmitter<OptionalTuple<LT, RT>> emitter,
-      SubscriberStatusGuarder<T, KT> guarder) {
+      FlowableEmitter<OptionalTuple<LT, RT>> emitter) {
     this.map = initialMap;
     this.config = config;
     this.isLeft = isLeft;
     this.emitter = emitter;
     this.readBuffer = new ReadBufferImpl<>(function, maxBlocksForReadBuffer);
-    writeBuffer = new WriteBufferManager<>(this,
+    writeBuffer = new WriteBuffer<>(this,
         config.getMaxElementsInWriteBuffer(), config.getInitialMapForWriteBuffer());
-    this.guarder = guarder;
   }
 
   //OVERRIDEN METHODS
 
   @Override
-  public void setOther(UnmatchedYetRemnantImpl other) {
+  public void setOther(UnmatchedYetRemnantImpl<OT, T, KT, LT, RT> other) {
     this.otherRemnant = other;
+  }
+
+  @Override
+  public void setGuarder(SubscriberStatusGuarder<T> guarder) {
+    this.guarder = guarder;
   }
 
   @Override
@@ -136,13 +137,17 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
                   if (stateMachine.getState().consumesReadingBuffer()) {
                     return;
                   }
-                  if (acc < config.getPollReadsForCheckCapacity()
-                      || checkCapacity() == NextAction.READ ) {
+                  if (acc < config.getPollReadsForCheckCapacity()) {
                     pollRead(acc + 1);
+                    return;
+                  }
+                  if (checkCapacity() == NextAction.READ ) {
+                    pollRead(0);
                   } else {
                     stateMachine.fire(UnmatchedYetRemnantTrigger.IT_WOULD_BE_BETTER_TO_WRITE);
                   }
-                });
+                },
+                    throwable -> System.out.println(throwable.getMessage()));
               }
           );
     }
@@ -155,7 +160,7 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
   }
 
   private NextAction checkCapacity() {
-    config.getCheckCapacityStrategy().getNextAction(readBuffer.getCapacity(),
+    return config.getCheckCapacityStrategy().getNextAction(readBuffer.getCapacity(),
         writeBuffer.getCapacity());
   }
 
@@ -192,10 +197,8 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
       try {
         writeBuffer.addToQueue(ownTypeElements);
       } catch (WriteBufferFrozenException e) {
-        guarder.stopWriting(ownTypeElements);
         completableEmitter.onError(e);
       } catch (WriteBufferFullException e) {
-        guarder.stopWriting(ownTypeElements);
         itWouldBeBetterToWrite();
       }
     });
@@ -219,21 +222,11 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
   }
 
   void enableConsumingReadingBuffer() {
-    disableConsumingWritingBuffer();
     pollRead(0);
   }
 
-  void disableConsumingReadingBuffer() {
-    //looks like it's unnecessary because its action is done by other methods
-  }
-
   void enableConsumingWritingBuffer() {
-    disableConsumingReadingBuffer();
-  }
-
-  void disableConsumingWritingBuffer() {
-    //looks like it's unnecessary because when the write buffer it goes back to a state in which
-    // it can't be consumed
+    consumeWriteBuffer();
   }
 
   void requestSync() {
@@ -250,8 +243,18 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> implements UnmatchedYetR
     }
   }
 
-  void synchronize() {
+  Completable synchronize() {
+    return Completable.fromAction(() -> {
+      Map<KT, OT> otherRemnantElements = otherRemnant.writeBuffer.getAllElements();
+      Map<KT, T> ownRemnantElements = writeBuffer.getAllElements();
+      otherRemnantElements.entrySet().stream()
+          .filter(ktotEntry -> tryToEmit(ktotEntry.getKey(), ktotEntry.getValue(), ownRemnantElements))
+          .forEach(entry -> otherRemnant.map.put(entry.getKey(), entry.getValue()));
+      map.putAll(ownRemnantElements);
 
+      otherRemnantElements.clear();
+      ownRemnantElements.clear();
+    });
   }
 
   void syncFinished() {
