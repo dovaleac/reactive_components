@@ -227,7 +227,7 @@ public class CorrectnessCheckingUtils {
         .resolve(original.getFileName().toString() + pathSuffix + ".csv");
   }
 
-  public static  void checkFile(Path path1, Path path2,
+  public static void checkFile(Path path1, Path path2,
       CompletableEmitter completableEmitter) throws IOException {
     System.out.println("starting the checking");
     boolean areEqual = sameContent(path1, path2);

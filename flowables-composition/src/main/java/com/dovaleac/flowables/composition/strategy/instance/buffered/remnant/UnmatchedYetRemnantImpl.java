@@ -232,7 +232,7 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT>
       new StateMachine<>(
           UnmatchedYetRemnantState.IDLE, new UnmatchedYetRemnantStateMachine(this).getConfig());
   private final Map<KT, T> map;
-  private final UnmatchedYetRemnantConfig config;
+  private final UnmatchedYetRemnantConfig<KT, T> config;
   private final ReadBufferImpl<OT, KT> readBuffer;
   private final boolean isLeft;
   private final FlowableEmitter<OptionalTuple<LT, RT>> emitter;
@@ -246,7 +246,7 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT>
 
   public UnmatchedYetRemnantImpl(
       Map<KT, T> initialMap,
-      UnmatchedYetRemnantConfig config,
+      UnmatchedYetRemnantConfig<KT, T> config,
       Function<OT, KT> function,
       int maxBlocksForReadBuffer,
       boolean isLeft,
@@ -261,9 +261,6 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT>
             this, config.getMaxElementsInWriteBuffer(), config.getInitialMapForWriteBuffer());
   }
 
-  UnmatchedYetRemnantImpl() {
-    this(null, new UnmatchedYetRemnantConfig(), null, 1, false, null);
-  }
   // OVERRIDEN METHODS
 
   @Override
@@ -377,7 +374,7 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT>
 
   private NextAction checkCapacity() {
     return config
-        .getCheckCapacityStrategy()
+        .getCheckCapacitiesStrategy()
         .getNextAction(readBuffer.getCapacity(), writeBuffer.getCapacity());
   }
 

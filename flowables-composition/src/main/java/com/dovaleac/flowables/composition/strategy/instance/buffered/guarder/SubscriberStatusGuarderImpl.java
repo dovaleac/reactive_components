@@ -206,6 +206,7 @@ package com.dovaleac.flowables.composition.strategy.instance.buffered.guarder;
 
 import com.dovaleac.flowables.composition.strategy.instance.buffered.BufferedJoinStrategySubscriber;
 import com.github.oxo42.stateless4j.StateMachine;
+import com.github.oxo42.stateless4j.triggers.TriggerWithParameters1;
 
 import java.util.List;
 
@@ -225,6 +226,12 @@ public class SubscriberStatusGuarderImpl<T, OT, KT, K2T, LT, RT>
   }
 
   private List<T> listToRetake;
+
+  public void commandToStopReading(List<T> failedElement) {
+    stateMachine.fire(
+        new TriggerWithParameters1<>(SubscriberStatusGuarderTrigger.STOP_ON_READING, List.class),
+        failedElement);
+  }
 
   @Override
   public void stopReading(List<T> elementToRetake) {

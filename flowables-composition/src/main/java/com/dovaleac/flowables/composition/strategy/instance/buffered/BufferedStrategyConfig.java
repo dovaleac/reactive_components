@@ -210,16 +210,26 @@ import java.util.Map;
 
 public class BufferedStrategyConfig<LT, RT, KT> {
 
-  private final UnmatchedYetRemnantConfig leftRemnantConfig;
-  private final UnmatchedYetRemnantConfig rightRemnantConfig;
+  private final UnmatchedYetRemnantConfig<KT, LT> leftRemnantConfig;
+  private final UnmatchedYetRemnantConfig<KT, RT> rightRemnantConfig;
   private final int leftFlowableBuffer;
   private final int rightFlowableBuffer;
   private final Map<KT, LT> leftRemnantInitialMap;
   private final Map<KT, RT> rightRemnantInitialMap;
 
+  /**
+   * @param leftRemnantConfig Configuration for left remnant
+   * @param rightRemnantConfig Configuration for right remnant
+   * @param leftFlowableBuffer the size of the left flowable blocks
+   * @param rightFlowableBuffer the size of the left flowable blocks
+   * @param leftRemnantInitialMap The map to be used as "initial empty map" for the left remnant.
+   *     Allows to choose among the different Map implementations
+   * @param rightRemnantInitialMap The map to be used as "initial empty map" for the left remnant.
+   *     Allows to choose among the different Map implementations
+   */
   public BufferedStrategyConfig(
-      UnmatchedYetRemnantConfig leftRemnantConfig,
-      UnmatchedYetRemnantConfig rightRemnantConfig,
+      UnmatchedYetRemnantConfig<KT, LT> leftRemnantConfig,
+      UnmatchedYetRemnantConfig<KT, RT> rightRemnantConfig,
       int leftFlowableBuffer,
       int rightFlowableBuffer,
       Map<KT, LT> leftRemnantInitialMap,
@@ -232,11 +242,11 @@ public class BufferedStrategyConfig<LT, RT, KT> {
     this.rightRemnantInitialMap = rightRemnantInitialMap;
   }
 
-  public UnmatchedYetRemnantConfig getLeftRemnantConfig() {
+  public UnmatchedYetRemnantConfig<KT, LT> getLeftRemnantConfig() {
     return leftRemnantConfig;
   }
 
-  public UnmatchedYetRemnantConfig getRightRemnantConfig() {
+  public UnmatchedYetRemnantConfig<KT, RT> getRightRemnantConfig() {
     return rightRemnantConfig;
   }
 

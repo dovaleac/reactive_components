@@ -65,21 +65,21 @@ approach.
 Now, once we've told the user how to create the joining element, let's focus on how to perform 
 the join. We've identified several strategies (if you come up with new ones, let us now via 
 comment or... PR's are welcome!):
-* depleting one of the flowables, turning it into an map organized by the key(s) and subscribing 
+* depleting one of the flowables, turning it into an initialMapForWriteBuffer organized by the key(s) and subscribing 
 to the other flowable, emitting join tuples, and possibly only left or only right tuples
 * consuming both flowables at the same time: there would be two maps, one for left type and the 
-other for the right type, so that left tuples would be checked against the right type map, so if 
-they match, their couple gets emitted, and if not, the left tuple would be stored in its map. 
+other for the right type, so that left tuples would be checked against the right type initialMapForWriteBuffer, so if 
+they match, their couple gets emitted, and if not, the left tuple would be stored in its initialMapForWriteBuffer. 
 Obviously, this approach involves some concurrency (reads can be simultaneous, writes can't) and 
 the obvious approach would lead to blocking times (writes blocked while reading). This leads to 
-the creation of read and write buffers associated with each map, which means that **a lot** of 
+the creation of read and write buffers associated with each initialMapForWriteBuffer, which means that **a lot** of 
 concurrency is involved.
 * similar approach for sorted flowables: if the incoming flowables are sorted by the key type, we 
 can improve the performance of the latter method because smaller keys in the inner maps can be 
-considered as unmatchable, as long as they're smaller than the largest key in the other map, 
+considered as unmatchable, as long as they're smaller than the largest key in the other initialMapForWriteBuffer, 
 because that means that if they were going to get a match, that key would have already appeared. 
-In order to instrument this, we'd include a cleaning map phase, that would perform the operation.
-The benefits of this approach are that we'd keep the map size low, which is better in HashMaps, 
+In order to instrument this, we'd include a cleaning initialMapForWriteBuffer phase, that would perform the operation.
+The benefits of this approach are that we'd keep the initialMapForWriteBuffer size low, which is better in HashMaps, 
 and that, if the join type allows it, we'd start emitting uncoupled items very fast, so they 
 could be processed right away
 * use an in-memory DB like RocksDB 

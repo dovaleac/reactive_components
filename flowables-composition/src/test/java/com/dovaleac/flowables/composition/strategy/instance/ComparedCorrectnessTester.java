@@ -202,19 +202,100 @@
  *    limitations under the License.
  */
 
-package com.dovaleac.flowables.composition.strategy.instance.buffered.remnant;
+package com.dovaleac.flowables.composition.strategy.instance;
 
-import org.junit.jupiter.api.Test;
+import com.dovaleac.flowables.composition.FlowablesDbJoinFacade;
+import com.dovaleac.flowables.composition.PlannerConfig;
+import com.dovaleac.flowables.composition.scenario.Scenario;
+import com.dovaleac.flowables.composition.strategy.instance.domain.SmallDomainClass;
+import com.dovaleac.flowables.composition.strategy.instance.helpers.CommonTestUtils;
+import com.dovaleac.flowables.composition.strategy.instance.helpers.InputFlowables;
+import com.dovaleac.flowables.composition.tuples.OptionalTuple;
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.functions.Function;
+import io.vertx.reactivex.core.AbstractVerticle;
 
-class UnmatchedYetRemnantStateMachineTest {
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
 
-  UnmatchedYetRemnantImpl impl = new UnmatchedYetRemnantImpl();
+public class ComparedCorrectnessTester {
 
-  @Test
-  void test() {
-    System.out.println(
-        new UnmatchedYetRemnantStateMachine(impl).getConfig()
-            .generatePlantUmlDiagramTxt(UnmatchedYetRemnantState.IDLE, true)
-    );
+  public static final int COUNT = 100;
+  protected final Function<Scenario<SmallDomainClass, SmallDomainClass, Long, ?>,
+      JoinStrategyInstance<SmallDomainClass, SmallDomainClass>> testedStrategyInstanceFunction;
+  protected final Function<Scenario<SmallDomainClass, SmallDomainClass, Long, ?>,
+      JoinStrategyInstance<SmallDomainClass, SmallDomainClass>> correctStrategyInstanceFunction;
+  protected final PlannerConfig plannerConfig;
+  private final FlowablesDbJoinFacade.JoinTypeSpecifiedStep initialStep;
+  private final TuplePrinter tuplePrinter = new TuplePrinter();
+
+  public ComparedCorrectnessTester(
+      Function<Scenario<SmallDomainClass, SmallDomainClass, Long, ?>, JoinStrategyInstance<SmallDomainClass, SmallDomainClass>> testedStrategyInstanceFunction,
+      Function<Scenario<SmallDomainClass, SmallDomainClass, Long, ?>, JoinStrategyInstance<SmallDomainClass, SmallDomainClass>> correctStrategyInstanceFunction,
+      PlannerConfig plannerConfig,
+      FlowablesDbJoinFacade.JoinTypeSpecifiedStep initialStep) {
+    this.testedStrategyInstanceFunction = testedStrategyInstanceFunction;
+    this.correctStrategyInstanceFunction = correctStrategyInstanceFunction;
+    this.plannerConfig = plannerConfig;
+    this.initialStep = initialStep;
   }
+
+  public ComparedCorrectnessTester(
+      Function<Scenario<SmallDomainClass, SmallDomainClass, Long, ?>, JoinStrategyInstance<SmallDomainClass, SmallDomainClass>> testedStrategyInstanceFunction,
+      PlannerConfig plannerConfig,
+      FlowablesDbJoinFacade.JoinTypeSpecifiedStep initialStep) {
+    this.testedStrategyInstanceFunction = testedStrategyInstanceFunction;
+    this.correctStrategyInstanceFunction = scenario -> new DepleteLeftJoinStrategyInstance<>(scenario, new HashMap<>(CorrectnessTestVerticle.COUNT),
+        BackpressureStrategy.BUFFER);
+    this.plannerConfig = plannerConfig;
+    this.initialStep = initialStep;
+  }
+
+  public ResultComparison<? extends OptionalTuple<SmallDomainClass, SmallDomainClass>> processFlowables() throws Exception {
+    Flowable<? extends OptionalTuple<SmallDomainClass, SmallDomainClass>> testedJoinedFlowable =
+        obtainJoinedFlowable(testedStrategyInstanceFunction);
+
+    Flowable<? extends OptionalTuple<SmallDomainClass, SmallDomainClass>> correctJoinedFlowable =
+        obtainJoinedFlowable(correctStrategyInstanceFunction);
+
+    return new ResultComparison(
+        testedJoinedFlowable.toList().blockingGet(),
+        correctJoinedFlowable.toList().blockingGet()
+    );
+
+
+  }
+
+  private Flowable<? extends OptionalTuple<SmallDomainClass, SmallDomainClass>> obtainJoinedFlowable(
+      Function<Scenario<SmallDomainClass, SmallDomainClass, Long, ?>, JoinStrategyInstance<SmallDomainClass, SmallDomainClass>> strategyInstanceFunction) throws Exception {
+    Flowable<SmallDomainClass> leftFlowable = InputFlowables.leftFlowable(COUNT);
+    Flowable<SmallDomainClass> rightFlowable = InputFlowables.rightFlowable(COUNT);
+
+    return CommonTestUtils.joinSmallDomainClassFlowables(leftFlowable, rightFlowable, plannerConfig,
+        initialStep, strategyInstanceFunction)
+        .sorted(Comparator.comparing(optionalTuple -> optionalTuple.acceptVisitor(tuplePrinter),
+            Comparator.naturalOrder()));
+  }
+
+  public class ResultComparison<T> {
+    private final List<T> actual;
+    private final List<T> expected;
+
+    public ResultComparison(List<T> actual, List<T> expected) {
+      this.actual = actual;
+      this.expected = expected;
+    }
+
+    public List<T> getActual() {
+      return actual;
+    }
+
+    public List<T> getExpected() {
+      return expected;
+    }
+  }
+
+
 }

@@ -202,65 +202,56 @@
  *    limitations under the License.
  */
 
-package com.dovaleac.flowables.composition.strategy.instance.buffered.guarder;
+package com.dovaleac.flowables.composition.strategy.instance;
 
-import com.github.oxo42.stateless4j.StateMachineConfig;
-import com.github.oxo42.stateless4j.triggers.TriggerWithParameters1;
+import com.dovaleac.flowables.composition.FlowablesDbJoinFacade;
+import com.dovaleac.flowables.composition.PlannerConfig;
+import com.dovaleac.flowables.composition.scenario.Scenario;
+import com.dovaleac.flowables.composition.strategy.instance.domain.SmallDomainClass;
+import com.dovaleac.flowables.composition.tuples.OptionalTuple;
+import io.reactivex.functions.Function;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.List;
+import java.nio.file.Path;
+import java.util.stream.Stream;
 
-public class SubscriberStatusGuarderStateMachine<T, OT, KT> {
+import static org.junit.jupiter.api.Assertions.*;
 
-  private final SubscriberStatusGuarderImpl<T, OT, KT, ?, ?, ?> subscriberStatusGuarder;
+abstract class AbstractComparedCorrectnessTest {
 
-  public SubscriberStatusGuarderStateMachine(SubscriberStatusGuarderImpl subscriberStatusGuarder) {
-    this.subscriberStatusGuarder = subscriberStatusGuarder;
+  protected final Function<Scenario<SmallDomainClass, SmallDomainClass, Long, ?>,
+      JoinStrategyInstance<SmallDomainClass, SmallDomainClass>> strategyInstanceFunction;
+  protected final PlannerConfig plannerConfig;
+
+  public AbstractComparedCorrectnessTest(
+      Function<Scenario<SmallDomainClass, SmallDomainClass, Long, ?>,
+          JoinStrategyInstance<SmallDomainClass, SmallDomainClass>> strategyInstanceFunction,
+      PlannerConfig plannerConfig) {
+    this.strategyInstanceFunction = strategyInstanceFunction;
+    this.plannerConfig = plannerConfig;
   }
 
-  StateMachineConfig<SubscriberStatusGuarderState, SubscriberStatusGuarderTrigger> getConfig() {
-    StateMachineConfig<SubscriberStatusGuarderState, SubscriberStatusGuarderTrigger> config =
-        new StateMachineConfig<>();
+  @ParameterizedTest
+  @MethodSource("provideValues")
+  void test(FlowablesDbJoinFacade.JoinTypeSpecifiedStep initialStep, String pathSuffix) throws Exception {
 
-    config
-        .configure(SubscriberStatusGuarderState.RUNNING)
-        .permit(
-            SubscriberStatusGuarderTrigger.STOP_ON_READING,
-            SubscriberStatusGuarderState.STOPPED_ON_READING)
-        .permit(
-            SubscriberStatusGuarderTrigger.MARK_AS_DEPLETED, SubscriberStatusGuarderState.DEPLETED)
-        .permit(
-            SubscriberStatusGuarderTrigger.NOTIFY_OTHER_IS_DEPLETED,
-            SubscriberStatusGuarderState.OTHER_IS_DEPLETED)
-        .onEntryFrom(
-            SubscriberStatusGuarderTrigger.RETAKE_READING, subscriberStatusGuarder::retakeReading);
+    ComparedCorrectnessTester.ResultComparison<? extends OptionalTuple<SmallDomainClass, SmallDomainClass>>
+        resultComparison = new ComparedCorrectnessTester(strategyInstanceFunction, plannerConfig,
+        initialStep).processFlowables();
 
-    config
-        .configure(SubscriberStatusGuarderState.STOPPED_ON_READING)
-        .permit(SubscriberStatusGuarderTrigger.RETAKE_READING, SubscriberStatusGuarderState.RUNNING)
-        .onEntryFrom(
-            new TriggerWithParameters1<>(
-                SubscriberStatusGuarderTrigger.STOP_ON_READING, List.class),
-            list -> {
-              List<T> ts = (List<T>) list;
-              subscriberStatusGuarder.stopReading(ts);
-            }, List.class);
+    assertIterableEquals(resultComparison.getExpected(), resultComparison.getActual());
 
-    config
-        .configure(SubscriberStatusGuarderState.DEPLETED)
-        .permit(
-            SubscriberStatusGuarderTrigger.NOTIFY_OTHER_IS_DEPLETED,
-            SubscriberStatusGuarderState.BOTH_ARE_DEPLETED);
+  }
 
-    config
-        .configure(SubscriberStatusGuarderState.OTHER_IS_DEPLETED)
-        .permit(
-            SubscriberStatusGuarderTrigger.MARK_AS_DEPLETED,
-            SubscriberStatusGuarderState.BOTH_ARE_DEPLETED);
 
-    config
-        .configure(SubscriberStatusGuarderState.DEPLETED)
-        .onEntry(subscriberStatusGuarder::bothAreDepleted);
-
-    return config;
+  private static Stream<Arguments> provideValues() {
+    return Stream.of(
+        Arguments.of(FlowablesDbJoinFacade.fullJoin(), "f"),
+        Arguments.of(FlowablesDbJoinFacade.innerJoin(), "i"),
+        Arguments.of(FlowablesDbJoinFacade.rightJoin(), "r"),
+        Arguments.of(FlowablesDbJoinFacade.leftJoin(), "l")
+    );
   }
 }

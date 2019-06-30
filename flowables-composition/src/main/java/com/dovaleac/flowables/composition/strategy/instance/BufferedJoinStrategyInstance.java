@@ -218,12 +218,21 @@ public class BufferedJoinStrategyInstance<LT, RT, KT, K2T> implements JoinStrate
 
   private final Scenario<LT, RT, KT, K2T> scenario;
   private final BufferedStrategyConfig config;
-  private BackpressureStrategy backPressure;
+  private final BackpressureStrategy backPressure;
 
   public BufferedJoinStrategyInstance(
       Scenario<LT, RT, KT, K2T> scenario, BufferedStrategyConfig config) {
     this.scenario = scenario;
     this.config = config;
+    this.backPressure = BackpressureStrategy.BUFFER;
+  }
+
+  public BufferedJoinStrategyInstance(
+      Scenario<LT, RT, KT, K2T> scenario,
+      BufferedStrategyConfig config, BackpressureStrategy backPressure) {
+    this.scenario = scenario;
+    this.config = config;
+    this.backPressure = backPressure;
   }
 
   @Override
@@ -248,7 +257,7 @@ public class BufferedJoinStrategyInstance<LT, RT, KT, K2T> implements JoinStrate
                   config.getLeftRemnantInitialMap(),
                   config.getLeftRemnantConfig(),
                   scenario.getLkFunction(),
-                  -1,
+                  config.getLeftRemnantConfig().getReadBufferSize(),
                   true,
                   flowableEmitter);
           rightRemnant =
@@ -256,7 +265,7 @@ public class BufferedJoinStrategyInstance<LT, RT, KT, K2T> implements JoinStrate
                   config.getRightRemnantInitialMap(),
                   config.getRightRemnantConfig(),
                   scenario.getRkFunction(),
-                  -1,
+                  config.getRightRemnantConfig().getReadBufferSize(),
                   false,
                   flowableEmitter);
           leftRemnant.setOther(rightRemnant);

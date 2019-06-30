@@ -208,20 +208,54 @@ import com.dovaleac.flowables.composition.strategy.instance.buffered.capacity.Le
 
 import java.util.Map;
 
-public class UnmatchedYetRemnantConfig {
+public class UnmatchedYetRemnantConfig<KT, T> {
+
+  private final int pollReadsForCheckCapacity;
+  private final int maxElementsInWriteBuffer;
+  private final int readBufferSize;
+  private final Map<KT, T> initialMapForWriteBuffer;
+  private final LeverageBufferCapacitiesStrategy checkCapacitiesStrategy;
+
+  /**
+   * @param pollReadsForCheckCapacity The number of polls that a remnant in reading state performs
+   *     before checking the capacity of its buffers
+   * @param maxElementsInWriteBuffer The number that, if a WriteBuffer tries to insert more elements
+   *     than this number, the elements are inserted but the state of the buffer is changed to
+   *     FULL, forbidding new insertions until it's cleared
+   * @param readBufferSize the size of the buffer's remnant
+   * @param initialMapForWriteBuffer The map to be used as "initial empty map". Allows to choose
+   *                                 among the different Map implementations
+   * @param checkCapacitiesStrategy The strategy to decide whether to stay in reading mode or to
+   */
+  public UnmatchedYetRemnantConfig(
+      int pollReadsForCheckCapacity,
+      int maxElementsInWriteBuffer,
+      int readBufferSize, Map<KT, T> initialMapForWriteBuffer,
+      LeverageBufferCapacitiesStrategy checkCapacitiesStrategy) {
+    this.pollReadsForCheckCapacity = pollReadsForCheckCapacity;
+    this.maxElementsInWriteBuffer = maxElementsInWriteBuffer;
+    this.readBufferSize = readBufferSize;
+    this.initialMapForWriteBuffer = initialMapForWriteBuffer;
+    this.checkCapacitiesStrategy = checkCapacitiesStrategy;
+  }
+
   public int getPollReadsForCheckCapacity() {
-    return 0;
+    return pollReadsForCheckCapacity;
   }
 
   public int getMaxElementsInWriteBuffer() {
-    return 0;
+    return maxElementsInWriteBuffer;
   }
 
-  public Map getInitialMapForWriteBuffer() {
-    return null;
+  public Map<KT, T> getInitialMapForWriteBuffer() {
+    return initialMapForWriteBuffer;
   }
 
-  public LeverageBufferCapacitiesStrategy getCheckCapacityStrategy() {
-    return null;
+  public LeverageBufferCapacitiesStrategy getCheckCapacitiesStrategy() {
+    return checkCapacitiesStrategy;
+  }
+
+  public int getReadBufferSize() {
+    return readBufferSize;
   }
 }
