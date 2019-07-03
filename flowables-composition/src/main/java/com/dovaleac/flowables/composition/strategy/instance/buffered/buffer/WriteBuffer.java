@@ -204,6 +204,9 @@
 
 package com.dovaleac.flowables.composition.strategy.instance.buffered.buffer;
 
+import com.dovaleac.flowables.composition.eventlog.Event;
+import com.dovaleac.flowables.composition.eventlog.EventManagerContext;
+import com.dovaleac.flowables.composition.eventlog.Side;
 import com.dovaleac.flowables.composition.strategy.instance.buffered.exceptions.WriteBufferFrozenException;
 import com.dovaleac.flowables.composition.strategy.instance.buffered.exceptions.WriteBufferFullException;
 import com.dovaleac.flowables.composition.strategy.instance.buffered.remnant.UnmatchedYetRemnantImpl;
@@ -216,6 +219,7 @@ public class WriteBuffer<T, OT, KT, LT, RT> {
   private final UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> remnant;
   private final int maxElements;
   private final Map<KT, T> buffer;
+  private final Side side;
 
   private final StateMachine<WriteBufferAcceptNewInputsState, WriteBufferAcceptNewInputsTrigger>
       stateMachine =
@@ -228,10 +232,12 @@ public class WriteBuffer<T, OT, KT, LT, RT> {
   private boolean isFrozen = false;
 
   public WriteBuffer(
-      UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> remnant, int maxElements, Map<KT, T> initialMap) {
+      UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> remnant, int maxElements, Map<KT, T> initialMap,
+      Side side) {
     this.remnant = remnant;
     this.maxElements = maxElements;
     this.buffer = initialMap;
+    this.side = side;
   }
 
   /**
@@ -310,5 +316,13 @@ public class WriteBuffer<T, OT, KT, LT, RT> {
     synchronized (capacityLock) {
       return (double) (maxElements - buffer.size()) / (double) maxElements;
     }
+  }
+
+
+  public void logTriggerEvent(WriteBufferAcceptNewInputsTrigger trigger,
+      WriteBufferAcceptNewInputsState state) {
+    EventManagerContext.getInstance()
+        .getEventManager()
+        .processEvent(Event.writeBufferTrigger(side, trigger.name(), state.name()));
   }
 }

@@ -1,10 +1,10 @@
 package com.dovaleac.flowables.composition.eventlog;
 
-import javax.naming.event.EventContext;
+import java.util.List;
 
 public class EventManagerContext {
 
-  private EventContext eventContext;
+  private EventManager eventManager = new EventManagerImpl(List.of());
   private static volatile EventManagerContext mInstance;
 
   private EventManagerContext() {
@@ -21,11 +21,11 @@ public class EventManagerContext {
     return mInstance;
   }
 
-  public EventContext getEventContext() {
-    return eventContext;
+  public EventManager getEventManager() {
+    return eventManager;
   }
 
-  public static void setEventContext(EventContext eventContext) {
-    getInstance().eventContext = eventContext;
+  public static void setEventManager(EventManager eventManager) {
+    getInstance().eventManager = eventManager;
   }
 }

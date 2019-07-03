@@ -204,6 +204,9 @@
 
 package com.dovaleac.flowables.composition.strategy.instance.buffered;
 
+import com.dovaleac.flowables.composition.eventlog.Event;
+import com.dovaleac.flowables.composition.eventlog.EventManagerContext;
+import com.dovaleac.flowables.composition.eventlog.Side;
 import com.dovaleac.flowables.composition.strategy.instance.BufferedJoinStrategyInstance;
 import com.dovaleac.flowables.composition.strategy.instance.buffered.exceptions.ReadBufferNotAvailableForNewElementsException;
 import com.dovaleac.flowables.composition.strategy.instance.buffered.guarder.SubscriberStatusGuarder;
@@ -212,6 +215,7 @@ import com.dovaleac.flowables.composition.strategy.instance.buffered.remnant.Unm
 import com.dovaleac.flowables.composition.tuples.OptionalTuple;
 import io.reactivex.Completable;
 import io.reactivex.FlowableEmitter;
+import io.reactivex.functions.Function;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
@@ -225,9 +229,11 @@ public class BufferedJoinStrategySubscriber<T, OT, KT, K2T, LT, RT> implements S
   private final BufferedJoinStrategyInstance<T, OT, KT, K2T> strategy;
   private final FlowableEmitter<OptionalTuple<LT, RT>> emitter;
   private Subscription subscription;
-  private final SubscriberStatusGuarder<T> guarder = new SubscriberStatusGuarderImpl<>(this);
+  private final SubscriberStatusGuarder<T> guarder;
   private final boolean emitLeft;
   private final boolean emitRight;
+  private final Side side;
+  private final Function<T, KT> keyFunction;
 
   public BufferedJoinStrategySubscriber(
       UnmatchedYetRemnant<?, T, OT, KT, LT, RT> ownRemnant,
@@ -235,13 +241,16 @@ public class BufferedJoinStrategySubscriber<T, OT, KT, K2T, LT, RT> implements S
       BufferedJoinStrategyInstance<T, OT, KT, K2T> strategy,
       FlowableEmitter<OptionalTuple<LT, RT>> emitter,
       boolean emitLeft,
-      boolean emitRight) {
+      boolean emitRight, Side side, Function<T, KT> keyFunction) {
     this.ownRemnant = ownRemnant;
     this.otherRemnant = otherRemnant;
     this.strategy = strategy;
     this.emitter = emitter;
     this.emitLeft = emitLeft;
     this.emitRight = emitRight;
+    this.side = side;
+    this.keyFunction = keyFunction;
+    guarder = new SubscriberStatusGuarderImpl<>(this, side);
   }
 
   @Override
@@ -252,13 +261,22 @@ public class BufferedJoinStrategySubscriber<T, OT, KT, K2T, LT, RT> implements S
 
   @Override
   public void onNext(List<T> list) {
+    EventManagerContext.getInstance().getEventManager().processEvent(
+        Event.subscriberOnNext(side, list, keyFunction));
     otherRemnant
         .addToReadBuffer(list)
         .subscribe(
-            this::requestNext,
+            () -> {
+              EventManagerContext.getInstance().getEventManager().processEvent(Event.any(side,
+                  "OnNext subscribed, pre requestNext"));
+              requestNext();
+            },
             throwable -> {
+
+              EventManagerContext.getInstance().getEventManager().processEvent(Event.any(side,
+                  "Error reading " + throwable.getClass().getName()));
               if (throwable instanceof ReadBufferNotAvailableForNewElementsException) {
-                guarder.stopReading(list);
+                guarder.commandToStopReading(list);
               }
             });
   }

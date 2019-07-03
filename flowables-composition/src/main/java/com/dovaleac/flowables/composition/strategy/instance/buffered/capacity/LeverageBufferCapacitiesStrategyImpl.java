@@ -195,14 +195,14 @@ public class LeverageBufferCapacitiesStrategyImpl implements LeverageBufferCapac
 
   @Override
   public NextAction getNextAction(double readBufferCapacity, double writeBufferCapacity) {
-    if (writeBufferCapacity >= writeThresholdToChange) {
+    if (writeBufferCapacity <= writeThresholdToChange) {
       return NextAction.WRITE;
     }
 
-    if (readBufferCapacity <= readThresholdToChange) {
+    if (readBufferCapacity >= readThresholdToChange) {
       return NextAction.READ;
     }
 
-    return writeBufferCapacity > minWriteToAcceptChange ? NextAction.WRITE : NextAction.READ;
+    return writeBufferCapacity < minWriteToAcceptChange ? NextAction.WRITE : NextAction.READ;
   }
 }

@@ -206,6 +206,8 @@ package com.dovaleac.flowables.composition.strategy.instance.buffered.buffer;
 
 import com.github.oxo42.stateless4j.StateMachineConfig;
 
+import java.util.stream.Stream;
+
 public class WriteBufferAcceptNewInputsStateMachine {
 
   private final WriteBuffer writeBuffer;
@@ -218,6 +220,19 @@ public class WriteBufferAcceptNewInputsStateMachine {
       getConfig() {
     StateMachineConfig<WriteBufferAcceptNewInputsState, WriteBufferAcceptNewInputsTrigger> config =
         new StateMachineConfig<>();
+
+    Stream.of(WriteBufferAcceptNewInputsState.values())
+        .forEach(
+            state ->
+                Stream.of(WriteBufferAcceptNewInputsTrigger.values())
+                    .forEach(
+                        trigger ->
+                            config
+                                .configure(state)
+                                .onEntryFrom(
+                                    trigger,
+                                    () -> writeBuffer.logTriggerEvent(trigger, state))));
+
 
     config
         .configure(WriteBufferAcceptNewInputsState.ACCEPT_NEW)

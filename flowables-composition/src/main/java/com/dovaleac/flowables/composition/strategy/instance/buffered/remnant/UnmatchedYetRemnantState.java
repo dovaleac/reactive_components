@@ -205,15 +205,16 @@
 package com.dovaleac.flowables.composition.strategy.instance.buffered.remnant;
 
 public enum UnmatchedYetRemnantState {
-  IDLE(false, false, true),
-  READING(false, true, true),
-  WAITING_FOR_SYNCHRONIZER(true, false, false),
-  SYNCHRONIZER(false, false, false),
-  REJECTED_SYNCHRONIZER(false, true, false),
-  WRITING(true, false, true),
+  IDLE(                    false, false, true),
+  READING(                 false, true,  true),
+  WAITING_FOR_SYNCHRONIZER(true,  false, false),
+  SYNCHRONIZER(            false, false, false),
+  REJECTED_SYNCHRONIZER(   false, true,  false),
+  WRITING(                 true,  false, true),
   WAITING_FOR_SYNCHRONIZEE(false, false, false),
-  SYNCHRONIZEE(false, false, false),
-  REJECTED_SYNCHRONIZEE(true, false, false);
+  SYNCHRONIZEE(            false, false, false),
+  REJECTED_SYNCHRONIZEE(   true,  false, false),
+  SYNCHRONIZATION_CONFLICT(false, false, false);
 
   private final boolean consumesWritingBuffer;
   private final boolean consumesReadingBuffer;

@@ -209,6 +209,8 @@ import java.util.Map;
 
 public interface SubscriberStatusGuarder<T> {
 
+  void commandToStopReading(List<T> failedElement);
+
   void stopReading(List<T> elementToRetake);
 
   void retakeReading();

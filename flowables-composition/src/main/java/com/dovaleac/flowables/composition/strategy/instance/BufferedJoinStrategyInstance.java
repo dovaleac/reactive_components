@@ -204,6 +204,7 @@
 
 package com.dovaleac.flowables.composition.strategy.instance;
 
+import com.dovaleac.flowables.composition.eventlog.Side;
 import com.dovaleac.flowables.composition.scenario.Scenario;
 import com.dovaleac.flowables.composition.strategy.instance.buffered.BufferedJoinStrategySubscriber;
 import com.dovaleac.flowables.composition.strategy.instance.buffered.BufferedStrategyConfig;
@@ -213,15 +214,16 @@ import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public class BufferedJoinStrategyInstance<LT, RT, KT, K2T> implements JoinStrategyInstance<LT, RT> {
 
   private final Scenario<LT, RT, KT, K2T> scenario;
-  private final BufferedStrategyConfig config;
+  private final BufferedStrategyConfig<LT, RT, KT> config;
   private final BackpressureStrategy backPressure;
 
   public BufferedJoinStrategyInstance(
-      Scenario<LT, RT, KT, K2T> scenario, BufferedStrategyConfig config) {
+      Scenario<LT, RT, KT, K2T> scenario, BufferedStrategyConfig<LT, RT, KT> config) {
     this.scenario = scenario;
     this.config = config;
     this.backPressure = BackpressureStrategy.BUFFER;
@@ -229,7 +231,7 @@ public class BufferedJoinStrategyInstance<LT, RT, KT, K2T> implements JoinStrate
 
   public BufferedJoinStrategyInstance(
       Scenario<LT, RT, KT, K2T> scenario,
-      BufferedStrategyConfig config, BackpressureStrategy backPressure) {
+      BufferedStrategyConfig<LT, RT, KT> config, BackpressureStrategy backPressure) {
     this.scenario = scenario;
     this.config = config;
     this.backPressure = backPressure;
@@ -256,7 +258,7 @@ public class BufferedJoinStrategyInstance<LT, RT, KT, K2T> implements JoinStrate
               new UnmatchedYetRemnantImpl<>(
                   config.getLeftRemnantInitialMap(),
                   config.getLeftRemnantConfig(),
-                  scenario.getLkFunction(),
+                  scenario.getRkFunction(),
                   config.getLeftRemnantConfig().getReadBufferSize(),
                   true,
                   flowableEmitter);
@@ -264,7 +266,7 @@ public class BufferedJoinStrategyInstance<LT, RT, KT, K2T> implements JoinStrate
               new UnmatchedYetRemnantImpl<>(
                   config.getRightRemnantInitialMap(),
                   config.getRightRemnantConfig(),
-                  scenario.getRkFunction(),
+                  scenario.getLkFunction(),
                   config.getRightRemnantConfig().getReadBufferSize(),
                   false,
                   flowableEmitter);
@@ -277,7 +279,7 @@ public class BufferedJoinStrategyInstance<LT, RT, KT, K2T> implements JoinStrate
                   this,
                   flowableEmitter,
                   scenario.getJoinType().allowsRightNulls(),
-                  scenario.getJoinType().allowsLeftNulls());
+                  scenario.getJoinType().allowsLeftNulls(), Side.LEFT, scenario.getLkFunction());
           BufferedJoinStrategySubscriber<RT, LT, KT, K2T, LT, RT> rightSubscriber =
               new BufferedJoinStrategySubscriber<>(
                   rightRemnant,
@@ -285,11 +287,11 @@ public class BufferedJoinStrategyInstance<LT, RT, KT, K2T> implements JoinStrate
                   null,
                   flowableEmitter,
                   scenario.getJoinType().allowsRightNulls(),
-                  scenario.getJoinType().allowsLeftNulls());
+                  scenario.getJoinType().allowsLeftNulls(), Side.RIGHT, scenario.getRkFunction());
           leftRemnant.setGuarder(leftSubscriber.getGuarder());
           rightRemnant.setGuarder(rightSubscriber.getGuarder());
-          leftBufferedFlowable.subscribe(leftSubscriber);
-          rightBufferedFlowable.subscribe(rightSubscriber);
+          CompletableFuture.runAsync(() -> leftBufferedFlowable.subscribe(leftSubscriber));
+          CompletableFuture.runAsync(() -> rightBufferedFlowable.subscribe(rightSubscriber));
         },
         backPressure);
   }

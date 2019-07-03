@@ -204,6 +204,9 @@
 
 package com.dovaleac.flowables.composition.strategy.instance.buffered.guarder;
 
+import com.dovaleac.flowables.composition.eventlog.Event;
+import com.dovaleac.flowables.composition.eventlog.EventManagerContext;
+import com.dovaleac.flowables.composition.eventlog.Side;
 import com.dovaleac.flowables.composition.strategy.instance.buffered.BufferedJoinStrategySubscriber;
 import com.github.oxo42.stateless4j.StateMachine;
 import com.github.oxo42.stateless4j.triggers.TriggerWithParameters1;
@@ -219,14 +222,18 @@ public class SubscriberStatusGuarderImpl<T, OT, KT, K2T, LT, RT>
           new StateMachine<>(
               SubscriberStatusGuarderState.RUNNING,
               new SubscriberStatusGuarderStateMachine<>(this).getConfig());
+  private final Side side;
 
   public SubscriberStatusGuarderImpl(
-      BufferedJoinStrategySubscriber<T, OT, KT, K2T, LT, RT> subscriber) {
+      BufferedJoinStrategySubscriber<T, OT, KT, K2T, LT, RT> subscriber,
+      Side side) {
     this.subscriber = subscriber;
+    this.side = side;
   }
 
   private List<T> listToRetake;
 
+  @Override
   public void commandToStopReading(List<T> failedElement) {
     stateMachine.fire(
         new TriggerWithParameters1<>(SubscriberStatusGuarderTrigger.STOP_ON_READING, List.class),
@@ -250,11 +257,20 @@ public class SubscriberStatusGuarderImpl<T, OT, KT, K2T, LT, RT>
 
   @Override
   public void markAsDepleted() {
-    stateMachine.fire(SubscriberStatusGuarderTrigger.MARK_AS_DEPLETED);
+    EventManagerContext.getInstance().getEventManager().processEvent(Event.any(side,
+        "Mark as depleted"));
+    //stateMachine.fire(SubscriberStatusGuarderTrigger.MARK_AS_DEPLETED);
   }
 
   @Override
   public void notifyOtherIsDepleted() {
     stateMachine.fire(SubscriberStatusGuarderTrigger.NOTIFY_OTHER_IS_DEPLETED);
+  }
+
+  public void logTriggerEvent(SubscriberStatusGuarderTrigger trigger,
+      SubscriberStatusGuarderState state) {
+    EventManagerContext.getInstance()
+        .getEventManager()
+        .processEvent(Event.subscriberTrigger(side, trigger.name(), state.name()));
   }
 }

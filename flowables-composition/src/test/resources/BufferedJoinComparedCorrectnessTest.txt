@@ -1,0 +1,145 @@
+18:24:09.458 - BUFFER_REQUESTED       - RIGHT - New block with [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+18:24:09.458 - BUFFER_REQUESTED       - LEFT  - New block with [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+18:24:09.507 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+18:24:09.507 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+18:24:09.521 - ANY                    - LEFT  - OnNext subscribed, pre requestNext
+18:24:09.521 - ANY                    - RIGHT - OnNext subscribed, pre requestNext
+18:24:09.522 - BUFFER_REQUESTED       - LEFT  - New block with [10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+18:24:09.522 - BUFFER_REQUESTED       - RIGHT - New block with [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+18:24:09.522 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+18:24:09.522 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+18:24:09.523 - ANY                    - LEFT  - OnNext subscribed, pre requestNext
+18:24:09.523 - ANY                    - RIGHT - OnNext subscribed, pre requestNext
+18:24:09.524 - BUFFER_REQUESTED       - RIGHT - New block with [21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+18:24:09.524 - BUFFER_REQUESTED       - LEFT  - New block with [20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+18:24:09.524 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+18:24:09.524 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+18:24:09.525 - ANY                    - RIGHT - OnNext subscribed, pre requestNext
+18:24:09.525 - ANY                    - LEFT  - OnNext subscribed, pre requestNext
+18:24:09.525 - BUFFER_REQUESTED       - RIGHT - New block with [31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
+18:24:09.525 - BUFFER_REQUESTED       - LEFT  - New block with [30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
+18:24:09.526 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
+18:24:09.526 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
+18:24:09.526 - ANY                    - RIGHT - OnNext subscribed, pre requestNext
+18:24:09.526 - ANY                    - LEFT  - OnNext subscribed, pre requestNext
+18:24:09.527 - BUFFER_REQUESTED       - RIGHT - New block with [41, 42, 43, 44, 45, 46, 47, 48, 49, 50]
+18:24:09.527 - BUFFER_REQUESTED       - LEFT  - New block with [40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
+18:24:09.528 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [41, 42, 43, 44, 45, 46, 47, 48, 49, 50]
+18:24:09.528 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
+18:24:09.528 - ANY                    - RIGHT - OnNext subscribed, pre requestNext
+18:24:09.528 - ANY                    - LEFT  - OnNext subscribed, pre requestNext
+18:24:09.528 - BUFFER_REQUESTED       - RIGHT - New block with [51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
+18:24:09.528 - BUFFER_REQUESTED       - LEFT  - New block with [50, 51, 52, 53, 54, 55, 56, 57, 58, 59]
+18:24:09.529 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
+18:24:09.529 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [50, 51, 52, 53, 54, 55, 56, 57, 58, 59]
+18:24:09.529 - ANY                    - LEFT  - OnNext subscribed, pre requestNext
+18:24:09.529 - ANY                    - RIGHT - OnNext subscribed, pre requestNext
+18:24:09.530 - BUFFER_REQUESTED       - LEFT  - New block with [60, 61, 62, 63, 64, 65, 66, 67, 68, 69]
+18:24:09.530 - BUFFER_REQUESTED       - RIGHT - New block with [61, 62, 63, 64, 65, 66, 67, 68, 69, 70]
+18:24:09.530 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [60, 61, 62, 63, 64, 65, 66, 67, 68, 69]
+18:24:09.530 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [61, 62, 63, 64, 65, 66, 67, 68, 69, 70]
+18:24:09.535 - ANY                    - RIGHT - Error reading com.dovaleac.flowables.composition.strategy.instance.buffered.exceptions.ReadBufferNotAvailableForNewElementsException
+18:24:09.535 - ANY                    - LEFT  - Error reading com.dovaleac.flowables.composition.strategy.instance.buffered.exceptions.ReadBufferNotAvailableForNewElementsException
+18:24:09.535 - TRIGGER                - RIGHT - Trigger PROCESS_READ moved to state READING
+18:24:09.535 - TRIGGER                - LEFT  - Trigger PROCESS_READ moved to state READING
+18:24:09.536 - SUBSCRIBER_TRIGGER     - RIGHT - Subscriber trigger STOP_ON_READING moved to state STOPPED_ON_READING
+18:24:09.539 - POLL_READ              - RIGHT - Polled read number 0
+18:24:09.539 - BUFFER_REQUESTED       - RIGHT - New block with [61, 62, 63, 64, 65, 66, 67, 68, 69, 70]
+18:24:09.539 - POLL_READ              - LEFT  - Polled read number 0
+18:24:09.539 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [61, 62, 63, 64, 65, 66, 67, 68, 69, 70]
+18:24:09.540 - ANY                    - RIGHT - OnNext subscribed, pre requestNext
+18:24:09.541 - BUFFER_REQUESTED       - RIGHT - New block with [71, 72, 73, 74, 75, 76, 77, 78, 79, 80]
+18:24:09.541 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [71, 72, 73, 74, 75, 76, 77, 78, 79, 80]
+18:24:09.542 - SUBSCRIBER_TRIGGER     - LEFT  - Subscriber trigger STOP_ON_READING moved to state STOPPED_ON_READING
+18:24:09.542 - ANY                    - RIGHT - Error reading com.dovaleac.flowables.composition.strategy.instance.buffered.exceptions.ReadBufferNotAvailableForNewElementsException
+18:24:09.561 - WRITE_BUFFER_RECEIVED  - LEFT  - Write buffer received [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+18:24:09.561 - WRITE_BUFFER_RECEIVED  - RIGHT - Write buffer received [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+18:24:09.561 - POLL_READ              - RIGHT - Polled read number 1
+18:24:09.561 - POLL_READ              - LEFT  - Polled read number 1
+18:24:09.562 - WRITE_BUFFER_RECEIVED  - LEFT  - Write buffer received [16, 17, 18, 19, 10, 11, 12, 13, 14, 15]
+18:24:09.562 - WRITE_BUFFER_RECEIVED  - RIGHT - Write buffer received [16, 17, 18, 19, 20, 11, 12, 13, 14, 15]
+18:24:09.562 - POLL_READ              - RIGHT - Polled read number 2
+18:24:09.562 - POLL_READ              - LEFT  - Polled read number 2
+18:24:09.563 - WRITE_BUFFER_RECEIVED  - LEFT  - Write buffer received [20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+18:24:09.563 - WRITE_BUFFER_RECEIVED  - RIGHT - Write buffer received [21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+18:24:09.563 - POLL_READ              - RIGHT - Polled read number 3
+18:24:09.563 - POLL_READ              - LEFT  - Polled read number 3
+18:24:09.564 - WRITE_BUFFER_RECEIVED  - LEFT  - Write buffer received [32, 33, 34, 35, 36, 37, 38, 39, 30, 31]
+18:24:09.564 - WRITE_BUFFER_IS_FULL   - RIGHT - 
+18:24:09.564 - POLL_READ              - RIGHT - Polled read number 4
+18:24:09.564 - WRITE_BUFFER_IS_FULL   - LEFT  - 
+18:24:09.565 - TRIGGER                - RIGHT - Trigger IT_WOULD_BE_BETTER_TO_WRITE moved to state WAITING_FOR_SYNCHRONIZER
+18:24:09.565 - BUFFER_REQUESTED       - RIGHT - New block with [61, 62, 63, 64, 65, 66, 67, 68, 69, 70]
+18:24:09.565 - POLL_READ              - RIGHT - Polled read number 0
+18:24:09.566 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [61, 62, 63, 64, 65, 66, 67, 68, 69, 70]
+18:24:09.566 - WRITE_BUFFER_IS_FULL   - LEFT  - 
+18:24:09.566 - TRIGGER                - LEFT  - Trigger IT_WOULD_BE_BETTER_TO_WRITE moved to state WAITING_FOR_SYNCHRONIZER
+18:24:09.566 - ANY                    - RIGHT - OnNext subscribed, pre requestNext
+18:24:09.566 - POLL_READ              - LEFT  - Polled read number 0
+18:24:09.566 - BUFFER_REQUESTED       - LEFT  - New block with [60, 61, 62, 63, 64, 65, 66, 67, 68, 69]
+18:24:09.566 - BUFFER_REQUESTED       - RIGHT - New block with [81, 82, 83, 84, 85, 86, 87, 88, 89, 90]
+18:24:09.567 - WRITE_BUFFER_IS_FULL   - RIGHT - 
+18:24:09.567 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [60, 61, 62, 63, 64, 65, 66, 67, 68, 69]
+18:24:09.567 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [81, 82, 83, 84, 85, 86, 87, 88, 89, 90]
+18:24:09.567 - ANY                    - LEFT  - OnNext subscribed, pre requestNext
+18:24:09.567 - ANY                    - RIGHT - OnNext subscribed, pre requestNext
+18:24:09.568 - BUFFER_REQUESTED       - LEFT  - New block with [70, 71, 72, 73, 74, 75, 76, 77, 78, 79]
+18:24:09.568 - BUFFER_REQUESTED       - RIGHT - New block with [91, 92, 93, 94, 95, 96, 97, 98, 99, 100]
+18:24:09.568 - TRIGGER                - LEFT  - Trigger SYNC_REQUESTED moved to state SYNCHRONIZATION_CONFLICT
+18:24:09.568 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [70, 71, 72, 73, 74, 75, 76, 77, 78, 79]
+18:24:09.568 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [91, 92, 93, 94, 95, 96, 97, 98, 99, 100]
+18:24:09.569 - ANY                    - LEFT  - OnNext subscribed, pre requestNext
+18:24:09.569 - ANY                    - RIGHT - OnNext subscribed, pre requestNext
+18:24:09.569 - TRIGGER                - RIGHT - Trigger SYNC_REQUESTED moved to state SYNCHRONIZATION_CONFLICT
+18:24:09.569 - BUFFER_REQUESTED       - LEFT  - New block with [80, 81, 82, 83, 84, 85, 86, 87, 88, 89]
+18:24:09.570 - ANY                    - RIGHT - Mark as depleted
+18:24:09.570 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [80, 81, 82, 83, 84, 85, 86, 87, 88, 89]
+18:24:09.570 - ANY                    - LEFT  - OnNext subscribed, pre requestNext
+18:24:09.570 - TRIGGER                - RIGHT - Trigger CONFLICT_SOLVED_AS_SYNCHRONIZEE moved to state SYNCHRONIZEE
+18:24:09.571 - BUFFER_REQUESTED       - LEFT  - New block with [90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+18:24:09.571 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+18:24:09.571 - ANY                    - LEFT  - OnNext subscribed, pre requestNext
+18:24:09.571 - WRITE_BUFFER_TRIGGER   - RIGHT - WB Trigger FREEZE moved to state FROZEN
+18:24:09.572 - ANY                    - LEFT  - Mark as depleted
+18:24:09.572 - TRIGGER                - LEFT  - Trigger SYNC_ACCEPTED moved to state SYNCHRONIZER
+18:24:09.574 - WRITE_BUFFER_TRIGGER   - LEFT  - WB Trigger FREEZE moved to state FROZEN
+18:24:09.575 - SYNCHRONIZATION        - LEFT  - Synchronizing own [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39] with other's [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
+18:24:09.577 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 1
+18:24:09.578 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 2
+18:24:09.579 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 3
+18:24:09.579 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 4
+18:24:09.579 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 5
+18:24:09.580 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 6
+18:24:09.580 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 7
+18:24:09.580 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 8
+18:24:09.580 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 9
+18:24:09.581 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 10
+18:24:09.581 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 11
+18:24:09.581 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 12
+18:24:09.582 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 13
+18:24:09.582 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 14
+18:24:09.582 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 15
+18:24:09.582 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 16
+18:24:09.583 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 17
+18:24:09.583 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 18
+18:24:09.583 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 19
+18:24:09.584 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 20
+18:24:09.584 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 21
+18:24:09.584 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 22
+18:24:09.585 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 23
+18:24:09.585 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 24
+18:24:09.586 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 25
+18:24:09.586 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 26
+18:24:09.586 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 27
+18:24:09.586 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 28
+18:24:09.587 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 29
+18:24:09.587 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 30
+18:24:09.587 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 31
+18:24:09.588 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 32
+18:24:09.588 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 33
+18:24:09.588 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 34
+18:24:09.588 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 35
+18:24:09.589 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 36
+18:24:09.589 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 37
+18:24:09.589 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 38
+18:24:09.589 - ELEMENT_EMITTED        - LEFT  - Couple emitted with id 39

@@ -206,6 +206,8 @@ package com.dovaleac.flowables.composition.strategy.instance;
 
 import com.dovaleac.flowables.composition.FlowablesDbJoinFacade;
 import com.dovaleac.flowables.composition.PlannerConfig;
+import com.dovaleac.flowables.composition.eventlog.EventManager;
+import com.dovaleac.flowables.composition.eventlog.EventManagerContext;
 import com.dovaleac.flowables.composition.scenario.Scenario;
 import com.dovaleac.flowables.composition.strategy.instance.domain.SmallDomainClass;
 import com.dovaleac.flowables.composition.tuples.OptionalTuple;
@@ -214,7 +216,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.nio.file.Path;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -228,15 +229,16 @@ abstract class AbstractComparedCorrectnessTest {
   public AbstractComparedCorrectnessTest(
       Function<Scenario<SmallDomainClass, SmallDomainClass, Long, ?>,
           JoinStrategyInstance<SmallDomainClass, SmallDomainClass>> strategyInstanceFunction,
-      PlannerConfig plannerConfig) {
+      PlannerConfig plannerConfig,
+      EventManager eventManager) {
     this.strategyInstanceFunction = strategyInstanceFunction;
     this.plannerConfig = plannerConfig;
+    EventManagerContext.setEventManager(eventManager);
   }
 
   @ParameterizedTest
   @MethodSource("provideValues")
   void test(FlowablesDbJoinFacade.JoinTypeSpecifiedStep initialStep, String pathSuffix) throws Exception {
-
     ComparedCorrectnessTester.ResultComparison<? extends OptionalTuple<SmallDomainClass, SmallDomainClass>>
         resultComparison = new ComparedCorrectnessTester(strategyInstanceFunction, plannerConfig,
         initialStep).processFlowables();
@@ -248,9 +250,9 @@ abstract class AbstractComparedCorrectnessTest {
 
   private static Stream<Arguments> provideValues() {
     return Stream.of(
-        Arguments.of(FlowablesDbJoinFacade.fullJoin(), "f"),
-        Arguments.of(FlowablesDbJoinFacade.innerJoin(), "i"),
-        Arguments.of(FlowablesDbJoinFacade.rightJoin(), "r"),
+//        Arguments.of(FlowablesDbJoinFacade.fullJoin(), "f"),
+//        Arguments.of(FlowablesDbJoinFacade.innerJoin(), "i"),
+//        Arguments.of(FlowablesDbJoinFacade.rightJoin(), "r"),
         Arguments.of(FlowablesDbJoinFacade.leftJoin(), "l")
     );
   }
