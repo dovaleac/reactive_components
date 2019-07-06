@@ -187,10 +187,13 @@ public class ReadBufferImpl<T, KT> implements ReadBuffer<T, KT> {
 
   @Override
   public boolean push(List<T> otherTypeElements) {
-    EventManagerContext.getInstance()
-        .getEventManager()
-        .processEvent(Event.pushToReadBuffer(side, otherTypeElements, keyFunction));
-    return blockQueue.offer(otherTypeElements);
+    boolean result = blockQueue.offer(otherTypeElements);
+    if (result) {
+      EventManagerContext.getInstance()
+          .getEventManager()
+          .processEvent(Event.pushToReadBuffer(side, otherTypeElements, keyFunction));
+    }
+    return result;
   }
 
   @Override
@@ -204,6 +207,9 @@ public class ReadBufferImpl<T, KT> implements ReadBuffer<T, KT> {
     if (polled == null) {
       return Maybe.empty();
     }
+    EventManagerContext.getInstance()
+        .getEventManager()
+        .processEvent(Event.pullFromReadBuffer(side, polled, keyFunction));
     return Flowable.fromIterable(polled).toMap(keyFunction).toMaybe();
   }
 }

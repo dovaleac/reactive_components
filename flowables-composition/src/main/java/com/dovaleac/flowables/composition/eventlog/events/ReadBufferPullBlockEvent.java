@@ -11,14 +11,14 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class ReadBufferNewBlockEvent<InnerKT> extends Event {
+public class ReadBufferPullBlockEvent<InnerKT> extends Event {
 
-  public static final String MESSAGE_FORMAT = "Read buffer received [%s]";
+  public static final String MESSAGE_FORMAT = "Read buffer consumed [%s]";
   private final Set<InnerKT> keys;
 
-  public <KT, T> ReadBufferNewBlockEvent(Side side, List<T> list,
+  public <KT, T> ReadBufferPullBlockEvent(Side side, List<T> list,
       Function<T, InnerKT> keyFunction) {
-    super(EventType.READ_BUFFER_RECEIVED, side, String.format(MESSAGE_FORMAT, list.stream()
+    super(EventType.READ_BUFFER_CONSUMED, side, String.format(MESSAGE_FORMAT, list.stream()
         .map(t -> {
           try {
             return keyFunction.apply(t);
@@ -47,9 +47,9 @@ public class ReadBufferNewBlockEvent<InnerKT> extends Event {
   @Override
   public <KT> BuffersStatus<KT> updateBufferStatus(BuffersStatus<KT> buffersStatus) {
     if (side == Side.LEFT) {
-      buffersStatus.getLeftReadBufferKeys().addAll((Set<KT>) keys);
+      buffersStatus.getLeftReadBufferKeys().removeAll(keys);
     } else {
-      buffersStatus.getRightReadBufferKeys().addAll((Set<KT>) keys);
+      buffersStatus.getRightReadBufferKeys().removeAll(keys);
     }
     return buffersStatus;
   }

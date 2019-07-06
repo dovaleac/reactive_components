@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 public abstract class Event {
-  public static final String MESSAGE_FORMAT = "%s - %s - %s - %s\n";
+  public static final String MESSAGE_FORMAT = "%s - %s - %s - %s - %s\n";
   protected final EventType eventType;
   protected final Side side;
   protected final String message;
@@ -27,7 +27,21 @@ public abstract class Event {
     return String.format(MESSAGE_FORMAT, new SimpleDateFormat("HH:mm:ss.SSS").format(date),
         eventType.getPrintableMessage(),
         side.getRepresentation(),
-        message);
+        message, "");
+  }
+
+  public <KT> String asMessageWithBufferStatus(BuffersStatus<KT> buffersStatus) {
+
+    String message = String.format(MESSAGE_FORMAT, new SimpleDateFormat("HH:mm:ss.SSS").format(date),
+        eventType.getPrintableMessage(),
+        side.getRepresentation(),
+        this.message,
+        buffersStatus);
+    return message;
+  }
+
+  public <KT> BuffersStatus<KT> updateBufferStatus(BuffersStatus<KT> buffersStatus) {
+    return buffersStatus;
   }
 
   public static Event trigger(Side side, String trigger, String newState) {
@@ -50,6 +64,11 @@ public abstract class Event {
   public static <T, KT> Event pushToReadBuffer(Side side, List<T> list,
       Function<T, KT> keyFunction) {
     return new ReadBufferNewBlockEvent(side, list, keyFunction);
+  }
+
+  public static <T, KT> Event pullFromReadBuffer(Side side, List<T> list,
+      Function<T, KT> keyFunction) {
+    return new ReadBufferPullBlockEvent(side, list, keyFunction);
   }
 
   public static <T, KT> Event pushToWriteBuffer(Side side, Map<T, KT> elements) {

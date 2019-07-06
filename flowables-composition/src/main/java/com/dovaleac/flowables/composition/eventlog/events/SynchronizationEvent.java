@@ -1,9 +1,11 @@
 package com.dovaleac.flowables.composition.eventlog.events;
 
+import com.dovaleac.flowables.composition.eventlog.BuffersStatus;
 import com.dovaleac.flowables.composition.eventlog.Event;
 import com.dovaleac.flowables.composition.eventlog.EventType;
 import com.dovaleac.flowables.composition.eventlog.Side;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -16,5 +18,12 @@ public class SynchronizationEvent extends Event {
     super(EventType.SYNCHRONIZATION, side, String.format(MESSAGE_FORMAT,
         own.stream().map(Objects::toString).collect(Collectors.joining(", ")),
         other.stream().map(Objects::toString).collect(Collectors.joining(", "))));
+  }
+
+  @Override
+  public <KT> BuffersStatus<KT> updateBufferStatus(BuffersStatus<KT> buffersStatus) {
+    buffersStatus.setLeftWriteBufferKeys(new HashSet<>());
+    buffersStatus.setRightWriteBufferKeys(new HashSet<>());
+    return buffersStatus;
   }
 }

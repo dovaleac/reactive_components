@@ -184,6 +184,7 @@ import io.reactivex.functions.Function;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT>
@@ -361,6 +362,9 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT>
   protected boolean tryToEmit(KT key, OT ot, Map<KT, T> map) {
     T oneT = map.get(key);
     if (oneT == null) {
+      EventManagerContext.getInstance()
+          .getEventManager()
+          .processEvent(Event.any(side, String.format("Element not emitted: %s", key.toString())));
       return true;
     } else {
       EventManagerContext.getInstance()
@@ -450,20 +454,23 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT>
   Completable synchronize() {
     return Completable.fromAction(
         () -> {
-          Map<KT, OT> otherRemnants = otherRemnant.writeBuffer.getAllElements();
-          Map<KT, T> ownRemnants = writeBuffer.getAllElements();
-          EventManagerContext.getInstance().getEventManager().processEvent(
-              Event.synchronizing(side, ownRemnants.keySet(), otherRemnants.keySet()));
-          otherRemnants =
+          Map<KT, OT> otherRemnants =
+              new ConcurrentHashMap<>(otherRemnant.writeBuffer.getAllElements());
+          Map<KT, T> ownRemnants = new ConcurrentHashMap<>(writeBuffer.getAllElements());
+          EventManagerContext.getInstance()
+              .getEventManager()
+              .processEvent(
+                  Event.synchronizing(side, ownRemnants.keySet(), otherRemnants.keySet()));
+          Map<KT, OT> newOtherRemnants =
               otherRemnants.entrySet().stream()
                   .filter(
                       ktotEntry -> tryToEmit(ktotEntry.getKey(), ktotEntry.getValue(), ownRemnants))
                   .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-          otherRemnant.map.putAll(otherRemnants);
+          otherRemnant.map.putAll(newOtherRemnants);
           map.putAll(ownRemnants);
 
-          otherRemnants.clear();
-          ownRemnants.clear();
+          otherRemnant.writeBuffer.clear();
+          writeBuffer.clear();
         });
   }
 

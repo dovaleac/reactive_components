@@ -1,8 +1,10 @@
 package com.dovaleac.flowables.composition.strategy.instance;
 
 import com.dovaleac.flowables.composition.PlannerConfig;
+import com.dovaleac.flowables.composition.eventlog.BuffersStatus;
 import com.dovaleac.flowables.composition.eventlog.EventManagerImpl;
 import com.dovaleac.flowables.composition.eventlog.action.EventActionFile;
+import com.dovaleac.flowables.composition.eventlog.action.EventActionFileWithBuffersStatus;
 import com.dovaleac.flowables.composition.strategy.instance.buffered.BufferedStrategyConfig;
 import com.dovaleac.flowables.composition.strategy.instance.buffered.capacity.LeverageBufferCapacitiesStrategyImpl;
 import com.dovaleac.flowables.composition.strategy.instance.buffered.remnant.UnmatchedYetRemnantConfig;
@@ -42,8 +44,8 @@ public class BufferedJoinComparedCorrectnessTest extends AbstractComparedCorrect
         PlannerConfig.NO_CONFIG,
         new EventManagerImpl(
             List.of(
-                new EventActionFile(
-                    PATH_TO_LOG_FILE))));
+                new EventActionFileWithBuffersStatus<>(
+                    PATH_TO_LOG_FILE, new BuffersStatus<>()))));
     try {
       Files.write(PATH_TO_LOG_FILE, "".getBytes());
     } catch (IOException e) {
