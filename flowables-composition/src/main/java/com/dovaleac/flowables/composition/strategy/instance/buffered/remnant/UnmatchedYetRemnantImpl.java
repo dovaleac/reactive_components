@@ -176,7 +176,9 @@ import com.dovaleac.flowables.composition.tuples.OnlyLeftTuple;
 import com.dovaleac.flowables.composition.tuples.OnlyRightTuple;
 import com.dovaleac.flowables.composition.tuples.OptionalTuple;
 import com.github.oxo42.stateless4j.StateMachine;
+import com.github.oxo42.stateless4j.triggers.TriggerWithParameters1;
 import io.reactivex.Completable;
+import io.reactivex.CompletableEmitter;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableEmitter;
 import io.reactivex.functions.Function;
@@ -500,9 +502,23 @@ public class UnmatchedYetRemnantImpl<T, OT, KT, LT, RT>
     SynchronizationConflictSolver.getInstance().solveConflict(this);
   }
 
+  @Override
+  public Completable cleanBuffers() {
+    return Completable.create(
+        completableEmitter ->
+            stateMachine.fire(
+                new TriggerWithParameters1<>(
+                    UnmatchedYetRemnantTrigger.FLOWABLES_CONSUMED, CompletableEmitter.class),
+                completableEmitter));
+  }
+
   public void logTriggerEvent(UnmatchedYetRemnantTrigger trigger, UnmatchedYetRemnantState state) {
     EventManagerContext.getInstance()
         .getEventManager()
         .processEvent(Event.trigger(side, trigger.name(), state.name()));
+  }
+
+  public void cleanOff(CompletableEmitter completableEmitter) {
+    synchronize().andThen(Completable.fromAction(completableEmitter::onComplete)).subscribe();
   }
 }

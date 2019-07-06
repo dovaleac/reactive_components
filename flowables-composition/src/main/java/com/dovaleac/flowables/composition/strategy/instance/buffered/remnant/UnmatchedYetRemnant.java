@@ -221,4 +221,6 @@ public interface UnmatchedYetRemnant<
   Completable addToWriteBuffer(Map<KT, T> ownTypeElements);
 
   Completable emitAllElements();
+
+  Completable cleanBuffers();
 }

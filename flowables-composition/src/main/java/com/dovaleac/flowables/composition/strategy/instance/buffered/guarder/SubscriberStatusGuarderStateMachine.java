@@ -228,7 +228,7 @@ public class SubscriberStatusGuarderStateMachine<T, OT, KT> {
             SubscriberStatusGuarderState.BOTH_ARE_DEPLETED);
 
     config
-        .configure(SubscriberStatusGuarderState.DEPLETED)
+        .configure(SubscriberStatusGuarderState.BOTH_ARE_DEPLETED)
         .onEntry(subscriberStatusGuarder::bothAreDepleted);
 
     return config;

@@ -1,637 +1,729 @@
-19:31:47.449 - BUFFER_REQUESTED       - LEFT  - New block with [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] - LWB=0 - RWB=0 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.449 - BUFFER_REQUESTED       - RIGHT - New block with [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] - LWB=0 - RWB=0 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.513 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] - LWB=0 - RWB=0 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.513 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] - LWB=0 - RWB=0 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.528 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=10 - RRB=10 - LR=0 - RR=0
-19:31:47.528 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=10 - RRB=10 - LR=0 - RR=0
-19:31:47.528 - BUFFER_REQUESTED       - LEFT  - New block with [10, 11, 12, 13, 14, 15, 16, 17, 18, 19] - LWB=0 - RWB=0 - LRB=10 - RRB=10 - LR=0 - RR=0
-19:31:47.528 - BUFFER_REQUESTED       - RIGHT - New block with [11, 12, 13, 14, 15, 16, 17, 18, 19, 20] - LWB=0 - RWB=0 - LRB=10 - RRB=10 - LR=0 - RR=0
-19:31:47.529 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [10, 11, 12, 13, 14, 15, 16, 17, 18, 19] - LWB=0 - RWB=0 - LRB=10 - RRB=10 - LR=0 - RR=0
-19:31:47.529 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [11, 12, 13, 14, 15, 16, 17, 18, 19, 20] - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.529 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.530 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.530 - BUFFER_REQUESTED       - LEFT  - New block with [20, 21, 22, 23, 24, 25, 26, 27, 28, 29] - LWB=0 - RWB=0 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.530 - BUFFER_REQUESTED       - RIGHT - New block with [21, 22, 23, 24, 25, 26, 27, 28, 29, 30] - LWB=0 - RWB=0 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.531 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [20, 21, 22, 23, 24, 25, 26, 27, 28, 29] - LWB=0 - RWB=0 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.531 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [21, 22, 23, 24, 25, 26, 27, 28, 29, 30] - LWB=0 - RWB=0 - LRB=20 - RRB=30 - LR=0 - RR=0
-19:31:47.531 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=20 - RRB=30 - LR=0 - RR=0
-19:31:47.531 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.531 - BUFFER_REQUESTED       - LEFT  - New block with [30, 31, 32, 33, 34, 35, 36, 37, 38, 39] - LWB=0 - RWB=0 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.532 - BUFFER_REQUESTED       - RIGHT - New block with [31, 32, 33, 34, 35, 36, 37, 38, 39, 40] - LWB=0 - RWB=0 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.532 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [31, 32, 33, 34, 35, 36, 37, 38, 39, 40] - LWB=0 - RWB=0 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.532 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [30, 31, 32, 33, 34, 35, 36, 37, 38, 39] - LWB=0 - RWB=0 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.533 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.533 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.533 - BUFFER_REQUESTED       - RIGHT - New block with [41, 42, 43, 44, 45, 46, 47, 48, 49, 50] - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.533 - BUFFER_REQUESTED       - LEFT  - New block with [40, 41, 42, 43, 44, 45, 46, 47, 48, 49] - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.534 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [41, 42, 43, 44, 45, 46, 47, 48, 49, 50] - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.534 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [40, 41, 42, 43, 44, 45, 46, 47, 48, 49] - LWB=0 - RWB=0 - LRB=50 - RRB=40 - LR=0 - RR=0
-19:31:47.534 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.534 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.535 - BUFFER_REQUESTED       - RIGHT - New block with [51, 52, 53, 54, 55, 56, 57, 58, 59, 60] - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.535 - BUFFER_REQUESTED       - LEFT  - New block with [50, 51, 52, 53, 54, 55, 56, 57, 58, 59] - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.535 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [51, 52, 53, 54, 55, 56, 57, 58, 59, 60] - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.536 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=60 - RRB=50 - LR=0 - RR=0
-19:31:47.536 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [50, 51, 52, 53, 54, 55, 56, 57, 58, 59] - LWB=0 - RWB=0 - LRB=60 - RRB=50 - LR=0 - RR=0
-19:31:47.536 - BUFFER_REQUESTED       - RIGHT - New block with [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=0 - RWB=0 - LRB=60 - RRB=60 - LR=0 - RR=0
-19:31:47.536 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=60 - RRB=60 - LR=0 - RR=0
-19:31:47.537 - BUFFER_REQUESTED       - LEFT  - New block with [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=0 - RWB=0 - LRB=60 - RRB=60 - LR=0 - RR=0
-19:31:47.541 - ANY                    - RIGHT - Error reading com.dovaleac.flowables.composition.strategy.instance.buffered.exceptions.ReadBufferNotAvailableForNewElementsException - LWB=0 - RWB=0 - LRB=60 - RRB=60 - LR=0 - RR=0
-19:31:47.541 - TRIGGER                - RIGHT - Trigger PROCESS_READ moved to state READING - LWB=0 - RWB=0 - LRB=60 - RRB=60 - LR=0 - RR=0
-19:31:47.541 - TRIGGER                - LEFT  - Trigger PROCESS_READ moved to state READING - LWB=0 - RWB=0 - LRB=60 - RRB=60 - LR=0 - RR=0
-19:31:47.541 - ANY                    - LEFT  - Error reading com.dovaleac.flowables.composition.strategy.instance.buffered.exceptions.ReadBufferNotAvailableForNewElementsException - LWB=0 - RWB=0 - LRB=60 - RRB=60 - LR=0 - RR=0
-19:31:47.545 - POLL_READ              - LEFT  - Polled read number 0 - LWB=0 - RWB=0 - LRB=60 - RRB=60 - LR=0 - RR=0
-19:31:47.545 - POLL_READ              - RIGHT - Polled read number 0 - LWB=0 - RWB=0 - LRB=60 - RRB=60 - LR=0 - RR=0
-19:31:47.546 - SUBSCRIBER_TRIGGER     - LEFT  - Subscriber trigger STOP_ON_READING moved to state STOPPED_ON_READING - LWB=0 - RWB=0 - LRB=60 - RRB=60 - LR=0 - RR=0
-19:31:47.546 - SUBSCRIBER_TRIGGER     - RIGHT - Subscriber trigger STOP_ON_READING moved to state STOPPED_ON_READING - LWB=0 - RWB=0 - LRB=60 - RRB=60 - LR=0 - RR=0
-19:31:47.546 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] - LWB=0 - RWB=0 - LRB=60 - RRB=60 - LR=0 - RR=0
-19:31:47.546 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] - LWB=0 - RWB=0 - LRB=60 - RRB=60 - LR=0 - RR=0
-19:31:47.563 - ANY                    - LEFT  - Element not emitted: 1 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.563 - ANY                    - RIGHT - Element not emitted: 0 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.564 - ANY                    - LEFT  - Element not emitted: 2 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.564 - ANY                    - RIGHT - Element not emitted: 1 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.564 - ANY                    - LEFT  - Element not emitted: 3 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.564 - ANY                    - RIGHT - Element not emitted: 2 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.564 - ANY                    - LEFT  - Element not emitted: 4 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.565 - ANY                    - LEFT  - Element not emitted: 5 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.565 - ANY                    - RIGHT - Element not emitted: 3 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.565 - ANY                    - LEFT  - Element not emitted: 6 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.565 - ANY                    - RIGHT - Element not emitted: 4 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.565 - ANY                    - LEFT  - Element not emitted: 7 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.565 - ANY                    - RIGHT - Element not emitted: 5 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.565 - ANY                    - LEFT  - Element not emitted: 8 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.566 - ANY                    - RIGHT - Element not emitted: 6 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.566 - ANY                    - LEFT  - Element not emitted: 9 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.566 - ANY                    - RIGHT - Element not emitted: 7 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.566 - ANY                    - LEFT  - Element not emitted: 10 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.566 - ANY                    - RIGHT - Element not emitted: 8 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.566 - ANY                    - RIGHT - Element not emitted: 9 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.570 - WRITE_BUFFER_RECEIVED  - RIGHT - Write buffer received [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.570 - WRITE_BUFFER_RECEIVED  - LEFT  - Write buffer received [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.571 - POLL_READ              - RIGHT - Polled read number 1 - LWB=10 - RWB=10 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.571 - POLL_READ              - LEFT  - Polled read number 1 - LWB=10 - RWB=10 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.572 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [11, 12, 13, 14, 15, 16, 17, 18, 19, 20] - LWB=10 - RWB=10 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.572 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [10, 11, 12, 13, 14, 15, 16, 17, 18, 19] - LWB=10 - RWB=10 - LRB=50 - RRB=50 - LR=0 - RR=0
-19:31:47.572 - ANY                    - LEFT  - Element not emitted: 16 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.572 - ANY                    - RIGHT - Element not emitted: 16 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.572 - ANY                    - LEFT  - Element not emitted: 17 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.572 - ANY                    - LEFT  - Element not emitted: 18 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.572 - ANY                    - RIGHT - Element not emitted: 17 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.573 - ANY                    - LEFT  - Element not emitted: 19 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.573 - ANY                    - RIGHT - Element not emitted: 18 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.573 - ANY                    - LEFT  - Element not emitted: 20 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.573 - ANY                    - RIGHT - Element not emitted: 19 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.573 - ANY                    - LEFT  - Element not emitted: 11 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.574 - ANY                    - RIGHT - Element not emitted: 10 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.574 - ANY                    - RIGHT - Element not emitted: 11 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.574 - ANY                    - LEFT  - Element not emitted: 12 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.574 - ANY                    - RIGHT - Element not emitted: 12 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.574 - ANY                    - LEFT  - Element not emitted: 13 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.574 - ANY                    - RIGHT - Element not emitted: 13 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.575 - ANY                    - LEFT  - Element not emitted: 14 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.575 - ANY                    - RIGHT - Element not emitted: 14 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.575 - ANY                    - LEFT  - Element not emitted: 15 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.575 - ANY                    - RIGHT - Element not emitted: 15 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.575 - WRITE_BUFFER_RECEIVED  - RIGHT - Write buffer received [16, 17, 18, 19, 20, 11, 12, 13, 14, 15] - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.575 - WRITE_BUFFER_RECEIVED  - LEFT  - Write buffer received [16, 17, 18, 19, 10, 11, 12, 13, 14, 15] - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.576 - POLL_READ              - RIGHT - Polled read number 2 - LWB=20 - RWB=20 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.576 - POLL_READ              - LEFT  - Polled read number 2 - LWB=20 - RWB=20 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.576 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [20, 21, 22, 23, 24, 25, 26, 27, 28, 29] - LWB=20 - RWB=20 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.576 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [21, 22, 23, 24, 25, 26, 27, 28, 29, 30] - LWB=20 - RWB=20 - LRB=40 - RRB=30 - LR=0 - RR=0
-19:31:47.576 - ANY                    - RIGHT - Element not emitted: 20 - LWB=20 - RWB=20 - LRB=36 - RRB=30 - LR=0 - RR=0
-19:31:47.577 - ANY                    - RIGHT - Element not emitted: 21 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.577 - ANY                    - LEFT  - Element not emitted: 21 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.577 - ANY                    - RIGHT - Element not emitted: 22 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.577 - ANY                    - LEFT  - Element not emitted: 22 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.577 - ANY                    - RIGHT - Element not emitted: 23 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.577 - ANY                    - RIGHT - Element not emitted: 24 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.577 - ANY                    - LEFT  - Element not emitted: 23 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.578 - ANY                    - LEFT  - Element not emitted: 24 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.578 - ANY                    - RIGHT - Element not emitted: 25 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.578 - ANY                    - LEFT  - Element not emitted: 25 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.578 - ANY                    - RIGHT - Element not emitted: 26 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.578 - ANY                    - LEFT  - Element not emitted: 26 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.579 - ANY                    - RIGHT - Element not emitted: 27 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.579 - ANY                    - LEFT  - Element not emitted: 27 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.579 - ANY                    - RIGHT - Element not emitted: 28 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.579 - ANY                    - LEFT  - Element not emitted: 28 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.579 - ANY                    - RIGHT - Element not emitted: 29 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.579 - ANY                    - LEFT  - Element not emitted: 29 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.580 - WRITE_BUFFER_RECEIVED  - LEFT  - Write buffer received [20, 21, 22, 23, 24, 25, 26, 27, 28, 29] - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.580 - ANY                    - LEFT  - Element not emitted: 30 - LWB=30 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.580 - POLL_READ              - RIGHT - Polled read number 3 - LWB=30 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.580 - WRITE_BUFFER_RECEIVED  - RIGHT - Write buffer received [21, 22, 23, 24, 25, 26, 27, 28, 29, 30] - LWB=30 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.580 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [30, 31, 32, 33, 34, 35, 36, 37, 38, 39] - LWB=30 - RWB=30 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.580 - POLL_READ              - LEFT  - Polled read number 3 - LWB=30 - RWB=30 - LRB=30 - RRB=20 - LR=0 - RR=0
-19:31:47.580 - ANY                    - RIGHT - Element not emitted: 32 - LWB=30 - RWB=30 - LRB=30 - RRB=20 - LR=0 - RR=0
-19:31:47.581 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [31, 32, 33, 34, 35, 36, 37, 38, 39, 40] - LWB=30 - RWB=30 - LRB=30 - RRB=20 - LR=0 - RR=0
-19:31:47.581 - ANY                    - RIGHT - Element not emitted: 33 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.581 - ANY                    - LEFT  - Element not emitted: 32 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.581 - ANY                    - RIGHT - Element not emitted: 34 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.581 - ANY                    - LEFT  - Element not emitted: 33 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.582 - ANY                    - LEFT  - Element not emitted: 34 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.582 - ANY                    - RIGHT - Element not emitted: 35 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.582 - ANY                    - LEFT  - Element not emitted: 35 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.582 - ANY                    - RIGHT - Element not emitted: 36 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.582 - ANY                    - LEFT  - Element not emitted: 36 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.582 - ANY                    - LEFT  - Element not emitted: 37 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.582 - ANY                    - RIGHT - Element not emitted: 37 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.583 - ANY                    - LEFT  - Element not emitted: 38 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.583 - ANY                    - RIGHT - Element not emitted: 38 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.583 - ANY                    - LEFT  - Element not emitted: 39 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.583 - ANY                    - LEFT  - Element not emitted: 40 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.583 - ANY                    - RIGHT - Element not emitted: 39 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.583 - ANY                    - LEFT  - Element not emitted: 31 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.583 - ANY                    - RIGHT - Element not emitted: 30 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.584 - ANY                    - RIGHT - Element not emitted: 31 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.584 - WRITE_BUFFER_RECEIVED  - RIGHT - Write buffer received [32, 33, 34, 35, 36, 37, 38, 39, 40, 31] - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.584 - POLL_READ              - LEFT  - Polled read number 4 - LWB=30 - RWB=40 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.584 - WRITE_BUFFER_IS_FULL   - LEFT  -  - LWB=30 - RWB=40 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.585 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [41, 42, 43, 44, 45, 46, 47, 48, 49, 50] - LWB=30 - RWB=40 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.585 - ANY                    - LEFT  - Element not emitted: 48 - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.585 - ANY                    - LEFT  - Element not emitted: 49 - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.586 - ANY                    - LEFT  - Element not emitted: 50 - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.586 - TRIGGER                - LEFT  - Trigger IT_WOULD_BE_BETTER_TO_WRITE moved to state WAITING_FOR_SYNCHRONIZER - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.586 - ANY                    - LEFT  - Element not emitted: 41 - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.587 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.587 - BUFFER_REQUESTED       - LEFT  - New block with [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.587 - ANY                    - LEFT  - Element not emitted: 42 - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.587 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [51, 52, 53, 54, 55, 56, 57, 58, 59, 60] - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.587 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.587 - ANY                    - LEFT  - Element not emitted: 43 - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.588 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=30 - RWB=40 - LRB=0 - RRB=30 - LR=0 - RR=0
-19:31:47.588 - ANY                    - LEFT  - Element not emitted: 44 - LWB=30 - RWB=40 - LRB=0 - RRB=30 - LR=0 - RR=0
-19:31:47.588 - ANY                    - LEFT  - Element not emitted: 51 - LWB=30 - RWB=40 - LRB=0 - RRB=30 - LR=0 - RR=0
-19:31:47.588 - BUFFER_REQUESTED       - LEFT  - New block with [70, 71, 72, 73, 74, 75, 76, 77, 78, 79] - LWB=30 - RWB=40 - LRB=0 - RRB=30 - LR=0 - RR=0
-19:31:47.588 - ANY                    - LEFT  - Element not emitted: 45 - LWB=30 - RWB=40 - LRB=0 - RRB=30 - LR=0 - RR=0
-19:31:47.588 - ANY                    - LEFT  - Element not emitted: 52 - LWB=30 - RWB=40 - LRB=0 - RRB=30 - LR=0 - RR=0
-19:31:47.588 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [70, 71, 72, 73, 74, 75, 76, 77, 78, 79] - LWB=30 - RWB=40 - LRB=0 - RRB=30 - LR=0 - RR=0
-19:31:47.588 - ANY                    - LEFT  - Element not emitted: 53 - LWB=30 - RWB=40 - LRB=0 - RRB=40 - LR=0 - RR=0
-19:31:47.588 - ANY                    - LEFT  - Element not emitted: 46 - LWB=30 - RWB=40 - LRB=0 - RRB=40 - LR=0 - RR=0
-19:31:47.589 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=30 - RWB=40 - LRB=0 - RRB=40 - LR=0 - RR=0
-19:31:47.589 - ANY                    - LEFT  - Element not emitted: 54 - LWB=30 - RWB=40 - LRB=0 - RRB=40 - LR=0 - RR=0
-19:31:47.589 - ANY                    - LEFT  - Element not emitted: 47 - LWB=30 - RWB=40 - LRB=0 - RRB=40 - LR=0 - RR=0
-19:31:47.589 - BUFFER_REQUESTED       - LEFT  - New block with [80, 81, 82, 83, 84, 85, 86, 87, 88, 89] - LWB=30 - RWB=40 - LRB=0 - RRB=40 - LR=0 - RR=0
-19:31:47.589 - ANY                    - LEFT  - Element not emitted: 55 - LWB=30 - RWB=40 - LRB=0 - RRB=40 - LR=0 - RR=0
-19:31:47.589 - WRITE_BUFFER_IS_FULL   - RIGHT -  - LWB=30 - RWB=40 - LRB=0 - RRB=40 - LR=0 - RR=0
-19:31:47.589 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [80, 81, 82, 83, 84, 85, 86, 87, 88, 89] - LWB=30 - RWB=40 - LRB=0 - RRB=40 - LR=0 - RR=0
-19:31:47.589 - ANY                    - LEFT  - Element not emitted: 56 - LWB=30 - RWB=40 - LRB=0 - RRB=40 - LR=0 - RR=0
-19:31:47.589 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=30 - RWB=40 - LRB=0 - RRB=50 - LR=0 - RR=0
-19:31:47.590 - ANY                    - LEFT  - Element not emitted: 57 - LWB=30 - RWB=40 - LRB=0 - RRB=50 - LR=0 - RR=0
-19:31:47.590 - BUFFER_REQUESTED       - LEFT  - New block with [90, 91, 92, 93, 94, 95, 96, 97, 98, 99] - LWB=30 - RWB=40 - LRB=0 - RRB=50 - LR=0 - RR=0
-19:31:47.590 - ANY                    - LEFT  - Element not emitted: 58 - LWB=30 - RWB=40 - LRB=0 - RRB=50 - LR=0 - RR=0
-19:31:47.590 - ANY                    - LEFT  - Element not emitted: 59 - LWB=30 - RWB=40 - LRB=0 - RRB=50 - LR=0 - RR=0
-19:31:47.590 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [90, 91, 92, 93, 94, 95, 96, 97, 98, 99] - LWB=30 - RWB=40 - LRB=0 - RRB=50 - LR=0 - RR=0
-19:31:47.590 - ANY                    - LEFT  - Element not emitted: 60 - LWB=30 - RWB=40 - LRB=0 - RRB=60 - LR=0 - RR=0
-19:31:47.591 - TRIGGER                - RIGHT - Trigger IT_WOULD_BE_BETTER_TO_WRITE moved to state WAITING_FOR_SYNCHRONIZER - LWB=30 - RWB=40 - LRB=0 - RRB=60 - LR=0 - RR=0
-19:31:47.591 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=30 - RWB=40 - LRB=0 - RRB=60 - LR=0 - RR=0
-19:31:47.592 - WRITE_BUFFER_IS_FULL   - RIGHT -  - LWB=30 - RWB=40 - LRB=0 - RRB=60 - LR=0 - RR=0
-19:31:47.593 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=40 - LRB=0 - RRB=60 - LR=0 - RR=0
-19:31:47.593 - BUFFER_REQUESTED       - RIGHT - New block with [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=30 - RWB=40 - LRB=0 - RRB=60 - LR=0 - RR=0
-19:31:47.593 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [40, 41, 42, 43, 44, 45, 46, 47, 48, 49] - LWB=30 - RWB=40 - LRB=0 - RRB=60 - LR=0 - RR=0
-19:31:47.593 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=30 - RWB=40 - LRB=0 - RRB=60 - LR=0 - RR=0
-19:31:47.593 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=30 - RWB=40 - LRB=10 - RRB=50 - LR=0 - RR=0
-19:31:47.593 - ANY                    - RIGHT - Element not emitted: 48 - LWB=30 - RWB=40 - LRB=10 - RRB=50 - LR=0 - RR=0
-19:31:47.593 - ANY                    - LEFT  - Mark as depleted - LWB=30 - RWB=40 - LRB=10 - RRB=50 - LR=0 - RR=0
-19:31:47.594 - ANY                    - RIGHT - Element not emitted: 49 - LWB=30 - RWB=40 - LRB=10 - RRB=50 - LR=0 - RR=0
-19:31:47.594 - BUFFER_REQUESTED       - RIGHT - New block with [71, 72, 73, 74, 75, 76, 77, 78, 79, 80] - LWB=30 - RWB=40 - LRB=10 - RRB=50 - LR=0 - RR=0
-19:31:47.594 - ANY                    - RIGHT - Element not emitted: 40 - LWB=30 - RWB=40 - LRB=10 - RRB=50 - LR=0 - RR=0
-19:31:47.594 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [71, 72, 73, 74, 75, 76, 77, 78, 79, 80] - LWB=30 - RWB=40 - LRB=10 - RRB=50 - LR=0 - RR=0
-19:31:47.595 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=30 - RWB=40 - LRB=20 - RRB=50 - LR=0 - RR=0
-19:31:47.595 - ANY                    - RIGHT - Element not emitted: 41 - LWB=30 - RWB=40 - LRB=20 - RRB=50 - LR=0 - RR=0
-19:31:47.595 - TRIGGER                - RIGHT - Trigger SYNC_REQUESTED moved to state SYNCHRONIZATION_CONFLICT - LWB=30 - RWB=40 - LRB=20 - RRB=50 - LR=0 - RR=0
-19:31:47.595 - ANY                    - RIGHT - Element not emitted: 42 - LWB=30 - RWB=40 - LRB=20 - RRB=50 - LR=0 - RR=0
-19:31:47.595 - BUFFER_REQUESTED       - RIGHT - New block with [81, 82, 83, 84, 85, 86, 87, 88, 89, 90] - LWB=30 - RWB=40 - LRB=20 - RRB=50 - LR=0 - RR=0
-19:31:47.595 - ANY                    - RIGHT - Element not emitted: 43 - LWB=30 - RWB=40 - LRB=20 - RRB=50 - LR=0 - RR=0
-19:31:47.595 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [81, 82, 83, 84, 85, 86, 87, 88, 89, 90] - LWB=30 - RWB=40 - LRB=20 - RRB=50 - LR=0 - RR=0
-19:31:47.595 - ANY                    - RIGHT - Element not emitted: 44 - LWB=30 - RWB=40 - LRB=20 - RRB=50 - LR=0 - RR=0
-19:31:47.596 - ANY                    - RIGHT - Element not emitted: 45 - LWB=30 - RWB=40 - LRB=30 - RRB=50 - LR=0 - RR=0
-19:31:47.596 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=30 - RWB=40 - LRB=30 - RRB=50 - LR=0 - RR=0
-19:31:47.596 - ANY                    - RIGHT - Element not emitted: 46 - LWB=30 - RWB=40 - LRB=30 - RRB=50 - LR=0 - RR=0
-19:31:47.596 - BUFFER_REQUESTED       - RIGHT - New block with [91, 92, 93, 94, 95, 96, 97, 98, 99, 100] - LWB=30 - RWB=40 - LRB=30 - RRB=50 - LR=0 - RR=0
-19:31:47.596 - ANY                    - RIGHT - Element not emitted: 47 - LWB=30 - RWB=40 - LRB=30 - RRB=50 - LR=0 - RR=0
-19:31:47.597 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [91, 92, 93, 94, 95, 96, 97, 98, 99, 100] - LWB=30 - RWB=40 - LRB=30 - RRB=50 - LR=0 - RR=0
-19:31:47.597 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=30 - RWB=40 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.597 - WRITE_BUFFER_IS_FULL   - LEFT  -  - LWB=30 - RWB=40 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.597 - ANY                    - RIGHT - Mark as depleted - LWB=30 - RWB=40 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.599 - TRIGGER                - LEFT  - Trigger SYNC_REQUESTED moved to state SYNCHRONIZATION_CONFLICT - LWB=30 - RWB=40 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.601 - TRIGGER                - LEFT  - Trigger CONFLICT_SOLVED_AS_SYNCHRONIZEE moved to state SYNCHRONIZEE - LWB=30 - RWB=40 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.602 - WRITE_BUFFER_TRIGGER   - LEFT  - WB Trigger FREEZE moved to state FROZEN - LWB=30 - RWB=40 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.603 - TRIGGER                - RIGHT - Trigger SYNC_ACCEPTED moved to state SYNCHRONIZER - LWB=30 - RWB=40 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.604 - WRITE_BUFFER_TRIGGER   - RIGHT - WB Trigger FREEZE moved to state FROZEN - LWB=30 - RWB=40 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.607 - SYNCHRONIZATION        - RIGHT - Synchronizing own [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40] with other's [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40] - LWB=30 - RWB=40 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.610 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 1 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.611 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 2 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.612 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 3 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.612 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 4 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.613 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 5 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.613 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 6 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.613 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 7 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.613 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 8 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.613 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 9 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.614 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 10 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.614 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 11 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.616 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 12 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.616 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 13 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.617 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 14 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.617 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 15 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.617 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 16 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.618 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 17 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.618 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 18 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.618 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 19 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.619 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 20 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.619 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 21 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.619 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 22 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.620 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 23 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.620 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 24 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.620 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 25 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.621 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 26 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.621 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 27 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.622 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 28 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.622 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 29 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.622 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 30 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.623 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 31 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.623 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 32 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.623 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 33 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.624 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 34 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.624 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 35 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.624 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 36 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.625 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 37 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.625 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 38 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.625 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 39 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.626 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 40 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.627 - TRIGGER                - LEFT  - Trigger SYNC_FINISHED moved to state WRITING - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.628 - TRIGGER                - RIGHT - Trigger SYNC_FINISHED moved to state WRITING - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.628 - WRITE_BUFFER_TRIGGER   - RIGHT - WB Trigger UNFREEZE moved to state ACCEPT_NEW - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.628 - WRITE_BUFFER_TRIGGER   - LEFT  - WB Trigger UNFREEZE moved to state ACCEPT_NEW - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.629 - TRIGGER                - RIGHT - Trigger WRITE_BUFFER_DEPLETED moved to state READING - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.629 - TRIGGER                - LEFT  - Trigger WRITE_BUFFER_DEPLETED moved to state READING - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.630 - POLL_READ              - RIGHT - Polled read number 0 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.630 - BUFFER_REQUESTED       - RIGHT - New block with [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.630 - POLL_READ              - LEFT  - Polled read number 0 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.630 - BUFFER_REQUESTED       - LEFT  - New block with [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.630 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.630 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.630 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.630 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [50, 51, 52, 53, 54, 55, 56, 57, 58, 59] - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
-19:31:47.630 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.630 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.630 - ANY                    - LEFT  - Element not emitted: 64 - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.630 - ANY                    - RIGHT - Element not emitted: 50 - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.631 - ANY                    - LEFT  - Element not emitted: 65 - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.631 - ANY                    - RIGHT - Element not emitted: 51 - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.631 - ANY                    - LEFT  - Element not emitted: 66 - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.631 - ANY                    - LEFT  - Element not emitted: 67 - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.631 - ANY                    - RIGHT - Element not emitted: 52 - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.631 - ANY                    - LEFT  - Element not emitted: 68 - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.631 - ANY                    - RIGHT - Element not emitted: 53 - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.631 - ANY                    - LEFT  - Element not emitted: 69 - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.632 - ANY                    - LEFT  - Element not emitted: 70 - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.632 - ANY                    - RIGHT - Element not emitted: 54 - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.632 - ANY                    - LEFT  - Element not emitted: 61 - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.632 - ANY                    - RIGHT - Element not emitted: 55 - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.632 - ANY                    - LEFT  - Element not emitted: 62 - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.632 - ANY                    - RIGHT - Element not emitted: 56 - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.633 - ANY                    - LEFT  - Element not emitted: 63 - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.632 - ANY                    - RIGHT - Element not emitted: 57 - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.633 - WRITE_BUFFER_RECEIVED  - RIGHT - Write buffer received [64, 65, 66, 67, 68, 69, 70, 61, 62, 63] - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.633 - ANY                    - RIGHT - Element not emitted: 58 - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.633 - POLL_READ              - LEFT  - Polled read number 1 - LWB=0 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.633 - ANY                    - RIGHT - Element not emitted: 59 - LWB=0 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.633 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [71, 72, 73, 74, 75, 76, 77, 78, 79, 80] - LWB=0 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
-19:31:47.634 - WRITE_BUFFER_RECEIVED  - LEFT  - Write buffer received [50, 51, 52, 53, 54, 55, 56, 57, 58, 59] - LWB=0 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
-19:31:47.634 - ANY                    - LEFT  - Element not emitted: 80 - LWB=0 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
-19:31:47.634 - ANY                    - LEFT  - Element not emitted: 71 - LWB=10 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
-19:31:47.634 - POLL_READ              - RIGHT - Polled read number 1 - LWB=10 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
-19:31:47.634 - ANY                    - LEFT  - Element not emitted: 72 - LWB=10 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
-19:31:47.634 - ANY                    - LEFT  - Element not emitted: 73 - LWB=10 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
-19:31:47.634 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=10 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
-19:31:47.634 - ANY                    - LEFT  - Element not emitted: 74 - LWB=10 - RWB=10 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.635 - ANY                    - LEFT  - Element not emitted: 75 - LWB=10 - RWB=10 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.635 - ANY                    - RIGHT - Element not emitted: 64 - LWB=10 - RWB=10 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.635 - ANY                    - LEFT  - Element not emitted: 76 - LWB=10 - RWB=10 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.635 - ANY                    - RIGHT - Element not emitted: 65 - LWB=10 - RWB=10 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.635 - ANY                    - LEFT  - Element not emitted: 77 - LWB=10 - RWB=10 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.635 - ANY                    - LEFT  - Element not emitted: 78 - LWB=10 - RWB=10 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.635 - ANY                    - RIGHT - Element not emitted: 66 - LWB=10 - RWB=10 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.635 - ANY                    - LEFT  - Element not emitted: 79 - LWB=10 - RWB=10 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.636 - ANY                    - RIGHT - Element not emitted: 67 - LWB=10 - RWB=10 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.636 - WRITE_BUFFER_RECEIVED  - RIGHT - Write buffer received [80, 71, 72, 73, 74, 75, 76, 77, 78, 79] - LWB=10 - RWB=10 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.636 - ANY                    - RIGHT - Element not emitted: 68 - LWB=10 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.636 - POLL_READ              - LEFT  - Polled read number 2 - LWB=10 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.636 - ANY                    - RIGHT - Element not emitted: 69 - LWB=10 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.636 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [81, 82, 83, 84, 85, 86, 87, 88, 89, 90] - LWB=10 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
-19:31:47.636 - ANY                    - RIGHT - Element not emitted: 60 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
-19:31:47.637 - ANY                    - LEFT  - Element not emitted: 81 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
-19:31:47.637 - ANY                    - LEFT  - Element not emitted: 82 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
-19:31:47.637 - ANY                    - RIGHT - Element not emitted: 61 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
-19:31:47.637 - ANY                    - LEFT  - Element not emitted: 83 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
-19:31:47.637 - ANY                    - RIGHT - Element not emitted: 62 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
-19:31:47.637 - ANY                    - LEFT  - Element not emitted: 84 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
-19:31:47.637 - ANY                    - LEFT  - Element not emitted: 85 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
-19:31:47.637 - ANY                    - RIGHT - Element not emitted: 63 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
-19:31:47.637 - ANY                    - LEFT  - Element not emitted: 86 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
-19:31:47.638 - ANY                    - LEFT  - Element not emitted: 87 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
-19:31:47.638 - WRITE_BUFFER_RECEIVED  - LEFT  - Write buffer received [64, 65, 66, 67, 68, 69, 60, 61, 62, 63] - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
-19:31:47.638 - ANY                    - LEFT  - Element not emitted: 88 - LWB=20 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
-19:31:47.638 - POLL_READ              - RIGHT - Polled read number 2 - LWB=20 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
-19:31:47.638 - ANY                    - LEFT  - Element not emitted: 89 - LWB=20 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
-19:31:47.638 - ANY                    - LEFT  - Element not emitted: 90 - LWB=20 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
-19:31:47.638 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [70, 71, 72, 73, 74, 75, 76, 77, 78, 79] - LWB=20 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
-19:31:47.639 - WRITE_BUFFER_RECEIVED  - RIGHT - Write buffer received [81, 82, 83, 84, 85, 86, 87, 88, 89, 90] - LWB=20 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
-19:31:47.639 - ANY                    - RIGHT - Element not emitted: 70 - LWB=20 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.639 - POLL_READ              - LEFT  - Polled read number 3 - LWB=20 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.639 - ANY                    - RIGHT - Element not emitted: 71 - LWB=20 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.639 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [91, 92, 93, 94, 95, 96, 97, 98, 99, 100] - LWB=20 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
-19:31:47.639 - ANY                    - RIGHT - Element not emitted: 72 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.639 - ANY                    - LEFT  - Element not emitted: 96 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.640 - ANY                    - RIGHT - Element not emitted: 73 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.640 - ANY                    - LEFT  - Element not emitted: 97 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.640 - ANY                    - RIGHT - Element not emitted: 74 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.640 - ANY                    - LEFT  - Element not emitted: 98 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.640 - ANY                    - LEFT  - Element not emitted: 99 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.640 - ANY                    - RIGHT - Element not emitted: 75 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.640 - ANY                    - LEFT  - Element not emitted: 100 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.640 - ANY                    - RIGHT - Element not emitted: 76 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.641 - ANY                    - LEFT  - Element not emitted: 91 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.641 - ANY                    - LEFT  - Element not emitted: 92 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.641 - ANY                    - RIGHT - Element not emitted: 77 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.641 - ANY                    - LEFT  - Element not emitted: 93 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.641 - ANY                    - RIGHT - Element not emitted: 78 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.641 - ANY                    - RIGHT - Element not emitted: 79 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.641 - ANY                    - LEFT  - Element not emitted: 94 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.641 - ANY                    - LEFT  - Element not emitted: 95 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.641 - WRITE_BUFFER_IS_FULL   - LEFT  -  - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.642 - WRITE_BUFFER_IS_FULL   - RIGHT -  - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.643 - TRIGGER                - LEFT  - Trigger IT_WOULD_BE_BETTER_TO_WRITE moved to state WAITING_FOR_SYNCHRONIZER - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.643 - POLL_READ              - LEFT  - Polled read number 0 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.643 - TRIGGER                - RIGHT - Trigger IT_WOULD_BE_BETTER_TO_WRITE moved to state WAITING_FOR_SYNCHRONIZER - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.643 - BUFFER_REQUESTED       - LEFT  - New block with [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.643 - POLL_READ              - RIGHT - Polled read number 0 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.643 - BUFFER_REQUESTED       - RIGHT - New block with [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.643 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.643 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=20 - RWB=30 - LRB=0 - RRB=20 - LR=0 - RR=0
-19:31:47.644 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [80, 81, 82, 83, 84, 85, 86, 87, 88, 89] - LWB=20 - RWB=30 - LRB=0 - RRB=30 - LR=0 - RR=0
-19:31:47.644 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=20 - RWB=30 - LRB=0 - RRB=30 - LR=0 - RR=0
-19:31:47.644 - ANY                    - LEFT  - Element not emitted: 64 - LWB=20 - RWB=30 - LRB=0 - RRB=30 - LR=0 - RR=0
-19:31:47.644 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.644 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.644 - ANY                    - LEFT  - Element not emitted: 65 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.644 - ANY                    - RIGHT - Element not emitted: 80 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.644 - ANY                    - LEFT  - Element not emitted: 66 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.644 - ANY                    - RIGHT - Element not emitted: 81 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.644 - ANY                    - LEFT  - Element not emitted: 67 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.644 - ANY                    - RIGHT - Element not emitted: 82 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.644 - ANY                    - LEFT  - Element not emitted: 68 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.645 - ANY                    - RIGHT - Element not emitted: 83 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.645 - ANY                    - LEFT  - Element not emitted: 69 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.645 - ANY                    - RIGHT - Element not emitted: 84 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.645 - ANY                    - LEFT  - Element not emitted: 70 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.645 - ANY                    - RIGHT - Element not emitted: 85 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.645 - ANY                    - LEFT  - Element not emitted: 61 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.645 - ANY                    - RIGHT - Element not emitted: 86 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.645 - ANY                    - LEFT  - Element not emitted: 62 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.645 - ANY                    - RIGHT - Element not emitted: 87 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.645 - ANY                    - LEFT  - Element not emitted: 63 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.645 - ANY                    - RIGHT - Element not emitted: 88 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.646 - WRITE_BUFFER_IS_FULL   - RIGHT -  - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.646 - ANY                    - RIGHT - Element not emitted: 89 - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.646 - WRITE_BUFFER_IS_FULL   - LEFT  -  - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.647 - TRIGGER                - RIGHT - Trigger SYNC_REQUESTED moved to state SYNCHRONIZATION_CONFLICT - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.648 - TRIGGER                - LEFT  - Trigger SYNC_REQUESTED moved to state SYNCHRONIZATION_CONFLICT - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.648 - TRIGGER                - LEFT  - Trigger CONFLICT_SOLVED_AS_SYNCHRONIZEE moved to state SYNCHRONIZEE - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.649 - WRITE_BUFFER_TRIGGER   - LEFT  - WB Trigger FREEZE moved to state FROZEN - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.650 - TRIGGER                - RIGHT - Trigger SYNC_ACCEPTED moved to state SYNCHRONIZER - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.651 - WRITE_BUFFER_TRIGGER   - RIGHT - WB Trigger FREEZE moved to state FROZEN - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.651 - SYNCHRONIZATION        - RIGHT - Synchronizing own [50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90] with other's [50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90] - LWB=20 - RWB=30 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.651 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 50 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.652 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 51 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.652 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 52 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.652 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 53 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.652 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 54 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.652 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 55 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.653 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 56 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.653 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 57 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.653 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 58 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.653 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 59 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.653 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 60 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.653 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 61 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.654 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 62 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.654 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 63 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.654 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 64 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.654 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 65 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.655 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 66 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.655 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 67 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.655 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 68 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.655 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 69 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.655 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 70 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.656 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 71 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.656 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 72 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.656 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 73 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.656 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 74 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.656 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 75 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.657 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 76 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.657 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 77 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.657 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 78 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.657 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 79 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.658 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 80 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.658 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 81 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.658 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 82 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.658 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 83 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.659 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 84 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.659 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 85 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.659 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 86 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.660 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 87 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.660 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 88 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.660 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 89 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.660 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 90 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.661 - TRIGGER                - RIGHT - Trigger SYNC_FINISHED moved to state WRITING - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.661 - TRIGGER                - LEFT  - Trigger SYNC_FINISHED moved to state WRITING - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.662 - WRITE_BUFFER_TRIGGER   - RIGHT - WB Trigger UNFREEZE moved to state ACCEPT_NEW - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.662 - WRITE_BUFFER_TRIGGER   - LEFT  - WB Trigger UNFREEZE moved to state ACCEPT_NEW - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.662 - TRIGGER                - RIGHT - Trigger WRITE_BUFFER_DEPLETED moved to state READING - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.663 - TRIGGER                - LEFT  - Trigger WRITE_BUFFER_DEPLETED moved to state READING - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.663 - POLL_READ              - RIGHT - Polled read number 0 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.663 - BUFFER_REQUESTED       - RIGHT - New block with [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.663 - POLL_READ              - LEFT  - Polled read number 0 - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.663 - BUFFER_REQUESTED       - LEFT  - New block with [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.663 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [90, 91, 92, 93, 94, 95, 96, 97, 98, 99] - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.663 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.663 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
-19:31:47.663 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=0 - RWB=0 - LRB=10 - RRB=10 - LR=0 - RR=0
-19:31:47.663 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.663 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.664 - ANY                    - RIGHT - Element not emitted: 96 - LWB=0 - RWB=0 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.664 - ANY                    - LEFT  - Element not emitted: 64 - LWB=0 - RWB=0 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.664 - ANY                    - LEFT  - Element not emitted: 65 - LWB=0 - RWB=0 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.664 - ANY                    - RIGHT - Element not emitted: 97 - LWB=0 - RWB=0 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.664 - ANY                    - RIGHT - Element not emitted: 98 - LWB=0 - RWB=0 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.664 - ANY                    - LEFT  - Element not emitted: 66 - LWB=0 - RWB=0 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.664 - ANY                    - RIGHT - Element not emitted: 99 - LWB=0 - RWB=0 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.664 - ANY                    - LEFT  - Element not emitted: 67 - LWB=0 - RWB=0 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.665 - ANY                    - RIGHT - Element not emitted: 90 - LWB=0 - RWB=0 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.665 - ANY                    - LEFT  - Element not emitted: 68 - LWB=0 - RWB=0 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.665 - ANY                    - RIGHT - Element not emitted: 91 - LWB=0 - RWB=0 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.665 - ANY                    - LEFT  - Element not emitted: 69 - LWB=0 - RWB=0 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.665 - ANY                    - RIGHT - Element not emitted: 92 - LWB=0 - RWB=0 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.665 - ANY                    - LEFT  - Element not emitted: 70 - LWB=0 - RWB=0 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.665 - ANY                    - RIGHT - Element not emitted: 93 - LWB=0 - RWB=0 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.665 - ANY                    - LEFT  - Element not emitted: 61 - LWB=0 - RWB=0 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.665 - ANY                    - RIGHT - Element not emitted: 94 - LWB=0 - RWB=0 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.666 - ANY                    - LEFT  - Element not emitted: 62 - LWB=0 - RWB=0 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.666 - ANY                    - RIGHT - Element not emitted: 95 - LWB=0 - RWB=0 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.666 - ANY                    - LEFT  - Element not emitted: 63 - LWB=0 - RWB=0 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.666 - WRITE_BUFFER_RECEIVED  - LEFT  - Write buffer received [96, 97, 98, 99, 90, 91, 92, 93, 94, 95] - LWB=0 - RWB=0 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.666 - WRITE_BUFFER_RECEIVED  - RIGHT - Write buffer received [64, 65, 66, 67, 68, 69, 70, 61, 62, 63] - LWB=10 - RWB=0 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.666 - POLL_READ              - RIGHT - Polled read number 1 - LWB=10 - RWB=10 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.666 - POLL_READ              - LEFT  - Polled read number 1 - LWB=10 - RWB=10 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.667 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=10 - RWB=10 - LRB=0 - RRB=10 - LR=0 - RR=0
-19:31:47.667 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=10 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.667 - ANY                    - RIGHT - Element not emitted: 64 - LWB=10 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.667 - ANY                    - LEFT  - Element not emitted: 64 - LWB=10 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.667 - ANY                    - RIGHT - Element not emitted: 65 - LWB=10 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.667 - ANY                    - LEFT  - Element not emitted: 65 - LWB=10 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.667 - ANY                    - RIGHT - Element not emitted: 66 - LWB=10 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.668 - ANY                    - LEFT  - Element not emitted: 66 - LWB=10 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.668 - ANY                    - RIGHT - Element not emitted: 67 - LWB=10 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.668 - ANY                    - LEFT  - Element not emitted: 67 - LWB=10 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.668 - ANY                    - RIGHT - Element not emitted: 68 - LWB=10 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.668 - ANY                    - LEFT  - Element not emitted: 68 - LWB=10 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.668 - ANY                    - RIGHT - Element not emitted: 69 - LWB=10 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.668 - ANY                    - LEFT  - Element not emitted: 69 - LWB=10 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.668 - ANY                    - RIGHT - Element not emitted: 60 - LWB=10 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.669 - ANY                    - LEFT  - Element not emitted: 70 - LWB=10 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.669 - ANY                    - RIGHT - Element not emitted: 61 - LWB=10 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.669 - ANY                    - LEFT  - Element not emitted: 61 - LWB=10 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.669 - ANY                    - RIGHT - Element not emitted: 62 - LWB=10 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.669 - ANY                    - LEFT  - Element not emitted: 62 - LWB=10 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.669 - ANY                    - RIGHT - Element not emitted: 63 - LWB=10 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.669 - ANY                    - LEFT  - Element not emitted: 63 - LWB=10 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.669 - WRITE_BUFFER_RECEIVED  - LEFT  - Write buffer received [64, 65, 66, 67, 68, 69, 60, 61, 62, 63] - LWB=10 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.670 - WRITE_BUFFER_RECEIVED  - RIGHT - Write buffer received [64, 65, 66, 67, 68, 69, 70, 61, 62, 63] - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.670 - POLL_READ              - RIGHT - Polled read number 2 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.670 - POLL_READ              - LEFT  - Polled read number 2 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.670 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.671 - ANY                    - RIGHT - Element not emitted: 64 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.672 - ANY                    - RIGHT - Element not emitted: 65 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.672 - ANY                    - RIGHT - Element not emitted: 66 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.673 - ANY                    - RIGHT - Element not emitted: 67 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.673 - ANY                    - RIGHT - Element not emitted: 68 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.674 - ANY                    - RIGHT - Element not emitted: 69 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.674 - ANY                    - RIGHT - Element not emitted: 60 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.674 - ANY                    - RIGHT - Element not emitted: 61 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.674 - ANY                    - RIGHT - Element not emitted: 62 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.675 - ANY                    - RIGHT - Element not emitted: 63 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.675 - WRITE_BUFFER_RECEIVED  - LEFT  - Write buffer received [64, 65, 66, 67, 68, 69, 60, 61, 62, 63] - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.675 - POLL_READ              - RIGHT - Polled read number 3 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.676 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.676 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.676 - ANY                    - RIGHT - Element not emitted: 64 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.676 - ANY                    - RIGHT - Element not emitted: 65 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.677 - ANY                    - RIGHT - Element not emitted: 66 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.677 - ANY                    - RIGHT - Element not emitted: 67 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.677 - ANY                    - RIGHT - Element not emitted: 68 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.677 - ANY                    - RIGHT - Element not emitted: 69 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.678 - ANY                    - RIGHT - Element not emitted: 60 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.678 - ANY                    - RIGHT - Element not emitted: 61 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.678 - ANY                    - RIGHT - Element not emitted: 62 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.678 - ANY                    - RIGHT - Element not emitted: 63 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.679 - WRITE_BUFFER_RECEIVED  - LEFT  - Write buffer received [64, 65, 66, 67, 68, 69, 60, 61, 62, 63] - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.679 - POLL_READ              - RIGHT - Polled read number 4 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.679 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.781 - POLL_READ              - LEFT  - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.782 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.784 - POLL_READ              - RIGHT - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.785 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.882 - POLL_READ              - LEFT  - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.883 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.889 - POLL_READ              - RIGHT - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.889 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.987 - POLL_READ              - LEFT  - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.987 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.994 - POLL_READ              - RIGHT - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:47.995 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.090 - POLL_READ              - LEFT  - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.090 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.096 - POLL_READ              - RIGHT - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.096 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.194 - POLL_READ              - LEFT  - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.195 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.201 - POLL_READ              - RIGHT - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.201 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.300 - POLL_READ              - LEFT  - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.301 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.306 - POLL_READ              - RIGHT - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.307 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.402 - POLL_READ              - LEFT  - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.403 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.410 - POLL_READ              - RIGHT - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.411 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.505 - POLL_READ              - LEFT  - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.506 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.511 - POLL_READ              - RIGHT - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.512 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.611 - POLL_READ              - LEFT  - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.612 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.612 - POLL_READ              - RIGHT - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.613 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.718 - POLL_READ              - RIGHT - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.718 - POLL_READ              - LEFT  - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.718 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.718 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.820 - POLL_READ              - RIGHT - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.820 - POLL_READ              - LEFT  - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.821 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.821 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.926 - POLL_READ              - LEFT  - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.926 - POLL_READ              - RIGHT - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.927 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:48.927 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.028 - POLL_READ              - RIGHT - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.028 - POLL_READ              - LEFT  - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.029 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.029 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.131 - POLL_READ              - RIGHT - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.131 - POLL_READ              - LEFT  - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.132 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.132 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.235 - POLL_READ              - LEFT  - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.235 - POLL_READ              - RIGHT - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.236 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.236 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.342 - POLL_READ              - RIGHT - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.342 - POLL_READ              - LEFT  - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.343 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.343 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.444 - POLL_READ              - LEFT  - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.444 - POLL_READ              - RIGHT - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.445 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.445 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.551 - POLL_READ              - LEFT  - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.551 - POLL_READ              - RIGHT - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.552 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.552 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.653 - POLL_READ              - RIGHT - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.653 - POLL_READ              - LEFT  - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.654 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.654 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.756 - POLL_READ              - RIGHT - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.756 - POLL_READ              - LEFT  - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.756 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.756 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.861 - POLL_READ              - LEFT  - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.861 - POLL_READ              - RIGHT - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.862 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.862 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.967 - POLL_READ              - RIGHT - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.967 - POLL_READ              - LEFT  - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.967 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:49.967 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:50.068 - POLL_READ              - LEFT  - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:50.068 - POLL_READ              - RIGHT - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:50.069 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:50.069 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:50.175 - POLL_READ              - RIGHT - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:50.175 - POLL_READ              - LEFT  - Polled read number 0 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:50.176 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
-19:31:50.176 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,475000 - LWB=20 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:03.928 - BUFFER_REQUESTED       - RIGHT - New block with [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] - LWB=0 - RWB=0 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:03.928 - BUFFER_REQUESTED       - LEFT  - New block with [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] - LWB=0 - RWB=0 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.006 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] - LWB=0 - RWB=0 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.006 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] - LWB=0 - RWB=0 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.028 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=10 - RRB=10 - LR=0 - RR=0
+00:28:04.028 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=10 - RRB=10 - LR=0 - RR=0
+00:28:04.030 - BUFFER_REQUESTED       - LEFT  - New block with [10, 11, 12, 13, 14, 15, 16, 17, 18, 19] - LWB=0 - RWB=0 - LRB=10 - RRB=10 - LR=0 - RR=0
+00:28:04.030 - BUFFER_REQUESTED       - RIGHT - New block with [11, 12, 13, 14, 15, 16, 17, 18, 19, 20] - LWB=0 - RWB=0 - LRB=10 - RRB=10 - LR=0 - RR=0
+00:28:04.030 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [11, 12, 13, 14, 15, 16, 17, 18, 19, 20] - LWB=0 - RWB=0 - LRB=10 - RRB=10 - LR=0 - RR=0
+00:28:04.030 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [10, 11, 12, 13, 14, 15, 16, 17, 18, 19] - LWB=0 - RWB=0 - LRB=10 - RRB=10 - LR=0 - RR=0
+00:28:04.031 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=20 - RRB=20 - LR=0 - RR=0
+00:28:04.031 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=20 - RRB=20 - LR=0 - RR=0
+00:28:04.031 - BUFFER_REQUESTED       - RIGHT - New block with [21, 22, 23, 24, 25, 26, 27, 28, 29, 30] - LWB=0 - RWB=0 - LRB=20 - RRB=20 - LR=0 - RR=0
+00:28:04.032 - BUFFER_REQUESTED       - LEFT  - New block with [20, 21, 22, 23, 24, 25, 26, 27, 28, 29] - LWB=0 - RWB=0 - LRB=20 - RRB=20 - LR=0 - RR=0
+00:28:04.032 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [21, 22, 23, 24, 25, 26, 27, 28, 29, 30] - LWB=0 - RWB=0 - LRB=20 - RRB=20 - LR=0 - RR=0
+00:28:04.032 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [20, 21, 22, 23, 24, 25, 26, 27, 28, 29] - LWB=0 - RWB=0 - LRB=20 - RRB=20 - LR=0 - RR=0
+00:28:04.033 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.033 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.034 - BUFFER_REQUESTED       - RIGHT - New block with [31, 32, 33, 34, 35, 36, 37, 38, 39, 40] - LWB=0 - RWB=0 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.034 - BUFFER_REQUESTED       - LEFT  - New block with [30, 31, 32, 33, 34, 35, 36, 37, 38, 39] - LWB=0 - RWB=0 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.035 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [30, 31, 32, 33, 34, 35, 36, 37, 38, 39] - LWB=0 - RWB=0 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.034 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [31, 32, 33, 34, 35, 36, 37, 38, 39, 40] - LWB=0 - RWB=0 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.035 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.035 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.036 - BUFFER_REQUESTED       - RIGHT - New block with [41, 42, 43, 44, 45, 46, 47, 48, 49, 50] - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.036 - BUFFER_REQUESTED       - LEFT  - New block with [40, 41, 42, 43, 44, 45, 46, 47, 48, 49] - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.036 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [41, 42, 43, 44, 45, 46, 47, 48, 49, 50] - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.036 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [40, 41, 42, 43, 44, 45, 46, 47, 48, 49] - LWB=0 - RWB=0 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.037 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.037 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.037 - BUFFER_REQUESTED       - LEFT  - New block with [50, 51, 52, 53, 54, 55, 56, 57, 58, 59] - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.037 - BUFFER_REQUESTED       - RIGHT - New block with [51, 52, 53, 54, 55, 56, 57, 58, 59, 60] - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.039 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [50, 51, 52, 53, 54, 55, 56, 57, 58, 59] - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.039 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [51, 52, 53, 54, 55, 56, 57, 58, 59, 60] - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.040 - TRIGGER                - LEFT  - Trigger PROCESS_READ moved to state READING - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.040 - TRIGGER                - RIGHT - Trigger PROCESS_READ moved to state READING - LWB=0 - RWB=0 - LRB=50 - RRB=51 - LR=0 - RR=0
+00:28:04.040 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=60 - RRB=60 - LR=0 - RR=0
+00:28:04.040 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=60 - RRB=60 - LR=0 - RR=0
+00:28:04.041 - BUFFER_REQUESTED       - LEFT  - New block with [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=0 - RWB=0 - LRB=60 - RRB=60 - LR=0 - RR=0
+00:28:04.041 - BUFFER_REQUESTED       - RIGHT - New block with [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=0 - RWB=0 - LRB=60 - RRB=60 - LR=0 - RR=0
+00:28:04.045 - POLL_READ              - LEFT  - Polled read number 0 - LWB=0 - RWB=0 - LRB=60 - RRB=60 - LR=0 - RR=0
+00:28:04.045 - POLL_READ              - RIGHT - Polled read number 0 - LWB=0 - RWB=0 - LRB=60 - RRB=60 - LR=0 - RR=0
+00:28:04.047 - ANY                    - LEFT  - Error reading com.dovaleac.flowables.composition.strategy.instance.buffered.exceptions.ReadBufferNotAvailableForNewElementsException - LWB=0 - RWB=0 - LRB=60 - RRB=60 - LR=0 - RR=0
+00:28:04.047 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] - LWB=0 - RWB=0 - LRB=60 - RRB=60 - LR=0 - RR=0
+00:28:04.048 - ANY                    - RIGHT - Error reading com.dovaleac.flowables.composition.strategy.instance.buffered.exceptions.ReadBufferNotAvailableForNewElementsException - LWB=0 - RWB=0 - LRB=60 - RRB=60 - LR=0 - RR=0
+00:28:04.047 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] - LWB=0 - RWB=0 - LRB=60 - RRB=60 - LR=0 - RR=0
+00:28:04.049 - SUBSCRIBER_TRIGGER     - LEFT  - Subscriber trigger STOP_ON_READING moved to state STOPPED_ON_READING - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.050 - SUBSCRIBER_TRIGGER     - RIGHT - Subscriber trigger STOP_ON_READING moved to state STOPPED_ON_READING - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.071 - ANY                    - LEFT  - Element not emitted: 1 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.071 - ANY                    - RIGHT - Element not emitted: 0 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.072 - ANY                    - LEFT  - Element not emitted: 2 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.072 - ANY                    - RIGHT - Element not emitted: 1 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.072 - ANY                    - LEFT  - Element not emitted: 3 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.072 - ANY                    - RIGHT - Element not emitted: 2 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.073 - ANY                    - LEFT  - Element not emitted: 4 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.073 - ANY                    - RIGHT - Element not emitted: 3 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.073 - ANY                    - LEFT  - Element not emitted: 5 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.073 - ANY                    - RIGHT - Element not emitted: 4 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.073 - ANY                    - LEFT  - Element not emitted: 6 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.074 - ANY                    - RIGHT - Element not emitted: 5 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.074 - ANY                    - LEFT  - Element not emitted: 7 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.074 - ANY                    - RIGHT - Element not emitted: 6 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.074 - ANY                    - LEFT  - Element not emitted: 8 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.075 - ANY                    - RIGHT - Element not emitted: 7 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.075 - ANY                    - LEFT  - Element not emitted: 9 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.075 - ANY                    - RIGHT - Element not emitted: 8 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.075 - ANY                    - LEFT  - Element not emitted: 10 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.076 - ANY                    - RIGHT - Element not emitted: 9 - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.080 - WRITE_BUFFER_RECEIVED  - RIGHT - Write buffer received [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.080 - WRITE_BUFFER_RECEIVED  - LEFT  - Write buffer received [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] - LWB=0 - RWB=0 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.081 - POLL_READ              - RIGHT - Polled read number 1 - LWB=10 - RWB=10 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.081 - POLL_READ              - LEFT  - Polled read number 1 - LWB=10 - RWB=10 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.082 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [11, 12, 13, 14, 15, 16, 17, 18, 19, 20] - LWB=10 - RWB=10 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.082 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [10, 11, 12, 13, 14, 15, 16, 17, 18, 19] - LWB=10 - RWB=10 - LRB=50 - RRB=50 - LR=0 - RR=0
+00:28:04.082 - ANY                    - RIGHT - Element not emitted: 16 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.082 - ANY                    - LEFT  - Element not emitted: 16 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.083 - ANY                    - LEFT  - Element not emitted: 17 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.083 - ANY                    - RIGHT - Element not emitted: 17 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.083 - ANY                    - LEFT  - Element not emitted: 18 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.084 - ANY                    - RIGHT - Element not emitted: 18 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.084 - ANY                    - LEFT  - Element not emitted: 19 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.084 - ANY                    - LEFT  - Element not emitted: 20 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.084 - ANY                    - RIGHT - Element not emitted: 19 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.085 - ANY                    - LEFT  - Element not emitted: 11 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.085 - ANY                    - RIGHT - Element not emitted: 10 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.085 - ANY                    - RIGHT - Element not emitted: 11 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.085 - ANY                    - LEFT  - Element not emitted: 12 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.086 - ANY                    - RIGHT - Element not emitted: 12 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.086 - ANY                    - LEFT  - Element not emitted: 13 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.086 - ANY                    - LEFT  - Element not emitted: 14 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.086 - ANY                    - RIGHT - Element not emitted: 13 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.087 - ANY                    - LEFT  - Element not emitted: 15 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.087 - ANY                    - RIGHT - Element not emitted: 14 - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.087 - WRITE_BUFFER_RECEIVED  - RIGHT - Write buffer received [16, 17, 18, 19, 20, 11, 12, 13, 14, 15] - LWB=10 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.087 - ANY                    - RIGHT - Element not emitted: 15 - LWB=10 - RWB=20 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.087 - POLL_READ              - LEFT  - Polled read number 2 - LWB=10 - RWB=20 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.088 - WRITE_BUFFER_RECEIVED  - LEFT  - Write buffer received [16, 17, 18, 19, 10, 11, 12, 13, 14, 15] - LWB=10 - RWB=20 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.088 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [21, 22, 23, 24, 25, 26, 27, 28, 29, 30] - LWB=20 - RWB=20 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.088 - POLL_READ              - RIGHT - Polled read number 2 - LWB=20 - RWB=20 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.088 - ANY                    - LEFT  - Element not emitted: 21 - LWB=20 - RWB=20 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.089 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [20, 21, 22, 23, 24, 25, 26, 27, 28, 29] - LWB=20 - RWB=20 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.089 - ANY                    - LEFT  - Element not emitted: 22 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.089 - ANY                    - LEFT  - Element not emitted: 23 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.089 - ANY                    - RIGHT - Element not emitted: 20 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.089 - ANY                    - RIGHT - Element not emitted: 21 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.089 - ANY                    - LEFT  - Element not emitted: 24 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.090 - ANY                    - LEFT  - Element not emitted: 25 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.090 - ANY                    - RIGHT - Element not emitted: 22 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.090 - ANY                    - LEFT  - Element not emitted: 26 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.090 - ANY                    - RIGHT - Element not emitted: 23 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.091 - ANY                    - LEFT  - Element not emitted: 27 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.091 - ANY                    - RIGHT - Element not emitted: 24 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.091 - ANY                    - LEFT  - Element not emitted: 28 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.091 - ANY                    - LEFT  - Element not emitted: 29 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.091 - ANY                    - RIGHT - Element not emitted: 25 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.091 - ANY                    - LEFT  - Element not emitted: 30 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.092 - ANY                    - RIGHT - Element not emitted: 26 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.092 - WRITE_BUFFER_RECEIVED  - RIGHT - Write buffer received [21, 22, 23, 24, 25, 26, 27, 28, 29, 30] - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.092 - ANY                    - RIGHT - Element not emitted: 27 - LWB=20 - RWB=20 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.092 - ANY                    - RIGHT - Element not emitted: 28 - LWB=20 - RWB=30 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.092 - POLL_READ              - LEFT  - Polled read number 3 - LWB=20 - RWB=30 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.093 - ANY                    - RIGHT - Element not emitted: 29 - LWB=20 - RWB=30 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.093 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [31, 32, 33, 34, 35, 36, 37, 38, 39, 40] - LWB=20 - RWB=30 - LRB=30 - RRB=30 - LR=0 - RR=0
+00:28:04.093 - WRITE_BUFFER_RECEIVED  - LEFT  - Write buffer received [20, 21, 22, 23, 24, 25, 26, 27, 28, 29] - LWB=20 - RWB=30 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.093 - ANY                    - LEFT  - Element not emitted: 32 - LWB=20 - RWB=30 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.094 - ANY                    - LEFT  - Element not emitted: 33 - LWB=30 - RWB=30 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.094 - POLL_READ              - RIGHT - Polled read number 3 - LWB=30 - RWB=30 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.094 - ANY                    - LEFT  - Element not emitted: 34 - LWB=30 - RWB=30 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.094 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [30, 31, 32, 33, 34, 35, 36, 37, 38, 39] - LWB=30 - RWB=30 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.095 - ANY                    - LEFT  - Element not emitted: 35 - LWB=30 - RWB=30 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.095 - ANY                    - LEFT  - Element not emitted: 36 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
+00:28:04.095 - ANY                    - RIGHT - Element not emitted: 32 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
+00:28:04.096 - ANY                    - LEFT  - Element not emitted: 37 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
+00:28:04.096 - ANY                    - RIGHT - Element not emitted: 33 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
+00:28:04.096 - ANY                    - LEFT  - Element not emitted: 38 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
+00:28:04.096 - ANY                    - RIGHT - Element not emitted: 34 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
+00:28:04.097 - ANY                    - RIGHT - Element not emitted: 35 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
+00:28:04.097 - ANY                    - LEFT  - Element not emitted: 39 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
+00:28:04.097 - ANY                    - LEFT  - Element not emitted: 40 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
+00:28:04.097 - ANY                    - RIGHT - Element not emitted: 36 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
+00:28:04.097 - ANY                    - LEFT  - Element not emitted: 31 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
+00:28:04.097 - ANY                    - RIGHT - Element not emitted: 37 - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
+00:28:04.098 - WRITE_BUFFER_RECEIVED  - RIGHT - Write buffer received [32, 33, 34, 35, 36, 37, 38, 39, 40, 31] - LWB=30 - RWB=30 - LRB=20 - RRB=20 - LR=0 - RR=0
+00:28:04.098 - ANY                    - RIGHT - Element not emitted: 38 - LWB=30 - RWB=40 - LRB=20 - RRB=20 - LR=0 - RR=0
+00:28:04.098 - POLL_READ              - LEFT  - Polled read number 4 - LWB=30 - RWB=40 - LRB=20 - RRB=20 - LR=0 - RR=0
+00:28:04.098 - ANY                    - RIGHT - Element not emitted: 39 - LWB=30 - RWB=40 - LRB=20 - RRB=20 - LR=0 - RR=0
+00:28:04.098 - ANY                    - RIGHT - Element not emitted: 30 - LWB=30 - RWB=40 - LRB=20 - RRB=20 - LR=0 - RR=0
+00:28:04.098 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [41, 42, 43, 44, 45, 46, 47, 48, 49, 50] - LWB=30 - RWB=40 - LRB=20 - RRB=20 - LR=0 - RR=0
+00:28:04.099 - ANY                    - RIGHT - Element not emitted: 31 - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
+00:28:04.099 - ANY                    - LEFT  - Element not emitted: 48 - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
+00:28:04.099 - WRITE_BUFFER_IS_FULL   - LEFT  -  - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
+00:28:04.099 - ANY                    - LEFT  - Element not emitted: 49 - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
+00:28:04.100 - ANY                    - LEFT  - Element not emitted: 50 - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
+00:28:04.100 - ANY                    - LEFT  - Element not emitted: 41 - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
+00:28:04.100 - ANY                    - LEFT  - Element not emitted: 42 - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
+00:28:04.101 - TRIGGER                - LEFT  - Trigger IT_WOULD_BE_BETTER_TO_WRITE moved to state WAITING_FOR_SYNCHRONIZER - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
+00:28:04.101 - ANY                    - LEFT  - Element not emitted: 43 - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
+00:28:04.102 - ANY                    - LEFT  - Element not emitted: 44 - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
+00:28:04.102 - BUFFER_REQUESTED       - LEFT  - New block with [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
+00:28:04.102 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
+00:28:04.102 - ANY                    - LEFT  - Element not emitted: 45 - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
+00:28:04.102 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
+00:28:04.102 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [51, 52, 53, 54, 55, 56, 57, 58, 59, 60] - LWB=30 - RWB=40 - LRB=10 - RRB=20 - LR=0 - RR=0
+00:28:04.102 - ANY                    - LEFT  - Element not emitted: 46 - LWB=30 - RWB=40 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.103 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=30 - RWB=40 - LRB=0 - RRB=30 - LR=0 - RR=0
+00:28:04.103 - ANY                    - LEFT  - Element not emitted: 47 - LWB=30 - RWB=40 - LRB=0 - RRB=30 - LR=0 - RR=0
+00:28:04.103 - ANY                    - LEFT  - Element not emitted: 51 - LWB=30 - RWB=40 - LRB=0 - RRB=30 - LR=0 - RR=0
+00:28:04.103 - ANY                    - LEFT  - Element not emitted: 52 - LWB=30 - RWB=40 - LRB=0 - RRB=30 - LR=0 - RR=0
+00:28:04.103 - WRITE_BUFFER_IS_FULL   - RIGHT -  - LWB=30 - RWB=40 - LRB=0 - RRB=30 - LR=0 - RR=0
+00:28:04.104 - ANY                    - LEFT  - Element not emitted: 53 - LWB=30 - RWB=40 - LRB=0 - RRB=30 - LR=0 - RR=0
+00:28:04.103 - BUFFER_REQUESTED       - LEFT  - New block with [70, 71, 72, 73, 74, 75, 76, 77, 78, 79] - LWB=30 - RWB=40 - LRB=0 - RRB=30 - LR=0 - RR=0
+00:28:04.105 - ANY                    - LEFT  - Element not emitted: 54 - LWB=30 - RWB=40 - LRB=0 - RRB=30 - LR=0 - RR=0
+00:28:04.105 - TRIGGER                - RIGHT - Trigger IT_WOULD_BE_BETTER_TO_WRITE moved to state WAITING_FOR_SYNCHRONIZER - LWB=30 - RWB=40 - LRB=0 - RRB=30 - LR=0 - RR=0
+00:28:04.105 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [70, 71, 72, 73, 74, 75, 76, 77, 78, 79] - LWB=30 - RWB=40 - LRB=0 - RRB=30 - LR=0 - RR=0
+00:28:04.105 - ANY                    - LEFT  - Element not emitted: 55 - LWB=30 - RWB=40 - LRB=0 - RRB=30 - LR=0 - RR=0
+00:28:04.106 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=40 - LRB=0 - RRB=40 - LR=0 - RR=0
+00:28:04.106 - ANY                    - LEFT  - Element not emitted: 56 - LWB=30 - RWB=40 - LRB=0 - RRB=40 - LR=0 - RR=0
+00:28:04.106 - BUFFER_REQUESTED       - RIGHT - New block with [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=30 - RWB=40 - LRB=0 - RRB=40 - LR=0 - RR=0
+00:28:04.107 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [40, 41, 42, 43, 44, 45, 46, 47, 48, 49] - LWB=30 - RWB=40 - LRB=0 - RRB=40 - LR=0 - RR=0
+00:28:04.107 - ANY                    - LEFT  - Element not emitted: 57 - LWB=30 - RWB=40 - LRB=0 - RRB=30 - LR=0 - RR=0
+00:28:04.106 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=30 - RWB=40 - LRB=0 - RRB=30 - LR=0 - RR=0
+00:28:04.107 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=30 - RWB=40 - LRB=0 - RRB=30 - LR=0 - RR=0
+00:28:04.107 - ANY                    - RIGHT - Element not emitted: 48 - LWB=30 - RWB=40 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.107 - ANY                    - LEFT  - Element not emitted: 58 - LWB=30 - RWB=40 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.107 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=30 - RWB=40 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.107 - BUFFER_REQUESTED       - LEFT  - New block with [80, 81, 82, 83, 84, 85, 86, 87, 88, 89] - LWB=30 - RWB=40 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.107 - ANY                    - RIGHT - Element not emitted: 49 - LWB=30 - RWB=40 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.107 - ANY                    - LEFT  - Element not emitted: 59 - LWB=30 - RWB=40 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.108 - BUFFER_REQUESTED       - RIGHT - New block with [71, 72, 73, 74, 75, 76, 77, 78, 79, 80] - LWB=30 - RWB=40 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.108 - ANY                    - RIGHT - Element not emitted: 40 - LWB=30 - RWB=40 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.108 - ANY                    - LEFT  - Element not emitted: 60 - LWB=30 - RWB=40 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.108 - ANY                    - RIGHT - Element not emitted: 41 - LWB=30 - RWB=40 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.108 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [71, 72, 73, 74, 75, 76, 77, 78, 79, 80] - LWB=30 - RWB=40 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.111 - WRITE_BUFFER_IS_FULL   - RIGHT -  - LWB=30 - RWB=40 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.111 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [80, 81, 82, 83, 84, 85, 86, 87, 88, 89] - LWB=30 - RWB=40 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.111 - ANY                    - RIGHT - Element not emitted: 42 - LWB=30 - RWB=40 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.111 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=30 - RWB=40 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.112 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=30 - RWB=40 - LRB=20 - RRB=40 - LR=0 - RR=0
+00:28:04.112 - ANY                    - RIGHT - Element not emitted: 43 - LWB=30 - RWB=40 - LRB=20 - RRB=40 - LR=0 - RR=0
+00:28:04.112 - BUFFER_REQUESTED       - RIGHT - New block with [81, 82, 83, 84, 85, 86, 87, 88, 89, 90] - LWB=30 - RWB=40 - LRB=20 - RRB=40 - LR=0 - RR=0
+00:28:04.112 - ANY                    - RIGHT - Element not emitted: 44 - LWB=30 - RWB=40 - LRB=20 - RRB=40 - LR=0 - RR=0
+00:28:04.112 - BUFFER_REQUESTED       - LEFT  - New block with [90, 91, 92, 93, 94, 95, 96, 97, 98, 99] - LWB=30 - RWB=40 - LRB=20 - RRB=40 - LR=0 - RR=0
+00:28:04.113 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [81, 82, 83, 84, 85, 86, 87, 88, 89, 90] - LWB=30 - RWB=40 - LRB=20 - RRB=40 - LR=0 - RR=0
+00:28:04.113 - ANY                    - RIGHT - Element not emitted: 45 - LWB=30 - RWB=40 - LRB=20 - RRB=40 - LR=0 - RR=0
+00:28:04.113 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [90, 91, 92, 93, 94, 95, 96, 97, 98, 99] - LWB=30 - RWB=40 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.113 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=30 - RWB=40 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.113 - ANY                    - RIGHT - Element not emitted: 46 - LWB=30 - RWB=40 - LRB=30 - RRB=50 - LR=0 - RR=0
+00:28:04.113 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=30 - RWB=40 - LRB=30 - RRB=50 - LR=0 - RR=0
+00:28:04.113 - ANY                    - RIGHT - Element not emitted: 47 - LWB=30 - RWB=40 - LRB=30 - RRB=50 - LR=0 - RR=0
+00:28:04.113 - BUFFER_REQUESTED       - RIGHT - New block with [91, 92, 93, 94, 95, 96, 97, 98, 99, 100] - LWB=30 - RWB=40 - LRB=30 - RRB=50 - LR=0 - RR=0
+00:28:04.114 - WRITE_BUFFER_IS_FULL   - LEFT  -  - LWB=30 - RWB=40 - LRB=30 - RRB=50 - LR=0 - RR=0
+00:28:04.114 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [91, 92, 93, 94, 95, 96, 97, 98, 99, 100] - LWB=30 - RWB=40 - LRB=30 - RRB=50 - LR=0 - RR=0
+00:28:04.114 - TRIGGER                - RIGHT - Trigger SYNC_REQUESTED moved to state SYNCHRONIZATION_CONFLICT - LWB=30 - RWB=40 - LRB=30 - RRB=50 - LR=0 - RR=0
+00:28:04.114 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=30 - RWB=40 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.114 - ANY                    - LEFT  - Mark as depleted - LWB=30 - RWB=40 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.114 - ANY                    - RIGHT - Mark as depleted - LWB=30 - RWB=40 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.117 - TRIGGER                - LEFT  - Trigger SYNC_REQUESTED moved to state SYNCHRONIZATION_CONFLICT - LWB=30 - RWB=40 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.119 - TRIGGER                - LEFT  - Trigger CONFLICT_SOLVED_AS_SYNCHRONIZEE moved to state SYNCHRONIZEE - LWB=30 - RWB=40 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.121 - WRITE_BUFFER_TRIGGER   - LEFT  - WB Trigger FREEZE moved to state FROZEN - LWB=30 - RWB=40 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.122 - TRIGGER                - RIGHT - Trigger SYNC_ACCEPTED moved to state SYNCHRONIZER - LWB=30 - RWB=40 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.124 - WRITE_BUFFER_TRIGGER   - RIGHT - WB Trigger FREEZE moved to state FROZEN - LWB=30 - RWB=40 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.127 - SYNCHRONIZATION        - RIGHT - Synchronizing own [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40] with other's [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40] - LWB=30 - RWB=40 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.131 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 0 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.132 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 1 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.133 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 2 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.133 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 3 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.133 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 4 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.134 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 5 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.134 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 6 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.135 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 7 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.135 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 8 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.136 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 9 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.136 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 10 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.137 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 11 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.137 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 12 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.137 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 13 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.138 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 14 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.138 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 15 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.138 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 16 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.139 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 17 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.139 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 18 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.139 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 19 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.139 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 20 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.140 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 21 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.140 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 22 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.140 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 23 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.140 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 24 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.141 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 25 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.141 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 26 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.141 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 27 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.142 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 28 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.142 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 29 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.142 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 30 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.143 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 31 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.143 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 32 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.143 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 33 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.144 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 34 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.145 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 35 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.146 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 36 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.146 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 37 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.146 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 38 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.146 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 39 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.147 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 40 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.148 - TRIGGER                - LEFT  - Trigger SYNC_FINISHED moved to state WRITING - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.149 - TRIGGER                - RIGHT - Trigger SYNC_FINISHED moved to state WRITING - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.149 - WRITE_BUFFER_TRIGGER   - LEFT  - WB Trigger UNFREEZE moved to state ACCEPT_NEW - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.150 - TRIGGER                - LEFT  - Trigger WRITE_BUFFER_DEPLETED moved to state READING - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.150 - WRITE_BUFFER_TRIGGER   - RIGHT - WB Trigger UNFREEZE moved to state ACCEPT_NEW - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.150 - POLL_READ              - LEFT  - Polled read number 0 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.150 - BUFFER_REQUESTED       - LEFT  - New block with [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.150 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.150 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.151 - TRIGGER                - RIGHT - Trigger WRITE_BUFFER_DEPLETED moved to state READING - LWB=0 - RWB=0 - LRB=30 - RRB=50 - LR=0 - RR=0
+00:28:04.151 - ANY                    - LEFT  - Element not emitted: 64 - LWB=0 - RWB=0 - LRB=30 - RRB=50 - LR=0 - RR=0
+00:28:04.151 - BUFFER_REQUESTED       - RIGHT - New block with [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=0 - RWB=0 - LRB=30 - RRB=50 - LR=0 - RR=0
+00:28:04.151 - ANY                    - LEFT  - Element not emitted: 65 - LWB=0 - RWB=0 - LRB=30 - RRB=50 - LR=0 - RR=0
+00:28:04.151 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=30 - RRB=50 - LR=0 - RR=0
+00:28:04.151 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=0 - RWB=0 - LRB=30 - RRB=50 - LR=0 - RR=0
+00:28:04.151 - ANY                    - LEFT  - Element not emitted: 66 - LWB=0 - RWB=0 - LRB=30 - RRB=50 - LR=0 - RR=0
+00:28:04.152 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.152 - ANY                    - LEFT  - Element not emitted: 67 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.152 - ANY                    - LEFT  - Element not emitted: 68 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.152 - ANY                    - LEFT  - Element not emitted: 69 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.152 - ANY                    - LEFT  - Element not emitted: 70 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.153 - ANY                    - LEFT  - Element not emitted: 61 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.153 - ANY                    - LEFT  - Element not emitted: 62 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.151 - POLL_READ              - RIGHT - Polled read number 0 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.153 - ANY                    - LEFT  - Element not emitted: 63 - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.153 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [50, 51, 52, 53, 54, 55, 56, 57, 58, 59] - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.153 - WRITE_BUFFER_RECEIVED  - RIGHT - Write buffer received [64, 65, 66, 67, 68, 69, 70, 61, 62, 63] - LWB=0 - RWB=0 - LRB=40 - RRB=50 - LR=0 - RR=0
+00:28:04.154 - POLL_READ              - LEFT  - Polled read number 1 - LWB=0 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.154 - ANY                    - RIGHT - Element not emitted: 50 - LWB=0 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.154 - ANY                    - RIGHT - Element not emitted: 51 - LWB=0 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.154 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [71, 72, 73, 74, 75, 76, 77, 78, 79, 80] - LWB=0 - RWB=10 - LRB=40 - RRB=40 - LR=0 - RR=0
+00:28:04.154 - ANY                    - RIGHT - Element not emitted: 52 - LWB=0 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.154 - ANY                    - LEFT  - Element not emitted: 80 - LWB=0 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.155 - ANY                    - RIGHT - Element not emitted: 53 - LWB=0 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.155 - ANY                    - LEFT  - Element not emitted: 71 - LWB=0 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.155 - ANY                    - RIGHT - Element not emitted: 54 - LWB=0 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.155 - ANY                    - LEFT  - Element not emitted: 72 - LWB=0 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.155 - ANY                    - LEFT  - Element not emitted: 73 - LWB=0 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.155 - ANY                    - RIGHT - Element not emitted: 55 - LWB=0 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.155 - ANY                    - LEFT  - Element not emitted: 74 - LWB=0 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.155 - ANY                    - RIGHT - Element not emitted: 56 - LWB=0 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.156 - ANY                    - LEFT  - Element not emitted: 75 - LWB=0 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.156 - ANY                    - LEFT  - Element not emitted: 76 - LWB=0 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.156 - ANY                    - RIGHT - Element not emitted: 57 - LWB=0 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.156 - ANY                    - LEFT  - Element not emitted: 77 - LWB=0 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.156 - ANY                    - RIGHT - Element not emitted: 58 - LWB=0 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.156 - ANY                    - LEFT  - Element not emitted: 78 - LWB=0 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.156 - ANY                    - RIGHT - Element not emitted: 59 - LWB=0 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.156 - ANY                    - LEFT  - Element not emitted: 79 - LWB=0 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.157 - WRITE_BUFFER_RECEIVED  - RIGHT - Write buffer received [80, 71, 72, 73, 74, 75, 76, 77, 78, 79] - LWB=0 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.157 - WRITE_BUFFER_RECEIVED  - LEFT  - Write buffer received [50, 51, 52, 53, 54, 55, 56, 57, 58, 59] - LWB=0 - RWB=10 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.157 - POLL_READ              - RIGHT - Polled read number 1 - LWB=10 - RWB=20 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.157 - POLL_READ              - LEFT  - Polled read number 2 - LWB=10 - RWB=20 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.158 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [81, 82, 83, 84, 85, 86, 87, 88, 89, 90] - LWB=10 - RWB=20 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.158 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=10 - RWB=20 - LRB=30 - RRB=40 - LR=0 - RR=0
+00:28:04.158 - ANY                    - RIGHT - Element not emitted: 64 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.158 - ANY                    - LEFT  - Element not emitted: 81 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.159 - ANY                    - LEFT  - Element not emitted: 82 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.159 - ANY                    - RIGHT - Element not emitted: 65 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.159 - ANY                    - LEFT  - Element not emitted: 83 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.159 - ANY                    - RIGHT - Element not emitted: 66 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.159 - ANY                    - LEFT  - Element not emitted: 84 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.159 - ANY                    - RIGHT - Element not emitted: 67 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.159 - ANY                    - LEFT  - Element not emitted: 85 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.159 - ANY                    - RIGHT - Element not emitted: 68 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.160 - ANY                    - LEFT  - Element not emitted: 86 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.160 - ANY                    - LEFT  - Element not emitted: 87 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.160 - ANY                    - RIGHT - Element not emitted: 69 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.160 - ANY                    - LEFT  - Element not emitted: 88 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.160 - ANY                    - RIGHT - Element not emitted: 60 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.160 - ANY                    - LEFT  - Element not emitted: 89 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.160 - ANY                    - LEFT  - Element not emitted: 90 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.160 - ANY                    - RIGHT - Element not emitted: 61 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.161 - WRITE_BUFFER_RECEIVED  - RIGHT - Write buffer received [81, 82, 83, 84, 85, 86, 87, 88, 89, 90] - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.161 - ANY                    - RIGHT - Element not emitted: 62 - LWB=10 - RWB=20 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.161 - POLL_READ              - LEFT  - Polled read number 3 - LWB=10 - RWB=30 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.161 - ANY                    - RIGHT - Element not emitted: 63 - LWB=10 - RWB=30 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.161 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [91, 92, 93, 94, 95, 96, 97, 98, 99, 100] - LWB=10 - RWB=30 - LRB=20 - RRB=30 - LR=0 - RR=0
+00:28:04.161 - WRITE_BUFFER_IS_FULL   - LEFT  -  - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.162 - ANY                    - LEFT  - Element not emitted: 96 - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.162 - ANY                    - LEFT  - Element not emitted: 97 - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.162 - ANY                    - LEFT  - Element not emitted: 98 - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.162 - ANY                    - LEFT  - Element not emitted: 99 - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.162 - TRIGGER                - LEFT  - Trigger IT_WOULD_BE_BETTER_TO_WRITE moved to state WAITING_FOR_SYNCHRONIZER - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.163 - ANY                    - LEFT  - Element not emitted: 100 - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.163 - ANY                    - LEFT  - Element not emitted: 91 - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.163 - POLL_READ              - LEFT  - Polled read number 0 - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.163 - BUFFER_REQUESTED       - LEFT  - New block with [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.163 - ANY                    - LEFT  - Element not emitted: 92 - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.163 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.163 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.163 - ANY                    - LEFT  - Element not emitted: 93 - LWB=10 - RWB=30 - LRB=0 - RRB=30 - LR=0 - RR=0
+00:28:04.163 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=10 - RWB=30 - LRB=0 - RRB=40 - LR=0 - RR=0
+00:28:04.163 - ANY                    - LEFT  - Element not emitted: 64 - LWB=10 - RWB=30 - LRB=0 - RRB=40 - LR=0 - RR=0
+00:28:04.164 - ANY                    - LEFT  - Element not emitted: 94 - LWB=10 - RWB=30 - LRB=0 - RRB=40 - LR=0 - RR=0
+00:28:04.164 - ANY                    - LEFT  - Element not emitted: 65 - LWB=10 - RWB=30 - LRB=0 - RRB=40 - LR=0 - RR=0
+00:28:04.164 - ANY                    - LEFT  - Element not emitted: 95 - LWB=10 - RWB=30 - LRB=0 - RRB=40 - LR=0 - RR=0
+00:28:04.164 - ANY                    - LEFT  - Element not emitted: 66 - LWB=10 - RWB=30 - LRB=0 - RRB=40 - LR=0 - RR=0
+00:28:04.164 - WRITE_BUFFER_IS_FULL   - RIGHT -  - LWB=10 - RWB=30 - LRB=0 - RRB=40 - LR=0 - RR=0
+00:28:04.164 - ANY                    - LEFT  - Element not emitted: 67 - LWB=10 - RWB=30 - LRB=0 - RRB=40 - LR=0 - RR=0
+00:28:04.165 - ANY                    - LEFT  - Element not emitted: 68 - LWB=10 - RWB=30 - LRB=0 - RRB=40 - LR=0 - RR=0
+00:28:04.165 - ANY                    - LEFT  - Element not emitted: 69 - LWB=10 - RWB=30 - LRB=0 - RRB=40 - LR=0 - RR=0
+00:28:04.165 - ANY                    - LEFT  - Element not emitted: 70 - LWB=10 - RWB=30 - LRB=0 - RRB=40 - LR=0 - RR=0
+00:28:04.165 - TRIGGER                - RIGHT - Trigger IT_WOULD_BE_BETTER_TO_WRITE moved to state WAITING_FOR_SYNCHRONIZER - LWB=10 - RWB=30 - LRB=0 - RRB=40 - LR=0 - RR=0
+00:28:04.165 - ANY                    - LEFT  - Element not emitted: 61 - LWB=10 - RWB=30 - LRB=0 - RRB=40 - LR=0 - RR=0
+00:28:04.165 - POLL_READ              - RIGHT - Polled read number 0 - LWB=10 - RWB=30 - LRB=0 - RRB=40 - LR=0 - RR=0
+00:28:04.165 - ANY                    - LEFT  - Element not emitted: 62 - LWB=10 - RWB=30 - LRB=0 - RRB=40 - LR=0 - RR=0
+00:28:04.165 - BUFFER_REQUESTED       - RIGHT - New block with [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=10 - RWB=30 - LRB=0 - RRB=40 - LR=0 - RR=0
+00:28:04.166 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [70, 71, 72, 73, 74, 75, 76, 77, 78, 79] - LWB=10 - RWB=30 - LRB=0 - RRB=40 - LR=0 - RR=0
+00:28:04.166 - ANY                    - LEFT  - Element not emitted: 63 - LWB=10 - RWB=30 - LRB=0 - RRB=40 - LR=0 - RR=0
+00:28:04.166 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=10 - RWB=30 - LRB=0 - RRB=40 - LR=0 - RR=0
+00:28:04.166 - ANY                    - RIGHT - Element not emitted: 70 - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.166 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.166 - WRITE_BUFFER_IS_FULL   - RIGHT -  - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.166 - ANY                    - RIGHT - Element not emitted: 71 - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.166 - ANY                    - RIGHT - Element not emitted: 72 - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.167 - ANY                    - RIGHT - Element not emitted: 73 - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.167 - ANY                    - RIGHT - Element not emitted: 74 - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.167 - ANY                    - RIGHT - Element not emitted: 75 - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.167 - ANY                    - RIGHT - Element not emitted: 76 - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.167 - ANY                    - RIGHT - Element not emitted: 77 - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.168 - ANY                    - RIGHT - Element not emitted: 78 - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.168 - ANY                    - RIGHT - Element not emitted: 79 - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.168 - TRIGGER                - RIGHT - Trigger SYNC_REQUESTED moved to state SYNCHRONIZATION_CONFLICT - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.168 - WRITE_BUFFER_IS_FULL   - LEFT  -  - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.170 - TRIGGER                - LEFT  - Trigger SYNC_REQUESTED moved to state SYNCHRONIZATION_CONFLICT - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.171 - TRIGGER                - LEFT  - Trigger CONFLICT_SOLVED_AS_SYNCHRONIZEE moved to state SYNCHRONIZEE - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.173 - WRITE_BUFFER_TRIGGER   - LEFT  - WB Trigger FREEZE moved to state FROZEN - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.174 - TRIGGER                - RIGHT - Trigger SYNC_ACCEPTED moved to state SYNCHRONIZER - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.175 - WRITE_BUFFER_TRIGGER   - RIGHT - WB Trigger FREEZE moved to state FROZEN - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.175 - SYNCHRONIZATION        - RIGHT - Synchronizing own [50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90] with other's [50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90] - LWB=10 - RWB=30 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.176 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 50 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.176 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 51 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.177 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 52 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.177 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 53 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.177 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 54 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.178 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 55 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.178 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 56 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.178 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 57 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.178 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 58 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.179 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 59 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.179 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 61 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.179 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 62 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.180 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 63 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.180 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 64 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.180 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 65 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.181 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 66 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.181 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 67 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.181 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 68 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.182 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 69 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.182 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 70 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.182 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 71 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.182 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 72 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.183 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 73 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.183 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 74 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.183 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 75 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.184 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 76 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.184 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 77 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.184 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 78 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.185 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 79 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.185 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 80 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.185 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 81 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.186 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 82 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.186 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 83 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.186 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 84 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.187 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 85 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.187 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 86 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.187 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 87 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.187 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 88 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.188 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 89 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.188 - ELEMENT_EMITTED        - RIGHT - Couple emitted with id 90 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.189 - TRIGGER                - RIGHT - Trigger SYNC_FINISHED moved to state WRITING - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.189 - TRIGGER                - LEFT  - Trigger SYNC_FINISHED moved to state WRITING - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.190 - WRITE_BUFFER_TRIGGER   - RIGHT - WB Trigger UNFREEZE moved to state ACCEPT_NEW - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.190 - WRITE_BUFFER_TRIGGER   - LEFT  - WB Trigger UNFREEZE moved to state ACCEPT_NEW - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.190 - TRIGGER                - RIGHT - Trigger WRITE_BUFFER_DEPLETED moved to state READING - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.191 - TRIGGER                - LEFT  - Trigger WRITE_BUFFER_DEPLETED moved to state READING - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.191 - POLL_READ              - RIGHT - Polled read number 0 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.191 - POLL_READ              - LEFT  - Polled read number 0 - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.191 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [80, 81, 82, 83, 84, 85, 86, 87, 88, 89] - LWB=0 - RWB=0 - LRB=10 - RRB=30 - LR=0 - RR=0
+00:28:04.191 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=0 - RWB=0 - LRB=10 - RRB=20 - LR=0 - RR=0
+00:28:04.192 - ANY                    - RIGHT - Element not emitted: 80 - LWB=0 - RWB=0 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.192 - ANY                    - LEFT  - Element not emitted: 64 - LWB=0 - RWB=0 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.192 - ANY                    - RIGHT - Element not emitted: 81 - LWB=0 - RWB=0 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.192 - ANY                    - LEFT  - Element not emitted: 65 - LWB=0 - RWB=0 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.192 - ANY                    - RIGHT - Element not emitted: 82 - LWB=0 - RWB=0 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.192 - ANY                    - LEFT  - Element not emitted: 66 - LWB=0 - RWB=0 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.192 - ANY                    - RIGHT - Element not emitted: 83 - LWB=0 - RWB=0 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.193 - ANY                    - LEFT  - Element not emitted: 67 - LWB=0 - RWB=0 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.193 - ANY                    - RIGHT - Element not emitted: 84 - LWB=0 - RWB=0 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.193 - ANY                    - LEFT  - Element not emitted: 68 - LWB=0 - RWB=0 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.193 - ANY                    - RIGHT - Element not emitted: 85 - LWB=0 - RWB=0 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.193 - ANY                    - LEFT  - Element not emitted: 69 - LWB=0 - RWB=0 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.193 - BUFFER_REQUESTED       - LEFT  - New block with [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=0 - RWB=0 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.193 - ANY                    - LEFT  - Element not emitted: 70 - LWB=0 - RWB=0 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.193 - ANY                    - RIGHT - Element not emitted: 86 - LWB=0 - RWB=0 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.194 - ANY                    - LEFT  - Element not emitted: 61 - LWB=0 - RWB=0 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.194 - READ_BUFFER_RECEIVED   - RIGHT - Read buffer received [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=0 - RWB=0 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.194 - ANY                    - RIGHT - Element not emitted: 87 - LWB=0 - RWB=0 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.194 - ANY                    - LEFT  - Element not emitted: 62 - LWB=0 - RWB=0 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.194 - ANY                    - LEFT  - OnNext subscribed, pre requestNext - LWB=0 - RWB=0 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.194 - ANY                    - RIGHT - Element not emitted: 88 - LWB=0 - RWB=0 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.194 - ANY                    - LEFT  - Element not emitted: 63 - LWB=0 - RWB=0 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.194 - ANY                    - RIGHT - Element not emitted: 89 - LWB=0 - RWB=0 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.194 - WRITE_BUFFER_RECEIVED  - RIGHT - Write buffer received [64, 65, 66, 67, 68, 69, 70, 61, 62, 63] - LWB=0 - RWB=0 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.194 - WRITE_BUFFER_RECEIVED  - LEFT  - Write buffer received [80, 81, 82, 83, 84, 85, 86, 87, 88, 89] - LWB=0 - RWB=0 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.195 - POLL_READ              - LEFT  - Polled read number 1 - LWB=10 - RWB=10 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.195 - POLL_READ              - RIGHT - Polled read number 1 - LWB=10 - RWB=10 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.195 - BUFFER_REQUESTED       - RIGHT - New block with [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=10 - RWB=10 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.195 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [90, 91, 92, 93, 94, 95, 96, 97, 98, 99] - LWB=10 - RWB=10 - LRB=0 - RRB=20 - LR=0 - RR=0
+00:28:04.195 - READ_BUFFER_RECEIVED   - LEFT  - Read buffer received [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=10 - RWB=10 - LRB=0 - RRB=10 - LR=0 - RR=0
+00:28:04.196 - ANY                    - RIGHT - Element not emitted: 96 - LWB=10 - RWB=10 - LRB=10 - RRB=10 - LR=0 - RR=0
+00:28:04.196 - ANY                    - RIGHT - OnNext subscribed, pre requestNext - LWB=10 - RWB=10 - LRB=10 - RRB=10 - LR=0 - RR=0
+00:28:04.196 - ANY                    - RIGHT - Element not emitted: 97 - LWB=10 - RWB=10 - LRB=10 - RRB=10 - LR=0 - RR=0
+00:28:04.196 - ANY                    - RIGHT - Element not emitted: 98 - LWB=10 - RWB=10 - LRB=10 - RRB=10 - LR=0 - RR=0
+00:28:04.196 - ANY                    - RIGHT - Element not emitted: 99 - LWB=10 - RWB=10 - LRB=10 - RRB=10 - LR=0 - RR=0
+00:28:04.197 - ANY                    - RIGHT - Element not emitted: 90 - LWB=10 - RWB=10 - LRB=10 - RRB=10 - LR=0 - RR=0
+00:28:04.197 - ANY                    - RIGHT - Element not emitted: 91 - LWB=10 - RWB=10 - LRB=10 - RRB=10 - LR=0 - RR=0
+00:28:04.197 - ANY                    - RIGHT - Element not emitted: 92 - LWB=10 - RWB=10 - LRB=10 - RRB=10 - LR=0 - RR=0
+00:28:04.198 - ANY                    - RIGHT - Element not emitted: 93 - LWB=10 - RWB=10 - LRB=10 - RRB=10 - LR=0 - RR=0
+00:28:04.198 - ANY                    - RIGHT - Element not emitted: 94 - LWB=10 - RWB=10 - LRB=10 - RRB=10 - LR=0 - RR=0
+00:28:04.198 - ANY                    - RIGHT - Element not emitted: 95 - LWB=10 - RWB=10 - LRB=10 - RRB=10 - LR=0 - RR=0
+00:28:04.199 - WRITE_BUFFER_RECEIVED  - LEFT  - Write buffer received [96, 97, 98, 99, 90, 91, 92, 93, 94, 95] - LWB=10 - RWB=10 - LRB=10 - RRB=10 - LR=0 - RR=0
+00:28:04.199 - POLL_READ              - RIGHT - Polled read number 2 - LWB=20 - RWB=10 - LRB=10 - RRB=10 - LR=0 - RR=0
+00:28:04.199 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=20 - RWB=10 - LRB=10 - RRB=10 - LR=0 - RR=0
+00:28:04.200 - ANY                    - RIGHT - Element not emitted: 64 - LWB=20 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.200 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,500000 - LWB=20 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.200 - ANY                    - RIGHT - Element not emitted: 65 - LWB=20 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.200 - ANY                    - RIGHT - Element not emitted: 66 - LWB=20 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.201 - ANY                    - RIGHT - Element not emitted: 67 - LWB=20 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.201 - ANY                    - RIGHT - Element not emitted: 68 - LWB=20 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.202 - ANY                    - RIGHT - Element not emitted: 69 - LWB=20 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.202 - ANY                    - RIGHT - Element not emitted: 60 - LWB=20 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.202 - ANY                    - RIGHT - Element not emitted: 61 - LWB=20 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.203 - ANY                    - RIGHT - Element not emitted: 62 - LWB=20 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.203 - ANY                    - RIGHT - Element not emitted: 63 - LWB=20 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.204 - WRITE_BUFFER_RECEIVED  - LEFT  - Write buffer received [64, 65, 66, 67, 68, 69, 60, 61, 62, 63] - LWB=20 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.204 - POLL_READ              - RIGHT - Polled read number 3 - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.205 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.205 - ANY                    - RIGHT - Element not emitted: 64 - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.205 - ANY                    - RIGHT - Element not emitted: 65 - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.206 - ANY                    - RIGHT - Element not emitted: 66 - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.206 - ANY                    - RIGHT - Element not emitted: 67 - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.206 - ANY                    - RIGHT - Element not emitted: 68 - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.207 - ANY                    - RIGHT - Element not emitted: 69 - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.207 - ANY                    - RIGHT - Element not emitted: 60 - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.207 - ANY                    - RIGHT - Element not emitted: 61 - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.208 - ANY                    - RIGHT - Element not emitted: 62 - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.208 - ANY                    - RIGHT - Element not emitted: 63 - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.209 - WRITE_BUFFER_RECEIVED  - LEFT  - Write buffer received [64, 65, 66, 67, 68, 69, 60, 61, 62, 63] - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.209 - POLL_READ              - RIGHT - Polled read number 4 - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.210 - READ_BUFFER_CONSUMED   - RIGHT - Read buffer consumed [60, 61, 62, 63, 64, 65, 66, 67, 68, 69] - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.211 - ANY                    - RIGHT - Element not emitted: 64 - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.212 - ANY                    - RIGHT - Element not emitted: 65 - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.212 - ANY                    - RIGHT - Element not emitted: 66 - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.213 - ANY                    - RIGHT - Element not emitted: 67 - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.213 - ANY                    - RIGHT - Element not emitted: 68 - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.213 - ANY                    - RIGHT - Element not emitted: 69 - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.213 - ANY                    - RIGHT - Element not emitted: 60 - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.214 - ANY                    - RIGHT - Element not emitted: 61 - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.214 - ANY                    - RIGHT - Element not emitted: 62 - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.214 - ANY                    - RIGHT - Element not emitted: 63 - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.214 - WRITE_BUFFER_RECEIVED  - LEFT  - Write buffer received [64, 65, 66, 67, 68, 69, 60, 61, 62, 63] - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.215 - POLL_READ              - RIGHT - Polled read number 5 - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.215 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.302 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.302 - READ_BUFFER_CONSUMED   - LEFT  - Read buffer consumed [61, 62, 63, 64, 65, 66, 67, 68, 69, 70] - LWB=30 - RWB=10 - LRB=10 - RRB=0 - LR=0 - RR=0
+00:28:04.303 - ANY                    - LEFT  - Element not emitted: 64 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.303 - ANY                    - LEFT  - Element not emitted: 65 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.303 - ANY                    - LEFT  - Element not emitted: 66 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.303 - ANY                    - LEFT  - Element not emitted: 67 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.304 - ANY                    - LEFT  - Element not emitted: 68 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.304 - ANY                    - LEFT  - Element not emitted: 69 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.304 - ANY                    - LEFT  - Element not emitted: 70 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.304 - ANY                    - LEFT  - Element not emitted: 61 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.304 - ANY                    - LEFT  - Element not emitted: 62 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.305 - ANY                    - LEFT  - Element not emitted: 63 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.305 - WRITE_BUFFER_RECEIVED  - RIGHT - Write buffer received [64, 65, 66, 67, 68, 69, 70, 61, 62, 63] - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.305 - POLL_READ              - LEFT  - Polled read number 1 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.306 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.317 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.318 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.406 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.407 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.418 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.419 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.509 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.509 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.520 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.520 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.611 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.612 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.621 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.622 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.716 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.717 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.722 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.722 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.818 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.818 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.826 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.826 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.924 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.924 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.928 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:04.928 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.026 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.026 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.033 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.034 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.131 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.131 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.135 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.135 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.236 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.237 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.238 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.238 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.340 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.340 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.341 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.341 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.442 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.442 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.443 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.443 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.546 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.546 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.547 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.547 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.650 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.650 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.651 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.651 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.752 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.752 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.753 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.753 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.858 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.858 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.859 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.859 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.964 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.964 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.965 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:05.965 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.068 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.068 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.069 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.069 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.174 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.174 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.175 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.175 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.276 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.277 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.277 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.277 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.382 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.382 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.383 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.383 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.488 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.488 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.489 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.489 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.592 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.592 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.593 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.593 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.696 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.696 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.697 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.698 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.802 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.802 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.802 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.802 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.907 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.907 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.908 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:06.908 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.011 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.011 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.012 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.012 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.118 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.118 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.119 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.119 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.220 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.220 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.220 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.220 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.320 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.321 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.321 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.322 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.425 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.425 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.426 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.426 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.529 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.529 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.530 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.530 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.634 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.634 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.634 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.634 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.735 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.735 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.736 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.736 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.840 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.841 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.841 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.842 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.942 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.943 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.943 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:07.943 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.045 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.045 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.045 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.045 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.149 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.149 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.150 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.150 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.251 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.251 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.252 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.252 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.357 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.357 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.358 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.358 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.459 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.459 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.460 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.460 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.564 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.564 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.565 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.565 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.668 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.668 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.669 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.669 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.770 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.770 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.770 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.771 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.875 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.875 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.876 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.876 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.982 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.982 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.983 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:08.983 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:09.084 - POLL_READ              - LEFT  - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:09.084 - POLL_READ              - RIGHT - Polled read number 0 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:09.084 - CHECK_CAPACITY         - LEFT  - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0
+00:28:09.084 - CHECK_CAPACITY         - RIGHT - Chose to READ with read=1,000000 and write=0,225000 - LWB=30 - RWB=10 - LRB=0 - RRB=0 - LR=0 - RR=0

@@ -162,6 +162,8 @@ package com.dovaleac.flowables.composition.strategy.instance.buffered.remnant;
 import static com.dovaleac.flowables.composition.strategy.instance.buffered.remnant.UnmatchedYetRemnantState.*;
 
 import com.github.oxo42.stateless4j.StateMachineConfig;
+import com.github.oxo42.stateless4j.triggers.TriggerWithParameters1;
+import io.reactivex.CompletableEmitter;
 
 import java.util.stream.Stream;
 
@@ -256,6 +258,14 @@ public class UnmatchedYetRemnantStateMachine {
         .onEntry(unmatchedYetRemnant::disableWriteBufferForFill)
         .onEntry(unmatchedYetRemnant::acceptSync)
         .permit(UnmatchedYetRemnantTrigger.SYNC_FINISHED, WRITING);
+
+    config
+        .configure(CLEAN_OFF)
+        .onEntryFrom(new TriggerWithParameters1<>(
+                UnmatchedYetRemnantTrigger.FLOWABLES_CONSUMED, CompletableEmitter.class),
+            unmatchedYetRemnant::cleanOff,
+            CompletableEmitter.class);
+
 
     return config;
   }

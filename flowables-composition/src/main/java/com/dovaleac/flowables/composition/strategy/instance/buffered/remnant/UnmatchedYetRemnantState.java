@@ -214,7 +214,8 @@ public enum UnmatchedYetRemnantState {
   WAITING_FOR_SYNCHRONIZEE(false, false, false),
   SYNCHRONIZEE(            false, false, false),
   REJECTED_SYNCHRONIZEE(   true,  false, false),
-  SYNCHRONIZATION_CONFLICT(false, false, false);
+  SYNCHRONIZATION_CONFLICT(false, false, false),
+  CLEAN_OFF(               false, false, false);
 
   private final boolean consumesWritingBuffer;
   private final boolean consumesReadingBuffer;
