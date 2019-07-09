@@ -202,127 +202,64 @@
  *    limitations under the License.
  */
 
-package com.dovaleac.flowables.composition.strategy.instance.buffered.buffer;
+package com.dovaleac.flowables.composition.strategy.instance.buffered.buffer.write;
 
-import com.dovaleac.flowables.composition.eventlog.Event;
-import com.dovaleac.flowables.composition.eventlog.EventManagerContext;
-import com.dovaleac.flowables.composition.eventlog.Side;
-import com.dovaleac.flowables.composition.strategy.instance.buffered.exceptions.WriteBufferFrozenException;
-import com.dovaleac.flowables.composition.strategy.instance.buffered.exceptions.WriteBufferFullException;
-import com.dovaleac.flowables.composition.strategy.instance.buffered.remnant.UnmatchedYetRemnantImpl;
-import com.github.oxo42.stateless4j.StateMachine;
+import com.github.oxo42.stateless4j.StateMachineConfig;
 
-import java.util.Map;
+import java.util.stream.Stream;
 
-public class WriteBuffer<T, OT, KT, LT, RT> {
+public class WriteBufferAcceptNewInputsStateMachine {
 
-  private final UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> remnant;
-  private final int maxElements;
-  private final Map<KT, T> buffer;
-  private final Side side;
+  private final WriteBuffer writeBuffer;
 
-  private final StateMachine<WriteBufferAcceptNewInputsState, WriteBufferAcceptNewInputsTrigger>
-      stateMachine =
-          new StateMachine<>(
-              WriteBufferAcceptNewInputsState.ACCEPT_NEW,
-              new WriteBufferAcceptNewInputsStateMachine(this).getConfig());
-  private final Object freezeLock = new Object();
-  private final Object capacityLock = new Object();
-
-  private boolean isFrozen = false;
-
-  public WriteBuffer(
-      UnmatchedYetRemnantImpl<T, OT, KT, LT, RT> remnant, int maxElements, Map<KT, T> initialMap,
-      Side side) {
-    this.remnant = remnant;
-    this.maxElements = maxElements;
-    this.buffer = initialMap;
-    this.side = side;
+  public WriteBufferAcceptNewInputsStateMachine(WriteBuffer writeBuffer) {
+    this.writeBuffer = writeBuffer;
   }
 
-  /**
-   * Adds a bunch of elements to the buffer. If the resulting elements exceed the expected capacity
-   * of the buffer, no problem with it, the next time that anyone intends to put more objects, it
-   * will fail
-   *
-   * @param elementsToAdd elements to be added to the buffer
-   * @throws WriteBufferFrozenException if the write buffer is in frozen state, it won't let put
-   *     elements
-   * @throws WriteBufferFullException if the buffer has more elements than expected, or the same
-   *     number, it won't let put elements
-   */
-  public void addToQueue(Map<KT, T> elementsToAdd)
-      throws WriteBufferFrozenException, WriteBufferFullException {
+  StateMachineConfig<WriteBufferAcceptNewInputsState, WriteBufferAcceptNewInputsTrigger>
+      getConfig() {
+    StateMachineConfig<WriteBufferAcceptNewInputsState, WriteBufferAcceptNewInputsTrigger> config =
+        new StateMachineConfig<>();
 
-    synchronized (freezeLock) {
-      if (isFrozen) {
-        throw new WriteBufferFrozenException();
-      }
-    }
-
-    if (isFull()) {
-      throw new WriteBufferFullException();
-    }
-
-    synchronized (capacityLock) {
-      buffer.putAll(elementsToAdd);
-    }
-  }
-
-  public void addForciblyToQueue(Map<KT, T> elementsToAdd) {
-    buffer.putAll(elementsToAdd);
-  }
-
-  // no need to erase them, the WriteBuffer element will be deleted itself
-  public Map<KT, T> getAllElements() {
-    return buffer;
-  }
-
-  public void clear() {
-    buffer.clear();
-  }
-
-  public void fire(WriteBufferAcceptNewInputsTrigger trigger) {
-    stateMachine.fire(trigger);
-  }
-
-  void itWouldBeBetterToWrite() {
-    remnant.itWouldBeBetterToWrite();
-  }
-
-  boolean isBufferFrozen() {
-    return remnant.isWriteBufferFrozen();
-  }
-
-  void freeze() {
-    synchronized (freezeLock) {
-      isFrozen = true;
-    }
-  }
-
-  void unfreeze() {
-    synchronized (freezeLock) {
-      isFrozen = false;
-    }
-  }
-
-  boolean isFull() {
-    synchronized (capacityLock) {
-      return buffer.size() >= maxElements;
-    }
-  }
-
-  public double getCapacity() {
-    synchronized (capacityLock) {
-      return (double) (maxElements - buffer.size()) / (double) maxElements;
-    }
-  }
+    Stream.of(WriteBufferAcceptNewInputsState.values())
+        .forEach(
+            state ->
+                Stream.of(WriteBufferAcceptNewInputsTrigger.values())
+                    .forEach(
+                        trigger ->
+                            config
+                                .configure(state)
+                                .onEntryFrom(
+                                    trigger,
+                                    () -> writeBuffer.logTriggerEvent(trigger, state))));
 
 
-  public void logTriggerEvent(WriteBufferAcceptNewInputsTrigger trigger,
-      WriteBufferAcceptNewInputsState state) {
-    EventManagerContext.getInstance()
-        .getEventManager()
-        .processEvent(Event.writeBufferTrigger(side, trigger.name(), state.name()));
+    config
+        .configure(WriteBufferAcceptNewInputsState.ACCEPT_NEW)
+        .onEntry(writeBuffer::unfreeze)
+        .permit(WriteBufferAcceptNewInputsTrigger.FREEZE, WriteBufferAcceptNewInputsState.FROZEN)
+        .permit(
+            WriteBufferAcceptNewInputsTrigger.MARK_AS_FULL, WriteBufferAcceptNewInputsState.FULL);
+
+    config
+        .configure(WriteBufferAcceptNewInputsState.FROZEN)
+        .onEntry(writeBuffer::freeze)
+        .permit(
+            WriteBufferAcceptNewInputsTrigger.UNFREEZE, WriteBufferAcceptNewInputsState.ACCEPT_NEW);
+
+    config
+        .configure(WriteBufferAcceptNewInputsState.FULL)
+        .onEntry(writeBuffer::itWouldBeBetterToWrite)
+        .permitDynamic(
+            WriteBufferAcceptNewInputsTrigger.MARK_AS_EMPTY,
+            () -> {
+              if (writeBuffer.isBufferFrozen()) {
+                return WriteBufferAcceptNewInputsState.FROZEN;
+              } else {
+                return WriteBufferAcceptNewInputsState.ACCEPT_NEW;
+              }
+            });
+
+    return config;
   }
 }

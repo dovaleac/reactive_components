@@ -202,11 +202,15 @@
  *    limitations under the License.
  */
 
-package com.dovaleac.flowables.composition.strategy.instance.buffered.buffer;
+package com.dovaleac.flowables.composition.strategy.instance.buffered.completion;
 
-public enum WriteBufferAcceptNewInputsTrigger {
-  FREEZE,
-  UNFREEZE,
-  MARK_AS_FULL,
-  MARK_AS_EMPTY
+import java.util.List;
+
+public interface CompletionGuarder {
+
+  void bothAreDepleted();
+
+  void markAsDepleted();
+
+  void notifyOtherGuarderThatThisOneIsDepleted();
 }

@@ -157,121 +157,59 @@
  * express or implied. See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.dovaleac.flowables.composition.strategy.instance.buffered;
+package com.dovaleac.flowables.composition.strategy.instance.buffered.buffer.read;
 
 import com.dovaleac.flowables.composition.eventlog.Event;
 import com.dovaleac.flowables.composition.eventlog.EventManagerContext;
 import com.dovaleac.flowables.composition.eventlog.Side;
-import com.dovaleac.flowables.composition.strategy.instance.BufferedJoinStrategyInstance;
-import com.dovaleac.flowables.composition.strategy.instance.buffered.completion.CompletionGuarder;
-import com.dovaleac.flowables.composition.strategy.instance.buffered.exceptions.ReadBufferNotAvailableForNewElementsException;
-import com.dovaleac.flowables.composition.strategy.instance.buffered.guarder.SubscriberStatusGuarder;
-import com.dovaleac.flowables.composition.strategy.instance.buffered.guarder.SubscriberStatusGuarderImpl;
-import com.dovaleac.flowables.composition.strategy.instance.buffered.remnant.UnmatchedYetRemnant;
-import com.dovaleac.flowables.composition.tuples.OptionalTuple;
-import io.reactivex.Completable;
-import io.reactivex.FlowableEmitter;
+import io.reactivex.Flowable;
+import io.reactivex.Maybe;
 import io.reactivex.functions.Function;
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingDeque;
 
-public class BufferedJoinStrategySubscriber<T, OT, KT, K2T, LT, RT> implements Subscriber<List<T>> {
+public class ReadBufferImpl<T, KT> implements ReadBuffer<T, KT> {
 
-  private final UnmatchedYetRemnant<?, T, OT, KT, LT, RT> ownRemnant;
-  private final UnmatchedYetRemnant<?, OT, T, KT, LT, RT> otherRemnant;
-  private final FlowableEmitter<OptionalTuple<LT, RT>> emitter;
-  private final SubscriberStatusGuarder<T> guarder;
-  private final boolean emitLeft;
-  private final boolean emitRight;
-  private final Side side;
   private final Function<T, KT> keyFunction;
-  private final CompletionGuarder completionGuarder;
-  private Subscription subscription;
+  private final BlockingQueue<List<T>> blockQueue;
+  private final double maxBlocks;
+  private final Side side;
 
-  public BufferedJoinStrategySubscriber(
-      UnmatchedYetRemnant<?, T, OT, KT, LT, RT> ownRemnant,
-      UnmatchedYetRemnant<?, OT, T, KT, LT, RT> otherRemnant,
-      FlowableEmitter<OptionalTuple<LT, RT>> emitter,
-      boolean emitLeft,
-      boolean emitRight,
-      Side side,
-      Function<T, KT> keyFunction,
-      CompletionGuarder completionGuarder) {
-    this.ownRemnant = ownRemnant;
-    this.otherRemnant = otherRemnant;
-    this.emitter = emitter;
-    this.emitLeft = emitLeft;
-    this.emitRight = emitRight;
-    this.side = side;
+  public ReadBufferImpl(Function<T, KT> keyFunction, int maxBlocks, Side side) {
     this.keyFunction = keyFunction;
-    guarder = new SubscriberStatusGuarderImpl<>(this, side);
-    this.completionGuarder = completionGuarder;
+    this.blockQueue = new LinkedBlockingDeque<>(maxBlocks);
+    this.maxBlocks = (double) maxBlocks;
+    this.side = side;
   }
 
   @Override
-  public void onSubscribe(Subscription subscription) {
-    subscription.request(1);
-    this.subscription = subscription;
+  public boolean push(List<T> otherTypeElements) {
+    boolean result = blockQueue.offer(otherTypeElements);
+    if (result) {
+      EventManagerContext.getInstance()
+          .getEventManager()
+          .processEvent(Event.pushToReadBuffer(side, otherTypeElements, keyFunction));
+    }
+    return result;
   }
 
   @Override
-  public void onNext(List<T> list) {
+  public double getCapacity() {
+    return (double) blockQueue.remainingCapacity() / maxBlocks;
+  }
+
+  @Override
+  public Maybe<Map<KT, T>> pull() {
+    List<T> polled = blockQueue.poll();
+    if (polled == null) {
+      return Maybe.empty();
+    }
     EventManagerContext.getInstance()
         .getEventManager()
-        .processEvent(Event.subscriberOnNext(side, list, keyFunction));
-    otherRemnant
-        .addToReadBuffer(list)
-        .subscribe(
-            () -> {
-              EventManagerContext.getInstance()
-                  .getEventManager()
-                  .processEvent(Event.any(side, "OnNext subscribed, pre requestNext"));
-              requestNext();
-            },
-            throwable -> {
-              EventManagerContext.getInstance()
-                  .getEventManager()
-                  .processEvent(Event.any(side, "Error reading " + throwable.getClass().getName()));
-              if (throwable instanceof ReadBufferNotAvailableForNewElementsException) {
-                guarder.commandToStopReading(list);
-              }
-            });
-  }
-
-  @Override
-  public void onError(Throwable throwable) {
-    emitter.onError(throwable);
-  }
-
-  @Override
-  public void onComplete() {
-    completionGuarder.markAsDepleted();
-  }
-
-  private void requestNext() {
-    subscription.request(1);
-  }
-
-  public void bothAreDepleted() {
-    List<Completable> completables = new ArrayList<>(2);
-
-    if (emitLeft) {
-      completables.add(ownRemnant.emitAllElements());
-    }
-    if (emitRight) {
-      completables.add(otherRemnant.emitAllElements());
-    }
-
-    ownRemnant
-        .cleanBuffers()
-        .andThen(Completable.merge(completables))
-        .subscribe(emitter::onComplete);
-  }
-
-  public SubscriberStatusGuarder<T> getGuarder() {
-    return guarder;
+        .processEvent(Event.pullFromReadBuffer(side, polled, keyFunction));
+    return Flowable.fromIterable(polled).toMap(keyFunction).toMaybe();
   }
 }

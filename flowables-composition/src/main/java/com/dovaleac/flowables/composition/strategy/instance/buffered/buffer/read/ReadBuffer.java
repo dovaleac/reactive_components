@@ -202,9 +202,17 @@
  *    limitations under the License.
  */
 
-package com.dovaleac.flowables.composition.strategy.instance.buffered.guarder;
+package com.dovaleac.flowables.composition.strategy.instance.buffered.buffer.read;
 
-public enum SubscriberStatusGuarderTrigger {
-  STOP_ON_READING,
-  RETAKE_READING
+import io.reactivex.Maybe;
+
+import java.util.List;
+import java.util.Map;
+
+public interface ReadBuffer<T, KT> {
+  boolean push(List<T> otherTypeElements);
+
+  Maybe<Map<KT, T>> pull();
+
+  double getCapacity();
 }

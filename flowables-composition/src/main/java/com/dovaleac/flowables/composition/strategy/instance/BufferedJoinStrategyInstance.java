@@ -208,6 +208,8 @@ import com.dovaleac.flowables.composition.eventlog.Side;
 import com.dovaleac.flowables.composition.scenario.Scenario;
 import com.dovaleac.flowables.composition.strategy.instance.buffered.BufferedJoinStrategySubscriber;
 import com.dovaleac.flowables.composition.strategy.instance.buffered.BufferedStrategyConfig;
+import com.dovaleac.flowables.composition.strategy.instance.buffered.completion.CompletionGuarder;
+import com.dovaleac.flowables.composition.strategy.instance.buffered.completion.CompletionGuarderImpl;
 import com.dovaleac.flowables.composition.strategy.instance.buffered.remnant.UnmatchedYetRemnantImpl;
 import com.dovaleac.flowables.composition.tuples.OptionalTuple;
 import io.reactivex.BackpressureStrategy;
@@ -272,22 +274,32 @@ public class BufferedJoinStrategyInstance<LT, RT, KT, K2T> implements JoinStrate
                   flowableEmitter);
           leftRemnant.setOther(rightRemnant);
           rightRemnant.setOther(leftRemnant);
+
+          CompletionGuarderImpl<LT, RT, KT, K2T, LT, RT> leftCompletionGuarder =
+              new CompletionGuarderImpl<>(Side.LEFT);
+          CompletionGuarderImpl<RT, LT, KT, K2T, LT, RT> rightCompletionGuarder =
+              new CompletionGuarderImpl<>(Side.RIGHT);
           BufferedJoinStrategySubscriber<LT, RT, KT, K2T, LT, RT> leftSubscriber =
               new BufferedJoinStrategySubscriber<>(
                   leftRemnant,
                   rightRemnant,
-                  this,
                   flowableEmitter,
                   scenario.getJoinType().allowsRightNulls(),
-                  scenario.getJoinType().allowsLeftNulls(), Side.LEFT, scenario.getLkFunction());
+                  scenario.getJoinType().allowsLeftNulls(), Side.LEFT, scenario.getLkFunction(),
+                  leftCompletionGuarder);
           BufferedJoinStrategySubscriber<RT, LT, KT, K2T, LT, RT> rightSubscriber =
               new BufferedJoinStrategySubscriber<>(
                   rightRemnant,
                   leftRemnant,
-                  null,
                   flowableEmitter,
                   scenario.getJoinType().allowsRightNulls(),
-                  scenario.getJoinType().allowsLeftNulls(), Side.RIGHT, scenario.getRkFunction());
+                  scenario.getJoinType().allowsLeftNulls(), Side.RIGHT, scenario.getRkFunction(),
+                  rightCompletionGuarder);
+          leftCompletionGuarder.setSubscriber(leftSubscriber);
+          rightCompletionGuarder.setSubscriber(rightSubscriber);
+          leftCompletionGuarder.setOtherCompletionGuarder(rightCompletionGuarder);
+          rightCompletionGuarder.setOtherCompletionGuarder(leftCompletionGuarder);
+
           leftRemnant.setGuarder(leftSubscriber.getGuarder());
           rightRemnant.setGuarder(rightSubscriber.getGuarder());
           CompletableFuture.runAsync(() -> leftBufferedFlowable.subscribe(leftSubscriber));

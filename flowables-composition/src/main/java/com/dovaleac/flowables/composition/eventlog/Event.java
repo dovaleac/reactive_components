@@ -56,6 +56,10 @@ public abstract class Event {
     return new SubscriberTriggerEvent(side, trigger, newState);
   }
 
+  public static Event completionTrigger(Side side, String trigger, String newState) {
+    return new CompletionTriggerEvent(side, trigger, newState);
+  }
+
   public static <T, KT> Event subscriberOnNext(Side side, List<T> list,
       Function<T, KT> keyFunction) {
     return new SubscriptionOnNextEvent(side, list, keyFunction);

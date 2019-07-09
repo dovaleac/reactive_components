@@ -250,23 +250,6 @@ public class SubscriberStatusGuarderImpl<T, OT, KT, K2T, LT, RT>
     subscriber.onNext(listToRetake);
   }
 
-  @Override
-  public void bothAreDepleted() {
-    subscriber.bothAreDepleted();
-  }
-
-  @Override
-  public void markAsDepleted() {
-    EventManagerContext.getInstance().getEventManager().processEvent(Event.any(side,
-        "Mark as depleted"));
-    //stateMachine.fire(SubscriberStatusGuarderTrigger.MARK_AS_DEPLETED);
-  }
-
-  @Override
-  public void notifyOtherIsDepleted() {
-    stateMachine.fire(SubscriberStatusGuarderTrigger.NOTIFY_OTHER_IS_DEPLETED);
-  }
-
   public void logTriggerEvent(SubscriberStatusGuarderTrigger trigger,
       SubscriberStatusGuarderState state) {
     EventManagerContext.getInstance()

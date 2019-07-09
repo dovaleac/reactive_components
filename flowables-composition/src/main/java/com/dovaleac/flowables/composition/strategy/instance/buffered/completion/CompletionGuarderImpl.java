@@ -202,10 +202,64 @@
  *    limitations under the License.
  */
 
-package com.dovaleac.flowables.composition.strategy.instance.buffered.buffer;
+package com.dovaleac.flowables.composition.strategy.instance.buffered.completion;
 
-public enum WriteBufferAcceptNewInputsState {
-  ACCEPT_NEW,
-  FROZEN,
-  FULL
+import com.dovaleac.flowables.composition.eventlog.Event;
+import com.dovaleac.flowables.composition.eventlog.EventManagerContext;
+import com.dovaleac.flowables.composition.eventlog.Side;
+import com.dovaleac.flowables.composition.strategy.instance.buffered.BufferedJoinStrategySubscriber;
+import com.github.oxo42.stateless4j.StateMachine;
+import com.github.oxo42.stateless4j.triggers.TriggerWithParameters1;
+
+import java.util.List;
+
+public class CompletionGuarderImpl<T, OT, KT, K2T, LT, RT>
+    implements CompletionGuarder {
+
+  private BufferedJoinStrategySubscriber<T, OT, KT, K2T, LT, RT> subscriber;
+  private final StateMachine<CompletionState, CompletionTrigger>
+      stateMachine =
+          new StateMachine<>(
+              CompletionState.RUNNING,
+              new CompletionStateMachine<>(this).getConfig());
+  private final Side side;
+
+  private CompletionGuarderImpl<OT, T, KT, K2T, LT, RT> otherCompletionGuarder;
+
+  public CompletionGuarderImpl(
+      Side side) {
+    this.side = side;
+  }
+
+  public void setSubscriber(
+      BufferedJoinStrategySubscriber<T, OT, KT, K2T, LT, RT> subscriber) {
+    this.subscriber = subscriber;
+  }
+
+  public void setOtherCompletionGuarder(
+      CompletionGuarderImpl<OT, T, KT, K2T, LT, RT> otherCompletionGuarder) {
+    this.otherCompletionGuarder = otherCompletionGuarder;
+  }
+
+  @Override
+  public void bothAreDepleted() {
+    subscriber.bothAreDepleted();
+  }
+
+  @Override
+  public void markAsDepleted() {
+    stateMachine.fire(CompletionTrigger.MARK_AS_DEPLETED);
+  }
+
+  @Override
+  public void notifyOtherGuarderThatThisOneIsDepleted() {
+    otherCompletionGuarder.stateMachine.fire(CompletionTrigger.NOTIFY_OTHER_IS_DEPLETED);
+  }
+
+  public void logTriggerEvent(CompletionTrigger trigger,
+      CompletionState state) {
+    EventManagerContext.getInstance()
+        .getEventManager()
+        .processEvent(Event.completionTrigger(side, trigger.name(), state.name()));
+  }
 }

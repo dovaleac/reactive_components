@@ -202,9 +202,11 @@
  *    limitations under the License.
  */
 
-package com.dovaleac.flowables.composition.strategy.instance.buffered.guarder;
+package com.dovaleac.flowables.composition.strategy.instance.buffered.completion;
 
-public enum SubscriberStatusGuarderTrigger {
-  STOP_ON_READING,
-  RETAKE_READING
+public enum CompletionState {
+  RUNNING,
+  DEPLETED,
+  OTHER_IS_DEPLETED,
+  BOTH_ARE_DEPLETED
 }

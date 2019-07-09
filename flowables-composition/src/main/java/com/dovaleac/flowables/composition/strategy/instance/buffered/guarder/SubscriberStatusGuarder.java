@@ -215,9 +215,4 @@ public interface SubscriberStatusGuarder<T> {
 
   void retakeReading();
 
-  void bothAreDepleted();
-
-  void markAsDepleted();
-
-  void notifyOtherIsDepleted();
 }

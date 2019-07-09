@@ -169,7 +169,8 @@ public class SubscriberStatusGuarderStateMachine<T, OT, KT> {
 
   private final SubscriberStatusGuarderImpl<T, OT, KT, ?, ?, ?> subscriberStatusGuarder;
 
-  public SubscriberStatusGuarderStateMachine(SubscriberStatusGuarderImpl subscriberStatusGuarder) {
+  public SubscriberStatusGuarderStateMachine(
+      SubscriberStatusGuarderImpl<T, OT, KT, ?, ?, ?> subscriberStatusGuarder) {
     this.subscriberStatusGuarder = subscriberStatusGuarder;
   }
 
@@ -195,11 +196,6 @@ public class SubscriberStatusGuarderStateMachine<T, OT, KT> {
         .permit(
             SubscriberStatusGuarderTrigger.STOP_ON_READING,
             SubscriberStatusGuarderState.STOPPED_ON_READING)
-        .permit(
-            SubscriberStatusGuarderTrigger.MARK_AS_DEPLETED, SubscriberStatusGuarderState.DEPLETED)
-        .permit(
-            SubscriberStatusGuarderTrigger.NOTIFY_OTHER_IS_DEPLETED,
-            SubscriberStatusGuarderState.OTHER_IS_DEPLETED)
         .onEntryFrom(
             SubscriberStatusGuarderTrigger.RETAKE_READING, subscriberStatusGuarder::retakeReading);
 
@@ -214,22 +210,6 @@ public class SubscriberStatusGuarderStateMachine<T, OT, KT> {
               subscriberStatusGuarder.stopReading(ts);
             },
             List.class);
-
-    config
-        .configure(SubscriberStatusGuarderState.DEPLETED)
-        .permit(
-            SubscriberStatusGuarderTrigger.NOTIFY_OTHER_IS_DEPLETED,
-            SubscriberStatusGuarderState.BOTH_ARE_DEPLETED);
-
-    config
-        .configure(SubscriberStatusGuarderState.OTHER_IS_DEPLETED)
-        .permit(
-            SubscriberStatusGuarderTrigger.MARK_AS_DEPLETED,
-            SubscriberStatusGuarderState.BOTH_ARE_DEPLETED);
-
-    config
-        .configure(SubscriberStatusGuarderState.BOTH_ARE_DEPLETED)
-        .onEntry(subscriberStatusGuarder::bothAreDepleted);
 
     return config;
   }

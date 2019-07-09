@@ -202,9 +202,10 @@
  *    limitations under the License.
  */
 
-package com.dovaleac.flowables.composition.strategy.instance.buffered.guarder;
+package com.dovaleac.flowables.composition.strategy.instance.buffered.buffer.write;
 
-public enum SubscriberStatusGuarderTrigger {
-  STOP_ON_READING,
-  RETAKE_READING
+public enum WriteBufferAcceptNewInputsState {
+  ACCEPT_NEW,
+  FROZEN,
+  FULL
 }

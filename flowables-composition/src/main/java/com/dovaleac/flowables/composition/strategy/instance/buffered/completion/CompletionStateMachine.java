@@ -157,59 +157,62 @@
  * express or implied. See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.dovaleac.flowables.composition.strategy.instance.buffered.buffer;
+package com.dovaleac.flowables.composition.strategy.instance.buffered.completion;
 
-import com.dovaleac.flowables.composition.eventlog.Event;
-import com.dovaleac.flowables.composition.eventlog.EventManagerContext;
-import com.dovaleac.flowables.composition.eventlog.Side;
-import io.reactivex.Flowable;
-import io.reactivex.Maybe;
-import io.reactivex.functions.Function;
+import com.github.oxo42.stateless4j.StateMachineConfig;
 
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingDeque;
+import java.util.stream.Stream;
 
-public class ReadBufferImpl<T, KT> implements ReadBuffer<T, KT> {
+public class CompletionStateMachine<T, OT, KT> {
 
-  private final Function<T, KT> keyFunction;
-  private final BlockingQueue<List<T>> blockQueue;
-  private final double maxBlocks;
-  private final Side side;
+  private final CompletionGuarderImpl<T, OT, KT, ?, ?, ?> completionGuarder;
 
-  public ReadBufferImpl(Function<T, KT> keyFunction, int maxBlocks, Side side) {
-    this.keyFunction = keyFunction;
-    this.blockQueue = new LinkedBlockingDeque<>(maxBlocks);
-    this.maxBlocks = (double) maxBlocks;
-    this.side = side;
+  public CompletionStateMachine(CompletionGuarderImpl<T, OT, KT, ?, ?, ?> completionGuarder) {
+    this.completionGuarder = completionGuarder;
   }
 
-  @Override
-  public boolean push(List<T> otherTypeElements) {
-    boolean result = blockQueue.offer(otherTypeElements);
-    if (result) {
-      EventManagerContext.getInstance()
-          .getEventManager()
-          .processEvent(Event.pushToReadBuffer(side, otherTypeElements, keyFunction));
-    }
-    return result;
-  }
+  StateMachineConfig<CompletionState, CompletionTrigger> getConfig() {
+    StateMachineConfig<CompletionState, CompletionTrigger> config =
+        new StateMachineConfig<>();
 
-  @Override
-  public double getCapacity() {
-    return (double) blockQueue.remainingCapacity() / maxBlocks;
-  }
+    Stream.of(CompletionState.values())
+        .forEach(
+            state ->
+                Stream.of(CompletionTrigger.values())
+                    .forEach(
+                        trigger ->
+                            config
+                                .configure(state)
+                                .onEntryFrom(
+                                    trigger,
+                                    () ->
+                                        completionGuarder.logTriggerEvent(trigger, state))));
 
-  @Override
-  public Maybe<Map<KT, T>> pull() {
-    List<T> polled = blockQueue.poll();
-    if (polled == null) {
-      return Maybe.empty();
-    }
-    EventManagerContext.getInstance()
-        .getEventManager()
-        .processEvent(Event.pullFromReadBuffer(side, polled, keyFunction));
-    return Flowable.fromIterable(polled).toMap(keyFunction).toMaybe();
+    config
+        .configure(CompletionState.RUNNING)
+        .permit(
+            CompletionTrigger.MARK_AS_DEPLETED, CompletionState.DEPLETED)
+        .permit(
+            CompletionTrigger.NOTIFY_OTHER_IS_DEPLETED,
+            CompletionState.OTHER_IS_DEPLETED);
+
+    config
+        .configure(CompletionState.DEPLETED)
+        .onEntry(completionGuarder::notifyOtherGuarderThatThisOneIsDepleted)
+        .permit(
+            CompletionTrigger.NOTIFY_OTHER_IS_DEPLETED,
+            CompletionState.BOTH_ARE_DEPLETED);
+
+    config
+        .configure(CompletionState.OTHER_IS_DEPLETED)
+        .permit(
+            CompletionTrigger.MARK_AS_DEPLETED,
+            CompletionState.BOTH_ARE_DEPLETED);
+
+    config
+        .configure(CompletionState.BOTH_ARE_DEPLETED)
+        .onEntryFrom(CompletionTrigger.MARK_AS_DEPLETED, completionGuarder::bothAreDepleted);
+
+    return config;
   }
 }
